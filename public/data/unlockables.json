@@ -3,11 +3,19 @@
   "sources": ["https://evercade.info/vs-secrets-and-easter-eggs/"],
   "codes": {
     "text": {
-      "title": "Códigos de texto",
-      "help": "Se escriben en Ajustes → Secret («Secret Code»), en mayúsculas o minúsculas. Los juegos aparecen después en el menú «Secret Games». Funcionan en VS, VS-R, EXP, EXP-R y Alpha.",
+      "title": { "es": "Códigos de texto", "en": "Text codes" },
+      "help": {
+        "es": "Se escriben en Ajustes → Secret («Secret Code»), en mayúsculas o minúsculas. Los juegos aparecen después en el menú «Secret Games». Funcionan en VS, VS-R, EXP, EXP-R y Alpha.",
+        "en": "Enter them in Settings → Secret (“Secret Code”), in upper or lower case. The games then appear in the “Secret Games” menu. They work on VS, VS-R, EXP, EXP-R and Alpha."
+      },
       "items": [
         { "title": "Gribbly’s Day Out", "platform": "C64", "code": "GRIBBLYGROBBLY" },
-        { "title": "Kubo 1&2", "platform": "NES", "code": "SEIJIWASHERE", "note": "Hay que volver a introducir el código cada vez que quieras jugar." },
+        {
+          "title": "Kubo 1&2",
+          "platform": "NES",
+          "code": "SEIJIWASHERE",
+          "note": { "es": "Hay que volver a introducir el código cada vez que quieras jugar.", "en": "You need to re-enter the code every time you want to play." }
+        },
         { "title": "Rogue64", "platform": "C64", "code": "STONE" },
         { "title": "The Lost Mines", "platform": "Evercade", "code": "BLOP" },
         { "title": "Juggling Balls", "platform": "Evercade", "code": "JUGGLE" },
@@ -15,72 +23,147 @@
         {
           "title": "The Sword of Stone",
           "platform": "Evercade",
-          "how": "Ve a Ajustes → «Get free unlocks!» y pulsa A para escanear el código QR (o Y si ya estás suscrito a la newsletter de Evercade). Introduce el código único que recibas en Ajustes → Secret.",
-          "note": "Código único por usuario, válido en hasta 5 consolas. Necesita Wi-Fi. Añadido en la actualización del 5.º aniversario (2025)."
+          "how": {
+            "es": "Ve a Ajustes → «Get free unlocks!» y pulsa A para escanear el código QR (o Y si ya estás suscrito a la newsletter de Evercade). Introduce el código único que recibas en Ajustes → Secret.",
+            "en": "Go to Settings → “Get free unlocks!” and press A to scan the QR code (or Y if you are already subscribed to the Evercade newsletter). Enter the unique code you receive in Settings → Secret."
+          },
+          "note": {
+            "es": "Código único por usuario, válido en hasta 5 consolas. Necesita Wi-Fi. Añadido en la actualización del 5.º aniversario (2025).",
+            "en": "Unique code per user, valid on up to 5 devices. Requires Wi-Fi. Added in the 5th Anniversary firmware update (2025)."
+          }
         }
       ]
     },
     "buttons": {
-      "title": "Combinaciones de botones",
-      "help": "Se introducen en la pantalla principal. En EXP/EXP-R, algunas necesitan que no haya ningún cartucho insertado (se indica en cada una).",
+      "title": { "es": "Combinaciones de botones", "en": "Button combinations" },
+      "help": {
+        "es": "Se introducen en la pantalla principal. En EXP/EXP-R, algunas necesitan que no haya ningún cartucho insertado (se indica en cada una).",
+        "en": "Enter them on the main screen. On EXP/EXP-R, some need no cartridge inserted (noted on each one)."
+      },
       "items": [
-        { "title": "Fairy Fire – Defender of the Fairies", "platform": null, "combo": "Pulsa Menu diez veces" },
-        { "title": "Gotris", "platform": "Master System", "combo": "Mantén L2 + R2 + Select", "note": "En EXP/EXP-R, sin cartucho insertado. En Alpha (su mando no tiene L2/R2): L1 + L2 + Select." },
-        { "title": "Hummingz", "platform": "Evercade", "combo": "L2, L2, R2, R2, L1, L1, R1, R1", "note": "Hay usuarios que dicen que en la EXP no funciona." },
-        { "title": "NNNNNN", "platform": "NES", "combo": "Mantén L1 + R1 + Arriba", "note": "En EXP/EXP-R, sin cartucho insertado." },
-        { "title": "Spacey McRacey", "platform": "NES", "combo": "Mantén L1 + R1 + Abajo", "note": "En EXP/EXP-R, sin cartucho insertado." },
+        { "title": "Fairy Fire – Defender of the Fairies", "platform": null, "combo": { "es": "Pulsa Menu diez veces", "en": "Press Menu ten times" } },
+        {
+          "title": "Gotris",
+          "platform": "Master System",
+          "combo": { "es": "Mantén L2 + R2 + Select", "en": "Hold L2 + R2 + Select" },
+          "note": {
+            "es": "En EXP/EXP-R, sin cartucho insertado. En Alpha (su mando no tiene L2/R2): L1 + L2 + Select.",
+            "en": "On EXP/EXP-R, with no cartridge inserted. On Alpha (its controller has no L2/R2): L1 + L2 + Select."
+          }
+        },
+        {
+          "title": "Hummingz",
+          "platform": "Evercade",
+          "combo": "L2, L2, R2, R2, L1, L1, R1, R1",
+          "note": { "es": "Hay usuarios que dicen que en la EXP no funciona.", "en": "Some users report that it does not work on the EXP." }
+        },
+        {
+          "title": "NNNNNN",
+          "platform": "NES",
+          "combo": { "es": "Mantén L1 + R1 + Arriba", "en": "Hold L1 + R1 + Up" },
+          "note": { "es": "En EXP/EXP-R, sin cartucho insertado.", "en": "On EXP/EXP-R, with no cartridge inserted." }
+        },
+        {
+          "title": "Spacey McRacey",
+          "platform": "NES",
+          "combo": { "es": "Mantén L1 + R1 + Abajo", "en": "Hold L1 + R1 + Down" },
+          "note": { "es": "En EXP/EXP-R, sin cartucho insertado.", "en": "On EXP/EXP-R, with no cartridge inserted." }
+        },
         {
           "title": "Maniac Square",
-          "platform": "Arcade (prototipo)",
-          "combo": "Con el cartucho Gaelco Arcade 2, selecciona Maniac Square y mantén L1 + L2 + R1 + R2",
-          "note": "Confirmado solo en Evercade VS.",
+          "platform": { "es": "Arcade (prototipo)", "en": "Arcade (prototype)" },
+          "combo": {
+            "es": "Con el cartucho Gaelco Arcade 2, selecciona Maniac Square y mantén L1 + L2 + R1 + R2",
+            "en": "With the Gaelco Arcade 2 cartridge, select Maniac Square and hold L1 + L2 + R1 + R2"
+          },
+          "note": { "es": "Confirmado solo en Evercade VS.", "en": "Confirmed on Evercade VS only." },
           "requires": ["gaelco-arcade-2"]
         }
       ]
     },
     "ingame": {
-      "title": "Secretos dentro de juegos",
-      "help": "Juegos ocultos dentro de otros juegos. Funcionan en todas las consolas Evercade.",
+      "title": { "es": "Secretos dentro de juegos", "en": "In-game secrets" },
+      "help": {
+        "es": "Juegos ocultos dentro de otros juegos. Funcionan en todas las consolas Evercade.",
+        "en": "Games hidden inside other games. They work on every Evercade device."
+      },
       "items": [
         {
           "title": "Roids",
-          "platform": "Clon de Asteroids",
+          "platform": { "es": "Clon de Asteroids", "en": "Asteroids clone" },
           "code": "DUTCHMAN",
-          "how": "Elige Hardcore 4X4. En el menú principal ve a «Race Type» → «Time Trial», luego «Start Game» → «Edit Names» y escribe DUTCHMAN como nombre. Pulsa Atrás (Y) hasta la pantalla de «Start» y «Options», entra en «Options» → «Credits».",
-          "note": "Los asteroides se sustituyen por caras de los programadores.",
+          "how": {
+            "es": "Elige Hardcore 4X4. En el menú principal ve a «Race Type» → «Time Trial», luego «Start Game» → «Edit Names» y escribe DUTCHMAN como nombre. Pulsa Atrás (Y) hasta la pantalla de «Start» y «Options», entra en «Options» → «Credits».",
+            "en": "Choose Hardcore 4X4. From the main menu go to “Race Type” → “Time Trial”, then “Start Game” → “Edit Names” and enter DUTCHMAN as the name. Press Back (Y) until you reach the “Start” and “Options” screen, then go to “Options” → “Credits”."
+          },
+          "note": { "es": "Los asteroides se sustituyen por caras de los programadores.", "en": "The asteroids are replaced by the faces of the coders." },
           "requires": ["gremlin-collection-1"]
         },
         {
-          "title": "Clon de Sinistar",
-          "platform": "Sin nombre",
+          "title": { "es": "Clon de Sinistar", "en": "Sinistar clone" },
+          "platform": { "es": "Sin nombre", "en": "Unnamed" },
           "code": "JOOLS",
-          "how": "Elige Mega-Lo-Mania, entra en el menú «Options» del juego (después de elegir jugador), pulsa «Load / Save» y escribe JOOLS.",
+          "how": {
+            "es": "Elige Mega-Lo-Mania, entra en el menú «Options» del juego (después de elegir jugador), pulsa «Load / Save» y escribe JOOLS.",
+            "en": "Choose Mega-Lo-Mania, open the in-game “Options” menu (after the player select screen), press “Load / Save” and enter JOOLS."
+          },
           "requires": ["codemasters-collection-1-cartridge"]
         },
         {
           "title": "Rushing Beat",
-          "platform": "SNES (versión japonesa de Brawl Brothers)",
-          "how": "Elige Brawl Brothers. En el logo de Jaleco, pulsa A, B, Y, X en el sentido de las agujas del reloj sin parar. Cuando la pantalla haga un fallo gráfico, pulsa Start y Abajo tres veces.",
+          "platform": { "es": "SNES (versión japonesa de Brawl Brothers)", "en": "SNES (Japanese version of Brawl Brothers)" },
+          "how": {
+            "es": "Elige Brawl Brothers. En el logo de Jaleco, pulsa A, B, Y, X en el sentido de las agujas del reloj sin parar. Cuando la pantalla haga un fallo gráfico, pulsa Start y Abajo tres veces.",
+            "en": "Choose Brawl Brothers. At the Jaleco logo, keep pressing A, B, Y, X in a clockwise pattern. When the screen glitches, press Start and Down three times."
+          },
           "requires": ["jaleco-collection-1-cartridge"]
         }
       ]
     },
     "extras": {
-      "title": "Extras que no son juegos",
+      "title": { "es": "Extras que no son juegos", "en": "Extras that are not games" },
       "items": [
-        { "code": "CIRCUIT", "description": "Muestra una foto de la VS." },
-        { "code": "DEADLOCK", "description": "Muestra una foto de una patata." },
-        { "code": "guest", "description": "Muestra un mensaje especial de Ben.", "note": "Escríbelo en minúsculas." },
-        { "code": "UPDATE", "description": "Reinstala la última actualización de la consola.", "note": "Confirmado solo en VS (código facilitado por el soporte de Blaze)." },
-        { "combo": "X + Y + L1 + R1", "description": "Abre la pantalla de diagnóstico.", "note": "En la pantalla de cartuchos." },
-        { "how": "Inserta dos cartuchos iguales en la VS / VS-R o Alpha.", "description": "Muestra un mensaje gracioso." },
-        { "how": "En los créditos, sigue bajando aunque solo veas la pantalla en negro (ten paciencia), y continúa después de ver los primeros.", "description": "Easter eggs en los créditos." },
-        { "how": "Durante la partida, pulsa L o R.", "description": "Xeno Crisis: aumenta la velocidad del juego.", "requires": ["xeno-crisis-and-tanglewood"] }
+        { "code": "CIRCUIT", "description": { "es": "Muestra una foto de la VS.", "en": "Shows a picture of the VS." } },
+        { "code": "DEADLOCK", "description": { "es": "Muestra una foto de una patata.", "en": "Shows a picture of a potato." } },
+        {
+          "code": "guest",
+          "description": { "es": "Muestra un mensaje especial de Ben.", "en": "Shows a special message from Ben." },
+          "note": { "es": "Escríbelo en minúsculas.", "en": "Type it in lower case." }
+        },
+        {
+          "code": "UPDATE",
+          "description": { "es": "Reinstala la última actualización de la consola.", "en": "Reinstalls the latest update on the console." },
+          "note": { "es": "Confirmado solo en VS (código facilitado por el soporte de Blaze).", "en": "Only confirmed on VS (the code came from Blaze customer support)." }
+        },
+        {
+          "combo": "X + Y + L1 + R1",
+          "description": { "es": "Abre la pantalla de diagnóstico.", "en": "Opens the diagnostics / test screen." },
+          "note": { "es": "En la pantalla de cartuchos.", "en": "On the cartridge screen." }
+        },
+        {
+          "how": { "es": "Inserta dos cartuchos iguales en la VS / VS-R o Alpha.", "en": "Insert two copies of the same cartridge in the VS / VS-R or Alpha." },
+          "description": { "es": "Muestra un mensaje gracioso.", "en": "Shows a silly little message." }
+        },
+        {
+          "how": {
+            "es": "En los créditos, sigue bajando aunque solo veas la pantalla en negro (ten paciencia), y continúa después de ver los primeros.",
+            "en": "In the credits, keep scrolling down even when you only see a black screen (be patient), and keep going after you have seen the first ones."
+          },
+          "description": { "es": "Easter eggs en los créditos.", "en": "Easter eggs in the credits." }
+        },
+        {
+          "how": { "es": "Durante la partida, pulsa L o R.", "en": "During play, press L or R." },
+          "description": { "es": "Xeno Crisis: aumenta la velocidad del juego.", "en": "Xeno Crisis: increases the game speed." },
+          "requires": ["xeno-crisis-and-tanglewood"]
+        }
       ]
     }
   },
   "twoCarts": {
-    "help": "Inserta los dos cartuchos a la vez. Solo en consolas con dos ranuras: Evercade VS / VS-R y Alpha.",
+    "help": {
+      "es": "Inserta los dos cartuchos a la vez. Solo en consolas con dos ranuras: Evercade VS / VS-R y Alpha.",
+      "en": "Insert both cartridges at the same time. Only on devices with two cartridge slots: Evercade VS / VS-R and Alpha."
+    },
     "items": [
       { "title": "Arkade Rush", "platform": "NES", "carts": ["gaelco-arcade-1", "indie-heroes-collection-1-cartridge"] },
       { "title": "Bang!", "platform": "Arcade", "carts": ["gaelco-arcade-1", "gaelco-arcade-2"] },

@@ -1,4 +1,5 @@
 import * as db from './db.js';
+import { t, tr, getLang, setLang, detectLang, applyStatic } from './i18n.js';
 
 const $ = (sel, el = document) => el.querySelector(sel);
 const main = $('#main');
@@ -20,9 +21,10 @@ const state = {
   sort: 'new',
   unlockables: null,
   unlockTab: 'code', // 'code' | 'two'
+  lang: null,
 };
 
-const PREFS = ['view', 'fOwned', 'fLegacy', 'fCat', 'sort', 'unlockTab'];
+const PREFS = ['view', 'fOwned', 'fLegacy', 'fCat', 'sort', 'unlockTab', 'lang'];
 
 // ---------- utilidades ----------
 
@@ -60,14 +62,25 @@ function highlight(text, q) {
   return esc(chars.slice(0, start).join('')) + '<mark>' + esc(chars.slice(start, end).join('')) + '</mark>' + esc(chars.slice(end).join(''));
 }
 
-const plural = (n, one, many) => `${n} ${n === 1 ? one : many}`;
+// Etiquetas de datos del catálogo que vienen en inglés desde evercade.co.uk
+const catLabel = (k) => t(`cat.${k}`);
+
+function tagLabel(tag) {
+  const m = tag.match(/^([A-Z][a-z]{2}) (\d{4})$/); // fecha de lanzamiento, p. ej. "Dec 2026"
+  if (m) {
+    const d = new Date(`${m[1]} 1, ${m[2]}`);
+    if (!isNaN(d)) return d.toLocaleDateString(t('locale'), { month: 'short', year: 'numeric' });
+  }
+  const label = t(`tag.${tag}`);
+  return label === `tag.${tag}` ? tag : label;
+}
 
 function toast(msg) {
-  const t = $('#toast');
-  t.textContent = msg;
-  t.hidden = false;
+  const el = $('#toast');
+  el.textContent = msg;
+  el.hidden = false;
   clearTimeout(toast.timer);
-  toast.timer = setTimeout(() => (t.hidden = true), 2600);
+  toast.timer = setTimeout(() => (el.hidden = true), 2600);
 }
 
 function loadPrefs() {
@@ -95,7 +108,7 @@ async function loadCatalog() {
     await db.replaceCatalog(remote);
   }
   const carts = await db.getCartridges();
-  if (!carts.length) throw new Error('No hay catálogo. Ejecuta "npm run scrape".');
+  if (!carts.length) throw new Error(t('noCatalog'));
   state.catalogUpdatedAt = remote?.updatedAt ?? (await db.getMeta('catalogUpdatedAt'));
   state.carts = carts;
   state.byId = new Map(carts.map((c) => [c.id, c]));
@@ -248,9 +261,9 @@ function renderStats() {
   const owned = state.owned.size;
   const ownedGames = state.games.filter((g) => g.carts.some((id) => state.owned.has(id))).length;
   $('#stats').innerHTML =
-    `<span><b>${owned}</b>/${total} cartuchos</span>` +
-    `<span><b>${ownedGames}</b>/${state.games.length} juegos</span>` +
-    `<span><b>${state.completed.size}</b> pasados</span>` +
+    `<span>${t('stats.carts', owned, total)}</span>` +
+    `<span>${t('stats.games', ownedGames, state.games.length)}</span>` +
+    `<span>${t('stats.completed', state.completed.size)}</span>` +
     `<span class="pct">${total ? Math.round((owned / total) * 100) : 0}%</span>`;
   $('#progress-bar').style.width = `${total ? (owned / total) * 100 : 0}%`;
 }
@@ -258,41 +271,45 @@ function renderStats() {
 function badges(c) {
   return [
     c.legacy ? '<span class="badge legacy">Legacy</span>' : '',
-    c.tag ? `<span class="badge tag">${esc(c.tag)}</span>` : '',
-    ...c.categories.map((k) => `<span class="badge cat">${esc(k)}</span>`),
-    `<span class="badge plain">${plural(c.games.length, 'juego', 'juegos')}</span>`,
+    c.tag ? `<span class="badge tag">${esc(tagLabel(c.tag))}</span>` : '',
+    ...c.categories.map((k) => `<span class="badge cat">${esc(catLabel(k))}</span>`),
+    `<span class="badge plain">${t('games.count', c.games.length)}</span>`,
   ].join('');
 }
 
 function ownButton(c) {
   const own = state.owned.has(c.id);
-  return `<button class="own-btn" type="button" data-own="${esc(c.id)}" aria-pressed="${own}" aria-label="${own ? 'Quitar de' : 'Añadir a'} mi colección: ${esc(c.title)}">
-    <span class="own-check" aria-hidden="true"></span><span class="own-label">${own ? 'Lo tengo' : 'No lo tengo'}</span></button>`;
+  return `<button class="own-btn" type="button" data-own="${esc(c.id)}" aria-pressed="${own}" aria-label="${esc(t(own ? 'own.remove' : 'own.add', c.title))}">
+    <span class="own-check" aria-hidden="true"></span><span class="own-label">${t(own ? 'own.yes' : 'own.no')}</span></button>`;
 }
 
 function progressBlock(c) {
   const { done, total, pct } = cartProgress(c);
   return `<span class="cart-progress${pct === 100 ? ' full' : ''}" data-progress="${esc(c.id)}">
     <span class="mini-bar" aria-hidden="true"><span style="width:${pct}%"></span></span>
-    <span class="mini-text"><b>${pct}%</b> · ${done}/${total} pasados</span>
+    <span class="mini-text"><b>${pct}%</b> · ${t('progress.text', done, total)}</span>
   </span>`;
 }
 
 function doneButton(key, title) {
   const done = state.completed.has(key);
-  return `<button class="done-btn" type="button" data-done="${esc(key)}" aria-pressed="${done}" aria-label="${esc(title)}: ${done ? 'pasado' : 'por pasar'}">
-    <span class="done-check" aria-hidden="true"></span>${done ? 'Pasado' : 'Por pasar'}</button>`;
+  return `<button class="done-btn" type="button" data-done="${esc(key)}" aria-pressed="${done}" aria-label="${esc(t('done.aria', title, done))}">
+    <span class="done-check" aria-hidden="true"></span>${t(done ? 'done.yes' : 'done.no')}</button>`;
 }
 
+function shot(g) {
+  return g.image
+    ? `<button class="shot" type="button" data-img="${esc(g.image)}" data-caption="${esc(g.title)}" aria-label="${esc(t('shot.zoom', g.title))}"><img src="${esc(g.image)}" alt="" loading="lazy" decoding="async"></button>`
+    : `<div class="shot empty" aria-hidden="true">${t('shot.none')}</div>`;
+}
+
+const gameMeta = (g) => [g.genre, g.players && t('players', g.players)].filter(Boolean).map(esc).join(' · ');
+
 function gameCard(g, q, cartId) {
-  const meta = [g.genre, g.players && `${g.players} jug.`].filter(Boolean).map(esc).join(' · ');
+  const meta = gameMeta(g);
   const key = gameKey(cartId, g.title);
   return `<li class="game${q && norm(g.title).includes(q) ? ' hit' : ''}${state.completed.has(key) ? ' done' : ''}">
-    ${
-      g.image
-        ? `<button class="shot" type="button" data-img="${esc(g.image)}" data-caption="${esc(g.title)}" aria-label="Ampliar captura de ${esc(g.title)}"><img src="${esc(g.image)}" alt="" loading="lazy" decoding="async"></button>`
-        : '<div class="shot empty" aria-hidden="true">Sin captura</div>'
-    }
+    ${shot(g)}
     <div class="game-text">
       <h3>${highlight(g.title, q)}</h3>
       ${meta ? `<p class="meta">${meta}</p>` : ''}
@@ -308,7 +325,7 @@ function otherCarts(g, cartId) {
   const entry = state.gameIndex.get(norm(g.title));
   const others = entry ? entry.carts.filter((id) => id !== cartId) : [];
   if (!others.length) return '';
-  return `<p class="also">También en: ${others.map((id) => cartChip(state.byId.get(id))).join(' ')}</p>`;
+  return `<p class="also">${t('also')} ${others.map((id) => cartChip(state.byId.get(id))).join(' ')}</p>`;
 }
 
 function cartChip(c) {
@@ -321,10 +338,10 @@ function cartBody(c, q) {
     ${c.description ? `<p class="cart-desc">${esc(c.description)}</p>` : ''}
     ${c.note ? `<p class="cart-note">${esc(c.note)}</p>` : ''}
     ${(c.editions ?? [])
-      .map((e) => `<p class="cart-edition"><span class="badge">Edición especial</span> <b>${esc(e.title)}</b>${e.description ? ` — ${esc(e.description)}` : ''}</p>`)
+      .map((e) => `<p class="cart-edition"><span class="badge">${t('edition')}</span> <b>${esc(e.title)}</b>${e.description ? ` — ${esc(e.description)}` : ''}</p>`)
       .join('')}
-    <p class="cart-links"><a href="${esc(c.url)}" target="_blank" rel="noopener">Ficha oficial ↗</a>${
-      c.video ? ` <a href="https://www.youtube.com/watch?v=${esc(c.video)}" target="_blank" rel="noopener">Vídeo ↗</a>` : ''
+    <p class="cart-links"><a href="${esc(c.url)}" target="_blank" rel="noopener">${t('link.official')}</a>${
+      c.video ? ` <a href="https://www.youtube.com/watch?v=${esc(c.video)}" target="_blank" rel="noopener">${t('link.video')}</a>` : ''
     }</p>
     <ul class="games-grid">${c.games.map((g) => gameCard(g, q, c.id)).join('')}</ul>`;
 }
@@ -336,13 +353,13 @@ function ratingBar(c) {
   const stars = [1, 2, 3, 4, 5]
     .map(
       (n) =>
-        `<button type="button" class="star${n <= r ? ' on' : ''}" data-rate="${n}" aria-pressed="${n === r}" aria-label="${plural(n, 'estrella', 'estrellas')}">★</button>`,
+        `<button type="button" class="star${n <= r ? ' on' : ''}" data-rate="${n}" aria-pressed="${n === r}" aria-label="${t('rating.star', n)}">★</button>`,
     )
     .join('');
-  return `<div class="cart-rating" data-rating-for="${esc(c.id)}" role="group" aria-label="Calidad de ${esc(c.title)}">
-    <span class="rating-label">Calidad</span>
+  return `<div class="cart-rating" data-rating-for="${esc(c.id)}" role="group" aria-label="${esc(t('rating.group', c.title))}">
+    <span class="rating-label">${t('rating.label')}</span>
     <span class="stars">${stars}</span>
-    <span class="rating-text">${r ? `${r}/5` : 'Sin valorar'}</span>
+    <span class="rating-text">${r ? `${r}/5` : t('rating.none')}</span>
   </div>`;
 }
 
@@ -351,14 +368,14 @@ function cartRow({ c, matches }, q) {
   const open = state.expanded.has(c.id);
   const matchText =
     q && matches.length
-      ? `<p class="match">Contiene: ${matches.map((g) => highlight(g.title, q)).join(', ')}</p>`
+      ? `<p class="match">${t('contains')} ${matches.map((g) => highlight(g.title, q)).join(', ')}</p>`
       : '';
   return `<article class="cart${own ? ' owned' : ''}${c.legacy ? ' is-legacy' : ''}" id="cart-${esc(c.id)}" data-id="${esc(c.id)}">
     <div class="cart-head">
       <button class="cart-toggle" type="button" aria-expanded="${open}" aria-controls="body-${esc(c.id)}">
         <img class="cover" src="${esc(c.cover)}" alt="" loading="lazy" decoding="async">
         <span class="cart-info">
-          <span class="cart-title">${c.number ? `<span class="cart-num" title="Nº de cartucho">${esc(c.number.label)}</span>` : ''}${highlight(c.title, q)}</span>
+          <span class="cart-title">${c.number ? `<span class="cart-num" title="${t('cartNum.title')}">${esc(c.number.label)}</span>` : ''}${highlight(c.title, q)}</span>
           <span class="badges">${badges(c)}</span>
           ${progressBlock(c)}
           ${matchText}
@@ -376,17 +393,13 @@ function gameRow(g, q) {
   const carts = g.carts.map((id) => state.byId.get(id));
   const ownedAny = carts.some((c) => state.owned.has(c.id));
   const doneAny = carts.some((c) => state.completed.has(gameKey(c.id, g.title)));
-  const meta = [g.genre, g.players && `${g.players} jug.`].filter(Boolean).map(esc).join(' · ');
+  const meta = gameMeta(g);
   return `<article class="grow${ownedAny ? ' owned' : ''}">
-    ${
-      g.image
-        ? `<button class="shot" type="button" data-img="${esc(g.image)}" data-caption="${esc(g.title)}" aria-label="Ampliar captura de ${esc(g.title)}"><img src="${esc(g.image)}" alt="" loading="lazy" decoding="async"></button>`
-        : '<div class="shot empty" aria-hidden="true">Sin captura</div>'
-    }
+    ${shot(g)}
     <div class="grow-text">
-      <h3>${highlight(g.title, q)}${ownedAny ? ' <span class="badge have">Lo tienes</span>' : ''}${doneAny ? ' <span class="badge done">Pasado</span>' : ''}</h3>
+      <h3>${highlight(g.title, q)}${ownedAny ? ` <span class="badge have">${t('have')}</span>` : ''}${doneAny ? ` <span class="badge done">${t('done.yes')}</span>` : ''}</h3>
       ${meta ? `<p class="meta">${meta}</p>` : ''}
-      <p class="in-carts"><span>${carts.length > 1 ? 'En los cartuchos:' : 'En el cartucho:'}</span> ${carts.map(cartChip).join(' ')}</p>
+      <p class="in-carts"><span>${t('inCarts', carts.length)}</span> ${carts.map(cartChip).join(' ')}</p>
     </div>
   </article>`;
 }
@@ -430,35 +443,38 @@ function visibleUnlockables() {
   const q = norm(state.q);
   const cartTitles = (ids = []) => ids.map((id) => state.byId.get(id)?.title ?? '');
   return {
-    text: u.codes.text.items.filter((i) => hits(q, i.title, i.platform, i.code)),
-    buttons: u.codes.buttons.items.filter((i) => hits(q, i.title, i.platform, ...cartTitles(i.requires))),
-    ingame: (u.codes.ingame?.items ?? []).filter((i) => hits(q, i.title, i.platform, i.code, ...cartTitles(i.requires))),
-    extras: u.codes.extras.items.filter((i) => hits(q, i.code, i.combo, i.description, ...cartTitles(i.requires))),
-    two: u.twoCarts.items.filter((i) => hits(q, i.title, i.platform, ...cartTitles(i.carts))),
+    text: u.codes.text.items.filter((i) => hits(q, tr(i.title), tr(i.platform), i.code)),
+    buttons: u.codes.buttons.items.filter((i) => hits(q, tr(i.title), tr(i.platform), ...cartTitles(i.requires))),
+    ingame: (u.codes.ingame?.items ?? []).filter((i) => hits(q, tr(i.title), tr(i.platform), i.code, ...cartTitles(i.requires))),
+    extras: u.codes.extras.items.filter((i) => hits(q, i.code, tr(i.combo), tr(i.description), ...cartTitles(i.requires))),
+    two: u.twoCarts.items.filter((i) => hits(q, tr(i.title), tr(i.platform), ...cartTitles(i.carts))),
   };
 }
 
 // Resalta los botones de la consola dentro de una combinación
-// (no toca el texto entre «» —nombres de menú— ni letras tras un guion, como en VS-R)
+// (no toca el texto entre «» o “” —nombres de menú— ni letras tras un guion, como en VS-R)
 const keys = (s) =>
   esc(s)
-    .split(/(«[^»]*»)/)
-    .map((part, i) => (i % 2 ? part : part.replace(/(?<!-)\b(L1|L2|R1|R2|L|R|A|B|X|Y|Select|Start|Menu|Arriba|Abajo)\b/g, '<kbd>$1</kbd>')))
+    .split(/(«[^»]*»|“[^”]*”)/)
+    .map((part, i) =>
+      i % 2 ? part : part.replace(/(?<!-)\b(L1|L2|R1|R2|L|R|A|B|X|Y|Select|Start|Menu|Arriba|Abajo|Up|Down)\b/g, '<kbd>$1</kbd>'),
+    )
     .join('');
 
 function secretCard(i, q) {
   const reqs = (i.requires ?? []).map((id) => state.byId.get(id)).filter(Boolean);
+  const [title, platform, combo, how, description, note] = [i.title, i.platform, i.combo, i.how, i.description, i.note].map(tr);
   return `<article class="ucard">
     <div class="ucard-head">
-      <h3>${highlight(i.title ?? i.description, q)}</h3>
-      ${i.platform ? `<span class="badge">${esc(i.platform)}</span>` : ''}
+      <h3>${highlight(title || description, q)}</h3>
+      ${platform ? `<span class="badge">${esc(platform)}</span>` : ''}
     </div>
-    ${i.code ? `<p class="secret"><span class="secret-label">Código</span><code>${highlight(i.code, q)}</code></p>` : ''}
-    ${i.combo ? `<p class="secret"><span class="secret-label">Botones</span><span class="combo">${keys(i.combo)}</span></p>` : ''}
-    ${i.how ? `<p class="secret"><span class="secret-label">Cómo</span><span class="how">${keys(i.how)}</span></p>` : ''}
-    ${i.title && i.description ? `<p class="unote">${esc(i.description)}</p>` : ''}
-    ${i.note ? `<p class="unote">${esc(i.note)}</p>` : ''}
-    ${reqs.length ? `<p class="also">Necesitas: ${reqs.map(cartChip).join(' ')}</p>` : ''}
+    ${i.code ? `<p class="secret"><span class="secret-label">${t('secret.code')}</span><code>${highlight(i.code, q)}</code></p>` : ''}
+    ${combo ? `<p class="secret"><span class="secret-label">${t('secret.buttons')}</span><span class="combo">${keys(combo)}</span></p>` : ''}
+    ${how ? `<p class="secret"><span class="secret-label">${t('secret.how')}</span><span class="how">${keys(how)}</span></p>` : ''}
+    ${title && description ? `<p class="unote">${esc(description)}</p>` : ''}
+    ${note ? `<p class="unote">${esc(note)}</p>` : ''}
+    ${reqs.length ? `<p class="also">${t('secret.needs')} ${reqs.map(cartChip).join(' ')}</p>` : ''}
   </article>`;
 }
 
@@ -467,7 +483,7 @@ function cartMini(c) {
   return `<button type="button" class="cart-mini${own ? ' owned' : ''}" data-goto="${esc(c.id)}">
     <img src="${esc(c.cover)}" alt="" loading="lazy" decoding="async">
     <span class="cart-mini-title">${esc(c.title)}</span>
-    <span class="cart-mini-own">${own ? '✓ Lo tengo' : 'No lo tengo'}</span>
+    <span class="cart-mini-own">${own ? `✓ ${t('own.yes')}` : t('own.no')}</span>
   </button>`;
 }
 
@@ -475,12 +491,12 @@ function twoCartCard(i, q) {
   const carts = i.carts.map((id) => state.byId.get(id)).filter(Boolean);
   const missing = carts.filter((c) => !state.owned.has(c.id));
   const status = !missing.length
-    ? '<p class="ustatus ok">✓ Tienes los 2 cartuchos: lo puedes desbloquear</p>'
-    : `<p class="ustatus">${missing.length === carts.length ? 'Te faltan los 2 cartuchos' : `Te falta: ${esc(missing[0].title)}`}</p>`;
+    ? `<p class="ustatus ok">${t('two.ready')}</p>`
+    : `<p class="ustatus">${missing.length === carts.length ? t('two.missingBoth') : esc(t('two.missing', missing[0].title))}</p>`;
   return `<article class="ucard${missing.length ? '' : ' ready'}">
     <div class="ucard-head">
-      <h3>${highlight(i.title, q)}</h3>
-      <span class="badge">${esc(i.platform)}</span>
+      <h3>${highlight(tr(i.title), q)}</h3>
+      <span class="badge">${esc(tr(i.platform))}</span>
     </div>
     <div class="pair">${carts.map(cartMini).join('<span class="plus" aria-hidden="true">+</span>')}</div>
     ${status}
@@ -489,15 +505,15 @@ function twoCartCard(i, q) {
 
 function unlockView(v, q) {
   const u = state.unlockables;
-  if (!u) return '<p class="loading">No se pudieron cargar los juegos desbloqueables.</p>';
+  if (!u) return `<p class="loading">${t('unlock.error')}</p>`;
   const nCode = v.text.length + v.buttons.length + v.ingame.length; // los extras no son juegos y no cuentan
-  const tabs = `<div class="subtabs" role="tablist" aria-label="Tipo de desbloqueo">
-    <button role="tab" data-unlock-tab="code" aria-selected="${state.unlockTab === 'code'}">Por código <span>${nCode}</span></button>
-    <button role="tab" data-unlock-tab="two" aria-selected="${state.unlockTab === 'two'}">Con 2 cartuchos <span>${v.two.length}</span></button>
+  const tabs = `<div class="subtabs" role="tablist" aria-label="${t('unlock.aria')}">
+    <button role="tab" data-unlock-tab="code" aria-selected="${state.unlockTab === 'code'}">${t('unlock.code')} <span>${nCode}</span></button>
+    <button role="tab" data-unlock-tab="two" aria-selected="${state.unlockTab === 'two'}">${t('unlock.two')} <span>${v.two.length}</span></button>
   </div>`;
   const section = (group, items, card) =>
     items.length
-      ? `<section class="usection"><h2>${esc(group.title)}</h2>${group.help ? `<p class="uhelp">${esc(group.help)}</p>` : ''}
+      ? `<section class="usection"><h2>${esc(tr(group.title))}</h2>${group.help ? `<p class="uhelp">${esc(tr(group.help))}</p>` : ''}
         <div class="ugrid">${items.map((i) => card(i, q)).join('')}</div></section>`
       : '';
 
@@ -505,8 +521,8 @@ function unlockView(v, q) {
   if (state.unlockTab === 'two') {
     const ready = u.twoCarts.items.filter((i) => i.carts.every((id) => state.owned.has(id))).length;
     body = v.two.length
-      ? `<section class="usection"><p class="uhelp">${esc(u.twoCarts.help)}</p>
-        <p class="usummary">Con tu colección puedes desbloquear <b>${ready}</b> de ${u.twoCarts.items.length}.</p>
+      ? `<section class="usection"><p class="uhelp">${esc(tr(u.twoCarts.help))}</p>
+        <p class="usummary">${t('two.summary', ready, u.twoCarts.items.length)}</p>
         <div class="ugrid">${v.two.map((i) => twoCartCard(i, q)).join('')}</div></section>`
       : empty();
   } else {
@@ -521,8 +537,8 @@ function unlockView(v, q) {
 }
 
 function empty() {
-  return `<div class="empty-state"><p>No hay resultados${state.q ? ` para «${esc(state.q)}»` : ''}.</p>
-    <button type="button" data-reset>Quitar filtros</button></div>`;
+  return `<div class="empty-state"><p>${t('empty.text', esc(state.q))}</p>
+    <button type="button" data-reset>${t('empty.reset')}</button></div>`;
 }
 
 // ---------- acciones ----------
@@ -544,7 +560,7 @@ async function toggleOwned(id) {
   } else {
     render();
   }
-  toast(own ? `Añadido: ${c.title}` : `Quitado: ${c.title}`);
+  toast(t(own ? 'toast.added' : 'toast.removed', c.title));
 }
 
 async function setRating(id, n) {
@@ -612,7 +628,7 @@ function exportOwned() {
     completed: [...state.completed],
   };
   const url = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }));
-  const a = Object.assign(document.createElement('a'), { href: url, download: `evercade-coleccion-${data.exportedAt.slice(0, 10)}.json` });
+  const a = Object.assign(document.createElement('a'), { href: url, download: `${t('export.filename')}-${data.exportedAt.slice(0, 10)}.json` });
   a.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
@@ -623,7 +639,7 @@ async function importOwned(file) {
     const list = Array.isArray(data) ? data : data.owned;
     const entries = list.map((e) => (typeof e === 'string' ? { id: e } : e)).filter((e) => state.byId.has(e.id));
     const ids = entries.map((e) => e.id);
-    if (!confirm(`Se importarán ${plural(ids.length, 'cartucho', 'cartuchos')} y se reemplazará tu colección actual (${state.owned.size}). ¿Continuar?`)) return;
+    if (!confirm(t('import.confirm', ids.length, state.owned.size))) return;
     const now = new Date().toISOString();
     const rating = (e) => (Number.isInteger(e.rating) && e.rating >= 1 && e.rating <= 5 ? e.rating : 0);
     await db.replaceOwned(entries.map((e) => ({ id: e.id, addedAt: now, rating: rating(e) })));
@@ -634,20 +650,20 @@ async function importOwned(file) {
       state.completed = new Set(data.completed);
     }
     render();
-    toast('Colección importada');
+    toast(t('toast.imported'));
   } catch (err) {
     console.error(err);
-    alert('No se pudo leer el archivo de colección.');
+    alert(t('import.error'));
   }
 }
 
 // ---------- eventos ----------
 
 function bind() {
-  let t;
+  let timer;
   $('#q').addEventListener('input', (e) => {
-    clearTimeout(t);
-    t = setTimeout(() => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
       state.q = e.target.value;
       render();
     }, 120);
@@ -694,8 +710,8 @@ function bind() {
     if (done) return toggleDone(done.dataset.done);
     const desc = e.target.closest('.desc');
     if (desc) return desc.classList.toggle('open');
-    const shot = e.target.closest('[data-img]');
-    if (shot) return openLightbox(shot.dataset.img, shot.dataset.caption);
+    const shotBtn = e.target.closest('[data-img]');
+    if (shotBtn) return openLightbox(shotBtn.dataset.img, shotBtn.dataset.caption);
     const sub = e.target.closest('[data-unlock-tab]');
     if (sub) {
       state.unlockTab = sub.dataset.unlockTab;
@@ -715,7 +731,15 @@ function bind() {
   });
 
   const dlg = $('#lightbox');
-  dlg.addEventListener('click', (e) => e.target === dlg || e.target.id === 'lb-img' ? dlg.close() : null);
+  dlg.addEventListener('click', (e) => (e.target === dlg || e.target.id === 'lb-img' ? dlg.close() : null));
+
+  $('#lang-switch').addEventListener('click', (e) => {
+    const b = e.target.closest('[data-lang]');
+    if (!b || b.dataset.lang === getLang()) return;
+    applyLang(b.dataset.lang);
+    savePrefs();
+    if (state.carts.length) render();
+  });
 
   $('#export').addEventListener('click', exportOwned);
   $('#import-btn').addEventListener('click', () => $('#import').click());
@@ -726,10 +750,27 @@ function bind() {
   });
 }
 
+// ---------- idioma ----------
+
+function applyLang(lang) {
+  setLang(lang);
+  state.lang = getLang();
+  applyStatic();
+  document.querySelectorAll('#lang-switch [data-lang]').forEach((b) => b.setAttribute('aria-pressed', b.dataset.lang === state.lang));
+  renderCatalogInfo();
+}
+
+function renderCatalogInfo() {
+  if (!state.catalogUpdatedAt) return;
+  const date = new Date(state.catalogUpdatedAt).toLocaleDateString(t('locale'), { dateStyle: 'long' });
+  $('#catalog-info').textContent = t('catalogInfo', date);
+}
+
 // ---------- inicio ----------
 
 async function init() {
   loadPrefs();
+  applyLang(detectLang(state.lang));
   bind();
   try {
     await loadCatalog();
@@ -740,9 +781,7 @@ async function init() {
     main.innerHTML = `<p class="loading">${esc(err.message)}</p>`;
     return;
   }
-  if (state.catalogUpdatedAt) {
-    $('#catalog-info').textContent = `Catálogo de evercade.co.uk actualizado el ${new Date(state.catalogUpdatedAt).toLocaleDateString('es-ES', { dateStyle: 'long' })} · Datos guardados en este navegador (IndexedDB).`;
-  }
+  renderCatalogInfo();
   render();
   if ('serviceWorker' in navigator && location.protocol !== 'file:') {
     navigator.serviceWorker.register('sw.js').catch(() => {});

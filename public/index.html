@@ -10,16 +10,26 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div class="langbar">
+    <div class="wrap langbar-inner">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>
+      <div class="lang-switch" id="lang-switch" role="group" data-i18n-aria="lang.aria" aria-label="Idioma">
+        <button type="button" data-lang="es" lang="es" aria-pressed="true">Español</button>
+        <button type="button" data-lang="en" lang="en" aria-pressed="false">English</button>
+      </div>
+    </div>
+  </div>
+
   <header class="top">
     <div class="wrap top-inner">
       <h1 class="brand"><span class="brand-mark" aria-hidden="true"></span>Evercade Library</h1>
       <div class="stats" id="stats" aria-live="polite"></div>
       <div class="top-actions">
-        <button id="export" class="top-btn" type="button" aria-label="Exportar colección" title="Descargar tu colección en un archivo JSON">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 19h14"/></svg><span class="top-btn-label">Exportar</span>
+        <button id="export" class="top-btn" type="button" data-i18n-aria="export.aria" data-i18n-title="export.title" aria-label="Exportar colección" title="Descargar tu colección en un archivo JSON">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 19h14"/></svg><span class="top-btn-label" data-i18n="export.label">Exportar</span>
         </button>
-        <button id="import-btn" class="top-btn" type="button" aria-label="Importar colección" title="Cargar una colección desde un archivo JSON">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4m0 0L8 8m4-4 4 4M5 19h14"/></svg><span class="top-btn-label">Importar</span>
+        <button id="import-btn" class="top-btn" type="button" data-i18n-aria="import.aria" data-i18n-title="import.title" aria-label="Importar colección" title="Cargar una colección desde un archivo JSON">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4m0 0L8 8m4-4 4 4M5 19h14"/></svg><span class="top-btn-label" data-i18n="import.label">Importar</span>
         </button>
         <input id="import" type="file" accept="application/json" hidden>
       </div>
@@ -31,55 +41,55 @@
     <div class="wrap toolbar-inner">
       <div class="search">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
-        <input id="q" type="search" placeholder="Buscar cartucho o juego…" autocomplete="off" aria-label="Buscar cartucho o juego">
-        <button id="q-clear" class="icon-btn" type="button" aria-label="Borrar búsqueda" hidden>×</button>
+        <input id="q" type="search" data-i18n-placeholder="search.placeholder" data-i18n-aria="search.aria" placeholder="Buscar cartucho o juego…" autocomplete="off" aria-label="Buscar cartucho o juego">
+        <button id="q-clear" class="icon-btn" type="button" data-i18n-aria="search.clear" aria-label="Borrar búsqueda" hidden>×</button>
       </div>
       <div class="tabs" role="tablist">
-        <button role="tab" data-view="carts" aria-selected="true">Cartuchos <span id="count-carts"></span></button>
-        <button role="tab" data-view="games" aria-selected="false">Juegos <span id="count-games"></span></button>
-        <button role="tab" data-view="unlock" aria-selected="false">Desbloqueables <span id="count-unlock"></span></button>
+        <button role="tab" data-view="carts" aria-selected="true"><span data-i18n="tab.carts">Cartuchos</span> <span class="count" id="count-carts"></span></button>
+        <button role="tab" data-view="games" aria-selected="false"><span data-i18n="tab.games">Juegos</span> <span class="count" id="count-games"></span></button>
+        <button role="tab" data-view="unlock" aria-selected="false"><span data-i18n="tab.unlock">Desbloqueables</span> <span class="count" id="count-unlock"></span></button>
       </div>
       <div class="filters">
-        <div class="seg" id="f-owned" role="group" aria-label="Posesión">
-          <button data-v="all" aria-pressed="true">Todos</button>
-          <button data-v="owned" aria-pressed="false">Tengo</button>
-          <button data-v="missing" aria-pressed="false">Me faltan</button>
+        <div class="seg" id="f-owned" role="group" data-i18n-aria="f.owned.aria" aria-label="Posesión">
+          <button data-v="all" aria-pressed="true" data-i18n="f.all">Todos</button>
+          <button data-v="owned" aria-pressed="false" data-i18n="f.owned">Tengo</button>
+          <button data-v="missing" aria-pressed="false" data-i18n="f.missing">Me faltan</button>
         </div>
         <div class="seg" id="f-legacy" role="group" aria-label="Legacy">
-          <button data-v="all" aria-pressed="true">Todos</button>
+          <button data-v="all" aria-pressed="true" data-i18n="f.all">Todos</button>
           <button data-v="legacy" aria-pressed="false">Legacy</button>
-          <button data-v="current" aria-pressed="false">En producción</button>
+          <button data-v="current" aria-pressed="false" data-i18n="f.current">En producción</button>
         </div>
-        <select id="f-cat" aria-label="Categoría">
-          <option value="">Todas las categorías</option>
-          <option>Arcade</option>
-          <option>Console</option>
-          <option>Home Computer</option>
+        <select id="f-cat" data-i18n-aria="f.cat.aria" aria-label="Categoría">
+          <option value="" data-i18n="f.cat.all">Todas las categorías</option>
+          <option value="Arcade" data-i18n="cat.Arcade">Arcade</option>
+          <option value="Console" data-i18n="cat.Console">Consola</option>
+          <option value="Home Computer" data-i18n="cat.Home Computer">Ordenador</option>
         </select>
-        <select id="f-sort" aria-label="Ordenar">
-          <option value="new">Más recientes</option>
-          <option value="old">Más antiguos</option>
-          <option value="num-asc">Nº de cartucho ↑</option>
-          <option value="num-desc">Nº de cartucho ↓</option>
-          <option value="stars-desc">Más estrellas</option>
-          <option value="stars-asc">Menos estrellas</option>
-          <option value="az">Título A–Z</option>
-          <option value="games">Nº de juegos</option>
+        <select id="f-sort" data-i18n-aria="sort.aria" aria-label="Ordenar">
+          <option value="new" data-i18n="sort.new">Más recientes</option>
+          <option value="old" data-i18n="sort.old">Más antiguos</option>
+          <option value="num-asc" data-i18n="sort.numAsc">Nº de cartucho ↑</option>
+          <option value="num-desc" data-i18n="sort.numDesc">Nº de cartucho ↓</option>
+          <option value="stars-desc" data-i18n="sort.starsDesc">Más estrellas</option>
+          <option value="stars-asc" data-i18n="sort.starsAsc">Menos estrellas</option>
+          <option value="az" data-i18n="sort.az">Título A–Z</option>
+          <option value="games" data-i18n="sort.games">Nº de juegos</option>
         </select>
       </div>
     </div>
   </div>
 
   <main class="wrap" id="main">
-    <p class="loading">Cargando catálogo…</p>
+    <p class="loading" data-i18n="loading">Cargando catálogo…</p>
   </main>
 
   <footer class="wrap foot">
     <p id="catalog-info"></p>
   </footer>
 
-  <dialog id="lightbox" aria-label="Captura">
-    <form method="dialog"><button class="lb-close" aria-label="Cerrar">×</button></form>
+  <dialog id="lightbox" data-i18n-aria="lightbox.aria" aria-label="Captura">
+    <form method="dialog"><button class="lb-close" data-i18n-aria="close" aria-label="Cerrar">×</button></form>
     <img id="lb-img" alt="">
     <div class="lb-caption" id="lb-caption"></div>
   </dialog>

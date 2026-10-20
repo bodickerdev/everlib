@@ -24,6 +24,7 @@ Desde el móvil, conectado a la misma red Wi-Fi, abre la dirección "En tu red l
   - **Con 2 cartuchos** (Evercade VS / VS-R): indica qué cartuchos tienes y cuáles te faltan para cada juego.
 
   Los datos están en `public/data/unlockables.json` y se editan a mano.
+- Interfaz en **español e inglés**, con selector de idioma arriba del todo. Los títulos de juegos y cartuchos y los códigos de desbloqueo no se traducen. Las descripciones del catálogo salen en inglés en los dos idiomas, porque así las publica evercade.co.uk. Los textos de la interfaz están en `public/i18n.js`.
 - Exportar e importar la colección en JSON, como copia de seguridad o para pasarla a otro dispositivo.
 
 ## Datos
