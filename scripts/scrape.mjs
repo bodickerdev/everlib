@@ -19,6 +19,8 @@ const WIKI_SECTIONS = [
   ['computer', '===Home computer===', '=== Other ==='],
 ];
 const NUMBER_PREFIX = { console: '', arcade: 'A', computer: 'C' };
+// La web lista algunas ediciones especiales como si fueran juegos: slug -> títulos que no son juegos
+const EDITIONS = { 'full-void': ['Full Void Special Edition'] };
 // Títulos que no coinciden ni normalizados: slug -> título en la Wikipedia
 const WIKI_ALIASES = { 'alwas-awakening-8-bit-edition-cathedral': "Alwa's Awakening & Cathedral" };
 
@@ -67,9 +69,9 @@ function parseGrid(html) {
 
 function parseCartridgePage(html) {
   const games = [];
-  const blocks = html.split('<div class="game-block">').slice(1);
-  for (const raw of blocks) {
-    const block = raw.split('<div class="game-block">')[0];
+  // Limita al contenedor de juegos para que el último bloque no incluya el resto de la página (logo del pie, etc.)
+  const container = html.split('<div class="games-content-container">')[1]?.split('</section>')[0] ?? '';
+  for (const block of container.split('<div class="game-block">').slice(1)) {
     const title = block.match(/class="game-title">([\s\S]*?)<\/span>/)?.[1];
     if (!title) continue;
     games.push({
@@ -189,7 +191,9 @@ async function main() {
     const page = parseCartridgePage(await (await get(`${BASE}/cartridges/${item.slug}/`)).text());
     const legacy = item.tag === 'Legacy' || page.legacyText;
     const tag = item.tag === 'Legacy' ? null : item.tag;
-    const games = await mapLimit(page.games, 4, async (g) => ({ ...g, image: await localImage(g.image) }));
+    const isEdition = (g) => (EDITIONS[item.slug] ?? []).includes(g.title);
+    const editions = page.games.filter(isEdition).map(({ title, description }) => ({ title, description }));
+    const games = await mapLimit(page.games.filter((g) => !isEdition(g)), 4, async (g) => ({ ...g, image: await localImage(g.image) }));
     console.log(`  ${String(i + 1).padStart(3)}. ${item.title} (${games.length} juegos)${legacy ? ' [Legacy]' : ''}`);
     return {
       id: item.slug,
@@ -205,6 +209,7 @@ async function main() {
       tag,
       categories: categories[item.slug] ?? [],
       order: grid.length - i, // el listado oficial está ordenado por lanzamiento, más reciente primero
+      editions,
       games,
     };
   });

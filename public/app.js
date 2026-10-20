@@ -9,6 +9,7 @@ const state = {
   games: [], // juegos agrupados por título (un juego puede estar en varios cartuchos)
   gameIndex: new Map(),
   owned: new Set(),
+  ratings: new Map(), // id de cartucho en posesión -> estrellas (1-5)
   completed: new Set(), // claves "<cartucho>::<título normalizado>" de los juegos pasados
   expanded: new Set(),
   view: 'carts',
@@ -128,8 +129,12 @@ async function loadUnlockables() {
 }
 
 async function loadOwned() {
-  state.owned = new Set((await db.getOwned()).map((o) => o.id).filter((id) => state.byId.has(id)));
-  state.completed = new Set((await db.getCompleted()).map((o) => o.id));
+  const owned = (await db.getOwned()).filter((o) => state.byId.has(o.id));
+  state.owned = new Set(owned.map((o) => o.id));
+  state.ratings = new Map(owned.filter((o) => o.rating).map((o) => [o.id, o.rating]));
+  // Ignora juegos pasados que ya no existen en el catálogo (p. ej. si se corrige un cartucho)
+  const valid = new Set(state.carts.flatMap((c) => c.games.map((g) => gameKey(c.id, g.title))));
+  state.completed = new Set((await db.getCompleted()).map((o) => o.id).filter((id) => valid.has(id)));
 }
 
 const gameKey = (cartId, title) => `${cartId}::${norm(title)}`;
@@ -304,10 +309,30 @@ function cartBody(c, q) {
   return `
     ${c.description ? `<p class="cart-desc">${esc(c.description)}</p>` : ''}
     ${c.note ? `<p class="cart-note">${esc(c.note)}</p>` : ''}
+    ${(c.editions ?? [])
+      .map((e) => `<p class="cart-edition"><span class="badge">Edición especial</span> <b>${esc(e.title)}</b>${e.description ? ` — ${esc(e.description)}` : ''}</p>`)
+      .join('')}
     <p class="cart-links"><a href="${esc(c.url)}" target="_blank" rel="noopener">Ficha oficial ↗</a>${
       c.video ? ` <a href="https://www.youtube.com/watch?v=${esc(c.video)}" target="_blank" rel="noopener">Vídeo ↗</a>` : ''
     }</p>
     <ul class="games-grid">${c.games.map((g) => gameCard(g, q, c.id)).join('')}</ul>`;
+}
+
+// Estrellas de calidad: solo para cartuchos en posesión
+function ratingBar(c) {
+  if (!state.owned.has(c.id)) return `<div class="cart-rating" data-rating-for="${esc(c.id)}" hidden></div>`;
+  const r = state.ratings.get(c.id) ?? 0;
+  const stars = [1, 2, 3, 4, 5]
+    .map(
+      (n) =>
+        `<button type="button" class="star${n <= r ? ' on' : ''}" data-rate="${n}" aria-pressed="${n === r}" aria-label="${plural(n, 'estrella', 'estrellas')}">★</button>`,
+    )
+    .join('');
+  return `<div class="cart-rating" data-rating-for="${esc(c.id)}" role="group" aria-label="Calidad de ${esc(c.title)}">
+    <span class="rating-label">Calidad</span>
+    <span class="stars">${stars}</span>
+    <span class="rating-text">${r ? `${r}/5` : 'Sin valorar'}</span>
+  </div>`;
 }
 
 function cartRow({ c, matches }, q) {
@@ -331,6 +356,7 @@ function cartRow({ c, matches }, q) {
       </button>
       ${ownButton(c)}
     </div>
+    ${ratingBar(c)}
     <div class="cart-body" id="body-${esc(c.id)}"${open ? '' : ' hidden'}>${open ? cartBody(c, q) : ''}</div>
   </article>`;
 }
@@ -483,6 +509,7 @@ function empty() {
 async function toggleOwned(id) {
   const own = !state.owned.has(id);
   own ? state.owned.add(id) : state.owned.delete(id);
+  if (!own) state.ratings.delete(id); // al quitarlo se borra su registro, valoración incluida
   await db.setOwned(id, own);
   const c = state.byId.get(id);
   if (state.view === 'carts' && state.fOwned === 'all') {
@@ -490,12 +517,21 @@ async function toggleOwned(id) {
     const row = document.getElementById(`cart-${id}`);
     row.classList.toggle('owned', own);
     row.querySelector('.own-btn').outerHTML = ownButton(c);
+    row.querySelector('.cart-rating').outerHTML = ratingBar(c);
     document.querySelectorAll(`.chip[data-goto="${CSS.escape(id)}"]`).forEach((el) => (el.outerHTML = cartChip(c)));
     renderStats();
   } else {
     render();
   }
   toast(own ? `Añadido: ${c.title}` : `Quitado: ${c.title}`);
+}
+
+async function setRating(id, n) {
+  const r = state.ratings.get(id) === n ? 0 : n; // pulsar la estrella actual quita la valoración
+  r ? state.ratings.set(id, r) : state.ratings.delete(id);
+  await db.setRating(id, r);
+  const bar = main.querySelector(`[data-rating-for="${CSS.escape(id)}"]`);
+  if (bar) bar.outerHTML = ratingBar(state.byId.get(id));
 }
 
 async function toggleDone(key) {
@@ -551,7 +587,7 @@ function exportOwned() {
   const data = {
     app: 'evercade-library',
     exportedAt: new Date().toISOString(),
-    owned: [...state.owned].map((id) => ({ id, title: state.byId.get(id)?.title })),
+    owned: [...state.owned].map((id) => ({ id, title: state.byId.get(id)?.title, rating: state.ratings.get(id) ?? 0 })),
     completed: [...state.completed],
   };
   const url = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }));
@@ -564,11 +600,14 @@ async function importOwned(file) {
   try {
     const data = JSON.parse(await file.text());
     const list = Array.isArray(data) ? data : data.owned;
-    const ids = list.map((e) => (typeof e === 'string' ? e : e.id)).filter((id) => state.byId.has(id));
+    const entries = list.map((e) => (typeof e === 'string' ? { id: e } : e)).filter((e) => state.byId.has(e.id));
+    const ids = entries.map((e) => e.id);
     if (!confirm(`Se importarán ${plural(ids.length, 'cartucho', 'cartuchos')} y se reemplazará tu colección actual (${state.owned.size}). ¿Continuar?`)) return;
     const now = new Date().toISOString();
-    await db.replaceOwned(ids.map((id) => ({ id, addedAt: now })));
+    const rating = (e) => (Number.isInteger(e.rating) && e.rating >= 1 && e.rating <= 5 ? e.rating : 0);
+    await db.replaceOwned(entries.map((e) => ({ id: e.id, addedAt: now, rating: rating(e) })));
     state.owned = new Set(ids);
+    state.ratings = new Map(entries.filter(rating).map((e) => [e.id, rating(e)]));
     if (Array.isArray(data.completed)) {
       await db.replaceCompleted(data.completed.map((id) => ({ id, completedAt: now })));
       state.completed = new Set(data.completed);
@@ -628,6 +667,8 @@ function bind() {
   main.addEventListener('click', (e) => {
     const own = e.target.closest('[data-own]');
     if (own) return toggleOwned(own.dataset.own);
+    const star = e.target.closest('[data-rate]');
+    if (star) return setRating(star.closest('[data-rating-for]').dataset.ratingFor, +star.dataset.rate);
     const done = e.target.closest('[data-done]');
     if (done) return toggleDone(done.dataset.done);
     const desc = e.target.closest('.desc');

@@ -69,6 +69,15 @@ export async function setOwned(id, owned) {
   return done(owned ? s.put({ id, addedAt: new Date().toISOString() }) : s.delete(id));
 }
 
+// Guarda la valoración (1-5, 0 = sin valorar) en el registro del cartucho en posesión
+export async function setRating(id, rating) {
+  const tx = (await open()).transaction('owned', 'readwrite');
+  const s = tx.objectStore('owned');
+  const req = s.get(id);
+  req.onsuccess = () => req.result && s.put({ ...req.result, rating });
+  return txDone(tx);
+}
+
 export async function replaceOwned(entries) {
   const tx = (await open()).transaction('owned', 'readwrite');
   const s = tx.objectStore('owned');

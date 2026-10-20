@@ -1,6 +1,6 @@
 {
  "source": "https://evercade.co.uk/cartridges/",
- "updatedAt": "2026-10-20T11:24:22.421Z",
+ "updatedAt": "2026-10-20T12:17:27.545Z",
  "cartridges": [
   {
    "id": "james-pond-collection",
@@ -22,6 +22,7 @@
     "Console"
    ],
    "order": 90,
+   "editions": [],
    "games": [
     {
      "title": "James Pond: Underwater Agent",
@@ -73,6 +74,7 @@
     "Home Computer"
    ],
    "order": 89,
+   "editions": [],
    "games": [
     {
      "title": "The Last Ninja",
@@ -194,6 +196,7 @@
     "Console"
    ],
    "order": 88,
+   "editions": [],
    "games": [
     {
      "title": "Banjo-Kazooie",
@@ -231,6 +234,7 @@
     "Home Computer"
    ],
    "order": 87,
+   "editions": [],
    "games": [
     {
      "title": "DOOM",
@@ -317,6 +321,7 @@
     "Arcade"
    ],
    "order": 86,
+   "editions": [],
    "games": [
     {
      "title": "Drift Out '94: The Hard Order",
@@ -396,6 +401,7 @@
     "Arcade"
    ],
    "order": 85,
+   "editions": [],
    "games": [
     {
      "title": "Andro Dunos",
@@ -475,6 +481,7 @@
     "Arcade"
    ],
    "order": 84,
+   "editions": [],
    "games": [
     {
      "title": "3 COUNT BOUT",
@@ -554,6 +561,7 @@
     "Console"
    ],
    "order": 83,
+   "editions": [],
    "games": [
     {
      "title": "Barnstorming",
@@ -668,6 +676,7 @@
     "Console"
    ],
    "order": 82,
+   "editions": [],
    "games": [
     {
      "title": "Flap Happy",
@@ -761,6 +770,7 @@
     "Console"
    ],
    "order": 81,
+   "editions": [],
    "games": [
     {
      "title": "Boxing",
@@ -889,6 +899,7 @@
     "Arcade"
    ],
    "order": 80,
+   "editions": [],
    "games": [
     {
      "title": "CADASH",
@@ -975,6 +986,7 @@
     "Console"
    ],
    "order": 79,
+   "editions": [],
    "games": [
     {
      "title": "Turrican",
@@ -1068,6 +1080,7 @@
     "Home Computer"
    ],
    "order": 78,
+   "editions": [],
    "games": [
     {
      "title": "Abductor",
@@ -1280,6 +1293,7 @@
     "Console"
    ],
    "order": 77,
+   "editions": [],
    "games": [
     {
      "title": "Jetpac",
@@ -1387,6 +1401,7 @@
     "Console"
    ],
    "order": 76,
+   "editions": [],
    "games": [
     {
      "title": "Beamrider",
@@ -1515,6 +1530,7 @@
     "Arcade"
    ],
    "order": 75,
+   "editions": [],
    "games": [
     {
      "title": "THE KING OF FIGHTERS '97",
@@ -1580,6 +1596,7 @@
     "Arcade"
    ],
    "order": 74,
+   "editions": [],
    "games": [
     {
      "title": "GAROU: MARK OF THE WOLVES",
@@ -1645,6 +1662,7 @@
     "Arcade"
    ],
    "order": 73,
+   "editions": [],
    "games": [
     {
      "title": "OPERATION WOLF",
@@ -1731,6 +1749,7 @@
     "Arcade"
    ],
    "order": 72,
+   "editions": [],
    "games": [
     {
      "title": "BUBBLE BOBBLE",
@@ -1817,6 +1836,7 @@
     "Arcade"
    ],
    "order": 71,
+   "editions": [],
    "games": [
     {
      "title": "METAL SLUG",
@@ -1882,6 +1902,7 @@
     "Home Computer"
    ],
    "order": 70,
+   "editions": [],
    "games": [
     {
      "title": "Roguecraft DX",
@@ -1912,6 +1933,7 @@
     "Arcade"
    ],
    "order": 69,
+   "editions": [],
    "games": [
     {
      "title": "Windjammers",
@@ -1970,6 +1992,7 @@
     "Console"
    ],
    "order": 68,
+   "editions": [],
    "games": [
     {
      "title": "Loaded",
@@ -2021,6 +2044,7 @@
     "Console"
    ],
    "order": 67,
+   "editions": [],
    "games": [
     {
      "title": "Tomb Raider: The Last Revelation",
@@ -2058,6 +2082,7 @@
     "Arcade"
    ],
    "order": 66,
+   "editions": [],
    "games": [
     {
      "title": "Berzerk",
@@ -2151,6 +2176,7 @@
     "Console"
    ],
    "order": 65,
+   "editions": [],
    "games": [
     {
      "title": "Broken Sword: The Shadow of the Templars",
@@ -2188,6 +2214,7 @@
     "Console"
    ],
    "order": 64,
+   "editions": [],
    "games": [
     {
      "title": "The Curse of Illmoore Bay",
@@ -2288,6 +2315,7 @@
     "Arcade"
    ],
    "order": 63,
+   "editions": [],
    "games": [
     {
      "title": "Dogyuun",
@@ -2353,6 +2381,7 @@
     "Console"
    ],
    "order": 62,
+   "editions": [],
    "games": [
     {
      "title": "Metal Dragon",
@@ -2390,6 +2419,7 @@
     "Arcade"
    ],
    "order": 61,
+   "editions": [],
    "games": [
     {
      "title": "Peter Pepper's Ice Cream Factory",
@@ -2497,6 +2527,7 @@
     "Arcade"
    ],
    "order": 60,
+   "editions": [],
    "games": [
     {
      "title": "Batsugun",
@@ -2569,6 +2600,7 @@
     "Console"
    ],
    "order": 59,
+   "editions": [],
    "games": [
     {
      "title": "Blood Omen: Legacy of Kain",
@@ -2579,7 +2611,7 @@
     },
     {
      "title": "Legacy of Kain: Soul Reaver",
-     "image": "https://evercade.co.uk/wp-content/uploads/2024/03/EVERCADE-STANDARD-LOGO-WHITE.svg",
+     "image": null,
      "genre": "Action",
      "players": "1",
      "description": "In this 32-bit Gothic horror classic for Evercade, the vampire Raziel was executed for the deadly sin of evolving before his master Kain. Now returned as a wraith, he seeks to take down the one he once called \"Master\". Shift between the Material and Spectral Planes to solve puzzles and defeat your powerful foes."
@@ -2606,6 +2638,7 @@
     "Home Computer"
    ],
    "order": 58,
+   "editions": [],
    "games": [
     {
      "title": "Cadaver",
@@ -2671,6 +2704,7 @@
     "Home Computer"
    ],
    "order": 57,
+   "editions": [],
    "games": [
     {
      "title": "Hunter's Moon Remastered",
@@ -2771,6 +2805,7 @@
     "Console"
    ],
    "order": 56,
+   "editions": [],
    "games": [
     {
      "title": "Tomb Raider",
@@ -2815,6 +2850,7 @@
     "Console"
    ],
    "order": 55,
+   "editions": [],
    "games": [
     {
      "title": "Glover (64-bit)",
@@ -2908,6 +2944,7 @@
     "Console"
    ],
    "order": 54,
+   "editions": [],
    "games": [
     {
      "title": "Blaster Master: Enemy Below",
@@ -2980,6 +3017,7 @@
     "Home Computer"
    ],
    "order": 53,
+   "editions": [],
    "games": [
     {
      "title": "Summer Games II",
@@ -3094,6 +3132,7 @@
     "Console"
    ],
    "order": 52,
+   "editions": [],
    "games": [
     {
      "title": "Donut Dodo",
@@ -3208,6 +3247,7 @@
     "Console"
    ],
    "order": 51,
+   "editions": [],
    "games": [
     {
      "title": "Demons of Asteborg",
@@ -3245,6 +3285,7 @@
     "Console"
    ],
    "order": 50,
+   "editions": [],
    "games": [
     {
      "title": "Goodboy Galaxy",
@@ -3282,6 +3323,7 @@
     "Console"
    ],
    "order": 49,
+   "editions": [],
    "games": [
     {
      "title": "Duke Nukem: Time to Kill",
@@ -3326,6 +3368,7 @@
     "Console"
    ],
    "order": 48,
+   "editions": [],
    "games": [
     {
      "title": "Duke Nukem: Remastered",
@@ -3370,6 +3413,7 @@
     "Home Computer"
    ],
    "order": 47,
+   "editions": [],
    "games": [
     {
      "title": "Attack of the PETSCII Robots",
@@ -3442,6 +3486,12 @@
     "Console"
    ],
    "order": 46,
+   "editions": [
+    {
+     "title": "Full Void Special Edition",
+     "description": "Also released was the Full Void Special Edition. Complete with the included comic from the standard edition, this Special Edition also includes an exclusive blue coloured cartridge, stickers, poster, an exclusive cart inlay and an art book, all in one cardboard sleeve."
+    }
+   ],
    "games": [
     {
      "title": "Full Void",
@@ -3449,13 +3499,6 @@
      "genre": "Platformer",
      "players": "1",
      "description": "In the future, all of humanity has been enslaved by a rogue AI. All? Well, not quite… one brave teenager, scared and alone in this dark dystopia, sets off on a quest to battle for their freedom. Explore beautiful pixel art locales and enjoy hand-drawn animations in Full Void, a gorgeous modern indie title for Evercade, inspired by the cinematic classics of the past. Read More..."
-    },
-    {
-     "title": "Full Void Special Edition",
-     "image": "https://evercade.co.uk/wp-content/uploads/2024/03/EVERCADE-STANDARD-LOGO-WHITE.svg",
-     "genre": "Platformer",
-     "players": "1",
-     "description": "Also released was the Full Void Special Edition. Complete with the included comic from the standard edition, this Special Edition also includes an exclusive blue coloured cartridge, stickers, poster, an exclusive cart inlay and an art book, all in one cardboard sleeve."
     }
    ]
   },
@@ -3479,6 +3522,7 @@
     "Home Computer"
    ],
    "order": 45,
+   "editions": [],
    "games": [
     {
      "title": "Another World",
@@ -3530,6 +3574,7 @@
     "Console"
    ],
    "order": 44,
+   "editions": [],
    "games": [
     {
      "title": "Mr. Gimmick",
@@ -3595,6 +3640,7 @@
     "Arcade"
    ],
    "order": 43,
+   "editions": [],
    "games": [
     {
      "title": "Dragon Master",
@@ -3681,6 +3727,7 @@
     "Console"
    ],
    "order": 42,
+   "editions": [],
    "games": [
     {
      "title": "Sydney Hunter and the Shrines of Peril",
@@ -3732,6 +3779,7 @@
     "Home Computer"
    ],
    "order": 41,
+   "editions": [],
    "games": [
     {
      "title": "Full Contact",
@@ -3825,6 +3873,7 @@
     "Console"
    ],
    "order": 40,
+   "editions": [],
    "games": [
     {
      "title": "40 Winks",
@@ -3918,6 +3967,7 @@
     "Home Computer"
    ],
    "order": 39,
+   "editions": [],
    "games": [
     {
      "title": "World Games",
@@ -4039,6 +4089,7 @@
     "Arcade"
    ],
    "order": 38,
+   "editions": [],
    "games": [
     {
      "title": "Fire Shark",
@@ -4111,6 +4162,7 @@
     "Console"
    ],
    "order": 37,
+   "editions": [],
    "games": [
     {
      "title": "Tapeworm Disco Puzzle",
@@ -4218,6 +4270,7 @@
     "Arcade"
    ],
    "order": 36,
+   "editions": [],
    "games": [
     {
      "title": "Tiger-Heli",
@@ -4297,6 +4350,7 @@
     "Arcade"
    ],
    "order": 35,
+   "editions": [],
    "games": [
     {
      "title": "R-Type",
@@ -4362,6 +4416,7 @@
     "Console"
    ],
    "order": 34,
+   "editions": [],
    "games": [
     {
      "title": "Alwa's Awakening",
@@ -4399,6 +4454,7 @@
     "Home Computer"
    ],
    "order": 33,
+   "editions": [],
    "games": [
     {
      "title": "Summer Games",
@@ -4520,6 +4576,7 @@
     "Arcade"
    ],
    "order": 32,
+   "editions": [],
    "games": [
     {
      "title": "Big Karnak",
@@ -4585,6 +4642,7 @@
     "Arcade"
    ],
    "order": 31,
+   "editions": [],
    "games": [
     {
      "title": "Rod Land",
@@ -4664,6 +4722,7 @@
     "Console"
    ],
    "order": 30,
+   "editions": [],
    "games": [
     {
      "title": "Tower of Doom",
@@ -4771,6 +4830,7 @@
     "Console"
    ],
    "order": 29,
+   "editions": [],
    "games": [
     {
      "title": "Micro Mages",
@@ -4829,6 +4889,7 @@
     "Console"
    ],
    "order": 28,
+   "editions": [],
    "games": [
     {
      "title": "Actua Soccer",
@@ -4894,6 +4955,7 @@
     "Console"
    ],
    "order": 27,
+   "editions": [],
    "games": [
     {
      "title": "Arcus Odyssey",
@@ -5001,6 +5063,7 @@
     "Console"
    ],
    "order": 26,
+   "editions": [],
    "games": [
     {
      "title": "Astrosmash",
@@ -5108,6 +5171,7 @@
     "Arcade"
    ],
    "order": 25,
+   "editions": [],
    "games": [
     {
      "title": "Asteroids",
@@ -5222,6 +5286,7 @@
     "Console"
    ],
    "order": 24,
+   "editions": [],
    "games": [
     {
      "title": "The Chaos Engine",
@@ -5280,6 +5345,7 @@
     "Arcade"
    ],
    "order": 23,
+   "editions": [],
    "games": [
     {
      "title": "Alligator Hunt",
@@ -5345,6 +5411,7 @@
     "Arcade"
    ],
    "order": 22,
+   "editions": [],
    "games": [
     {
      "title": "Bad Dudes vs. DragonNinja",
@@ -5438,6 +5505,7 @@
     "Arcade"
    ],
    "order": 21,
+   "editions": [],
    "games": [
     {
      "title": "Battle Lane Vol. 5",
@@ -5517,6 +5585,7 @@
     "Console"
    ],
    "order": 20,
+   "editions": [],
    "games": [
     {
      "title": "Alter Ego",
@@ -5596,6 +5665,7 @@
     "Console"
    ],
    "order": 19,
+   "editions": [],
    "games": [
     {
      "title": "Bee 52",
@@ -5738,6 +5808,7 @@
     "Console"
    ],
    "order": 18,
+   "editions": [],
    "games": [
     {
      "title": "Worms",
@@ -5782,6 +5853,7 @@
     "Console"
    ],
    "order": 17,
+   "editions": [],
    "games": [
     {
      "title": "Alien Cat 2",
@@ -5903,6 +5975,7 @@
     "Console"
    ],
    "order": 16,
+   "editions": [],
    "games": [
     {
      "title": "Beast Ball",
@@ -6017,6 +6090,7 @@
     "Console"
    ],
    "order": 15,
+   "editions": [],
    "games": [
     {
      "title": "Astyanax",
@@ -6110,6 +6184,7 @@
     "Console"
    ],
    "order": 14,
+   "editions": [],
    "games": [
     {
      "title": "Blue Lightning",
@@ -6189,6 +6264,7 @@
     "Console"
    ],
    "order": 13,
+   "editions": [],
    "games": [
     {
      "title": "Awesome Golf",
@@ -6331,6 +6407,7 @@
     "Console"
    ],
    "order": 12,
+   "editions": [],
    "games": [
     {
      "title": "Professional BMX Simulator",
@@ -6431,6 +6508,7 @@
     "Console"
    ],
    "order": 11,
+   "editions": [],
    "games": [
     {
      "title": "Xenocrisis",
@@ -6468,6 +6546,7 @@
     "Console"
    ],
    "order": 10,
+   "editions": [],
    "games": [
     {
      "title": "Crash ‘N’ The Boys: Street Challenge",
@@ -6547,6 +6626,7 @@
     "Console"
    ],
    "order": 9,
+   "editions": [],
    "games": [
     {
      "title": "8 Eyes",
@@ -6710,6 +6790,7 @@
     "Console"
    ],
    "order": 8,
+   "editions": [],
    "games": [
     {
      "title": "Almost Hero",
@@ -6803,6 +6884,7 @@
     "Console"
    ],
    "order": 7,
+   "editions": [],
    "games": [
     {
      "title": "The Adventures of Rad Gravity",
@@ -6868,6 +6950,7 @@
     "Console"
    ],
    "order": 6,
+   "editions": [],
    "games": [
     {
      "title": "Burning Force",
@@ -6968,6 +7051,7 @@
     "Console"
    ],
    "order": 5,
+   "editions": [],
    "games": [
     {
      "title": "Air Sea Battle",
@@ -7131,6 +7215,7 @@
     "Console"
    ],
    "order": 4,
+   "editions": [],
    "games": [
     {
      "title": "Battle Chess",
@@ -7196,6 +7281,7 @@
     "Console"
    ],
    "order": 3,
+   "editions": [],
    "games": [
     {
      "title": "Bad Dudes",
@@ -7289,6 +7375,7 @@
     "Console"
    ],
    "order": 2,
+   "editions": [],
    "games": [
     {
      "title": "Battle Cars",
@@ -7389,6 +7476,7 @@
     "Console"
    ],
    "order": 1,
+   "editions": [],
    "games": [
     {
      "title": "Adventure",
