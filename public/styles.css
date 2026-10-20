@@ -538,6 +538,7 @@ main { padding-top: 16px; padding-bottom: 24px; min-height: 60vh; }
   user-select: all;
 }
 .combo { flex: 1; min-width: 0; font-size: 0.9rem; line-height: 1.9; }
+.how { flex: 1; min-width: 0; font-size: 0.86rem; line-height: 1.75; }
 kbd {
   display: inline-block;
   min-width: 26px;

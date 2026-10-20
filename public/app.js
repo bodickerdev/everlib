@@ -398,7 +398,7 @@ function render() {
   const unlock = visibleUnlockables();
   $('#count-carts').textContent = carts.length;
   $('#count-games').textContent = games.length;
-  $('#count-unlock').textContent = unlock.text.length + unlock.buttons.length + unlock.two.length;
+  $('#count-unlock').textContent = unlock.text.length + unlock.buttons.length + unlock.ingame.length + unlock.two.length;
   $('.filters').hidden = state.view === 'unlock';
   document.querySelectorAll('.tabs [role=tab]').forEach((b) => b.setAttribute('aria-selected', b.dataset.view === state.view));
   for (const [id, key] of [['#f-owned', 'fOwned'], ['#f-legacy', 'fLegacy']]) {
@@ -426,19 +426,25 @@ const hits = (q, ...fields) => !q || fields.some((f) => norm(f).includes(q));
 
 function visibleUnlockables() {
   const u = state.unlockables;
-  if (!u) return { text: [], buttons: [], extras: [], two: [] };
+  if (!u) return { text: [], buttons: [], ingame: [], extras: [], two: [] };
   const q = norm(state.q);
   const cartTitles = (ids = []) => ids.map((id) => state.byId.get(id)?.title ?? '');
   return {
     text: u.codes.text.items.filter((i) => hits(q, i.title, i.platform, i.code)),
     buttons: u.codes.buttons.items.filter((i) => hits(q, i.title, i.platform, ...cartTitles(i.requires))),
-    extras: u.codes.extras.items.filter((i) => hits(q, i.code, i.combo, i.description)),
+    ingame: (u.codes.ingame?.items ?? []).filter((i) => hits(q, i.title, i.platform, i.code, ...cartTitles(i.requires))),
+    extras: u.codes.extras.items.filter((i) => hits(q, i.code, i.combo, i.description, ...cartTitles(i.requires))),
     two: u.twoCarts.items.filter((i) => hits(q, i.title, i.platform, ...cartTitles(i.carts))),
   };
 }
 
 // Resalta los botones de la consola dentro de una combinación
-const keys = (s) => esc(s).replace(/\b(L1|L2|R1|R2|Select|Menu|X|Y|Arriba|Abajo)\b/g, '<kbd>$1</kbd>');
+// (no toca el texto entre «» —nombres de menú— ni letras tras un guion, como en VS-R)
+const keys = (s) =>
+  esc(s)
+    .split(/(«[^»]*»)/)
+    .map((part, i) => (i % 2 ? part : part.replace(/(?<!-)\b(L1|L2|R1|R2|L|R|A|B|X|Y|Select|Start|Menu|Arriba|Abajo)\b/g, '<kbd>$1</kbd>')))
+    .join('');
 
 function secretCard(i, q) {
   const reqs = (i.requires ?? []).map((id) => state.byId.get(id)).filter(Boolean);
@@ -449,6 +455,7 @@ function secretCard(i, q) {
     </div>
     ${i.code ? `<p class="secret"><span class="secret-label">Código</span><code>${highlight(i.code, q)}</code></p>` : ''}
     ${i.combo ? `<p class="secret"><span class="secret-label">Botones</span><span class="combo">${keys(i.combo)}</span></p>` : ''}
+    ${i.how ? `<p class="secret"><span class="secret-label">Cómo</span><span class="how">${keys(i.how)}</span></p>` : ''}
     ${i.title && i.description ? `<p class="unote">${esc(i.description)}</p>` : ''}
     ${i.note ? `<p class="unote">${esc(i.note)}</p>` : ''}
     ${reqs.length ? `<p class="also">Necesitas: ${reqs.map(cartChip).join(' ')}</p>` : ''}
@@ -483,7 +490,7 @@ function twoCartCard(i, q) {
 function unlockView(v, q) {
   const u = state.unlockables;
   if (!u) return '<p class="loading">No se pudieron cargar los juegos desbloqueables.</p>';
-  const nCode = v.text.length + v.buttons.length; // los extras no son juegos y no cuentan
+  const nCode = v.text.length + v.buttons.length + v.ingame.length; // los extras no son juegos y no cuentan
   const tabs = `<div class="subtabs" role="tablist" aria-label="Tipo de desbloqueo">
     <button role="tab" data-unlock-tab="code" aria-selected="${state.unlockTab === 'code'}">Por código <span>${nCode}</span></button>
     <button role="tab" data-unlock-tab="two" aria-selected="${state.unlockTab === 'two'}">Con 2 cartuchos <span>${v.two.length}</span></button>
@@ -504,7 +511,10 @@ function unlockView(v, q) {
       : empty();
   } else {
     body = nCode + v.extras.length
-      ? section(u.codes.text, v.text, secretCard) + section(u.codes.buttons, v.buttons, secretCard) + section(u.codes.extras, v.extras, secretCard)
+      ? section(u.codes.text, v.text, secretCard) +
+        section(u.codes.buttons, v.buttons, secretCard) +
+        (u.codes.ingame ? section(u.codes.ingame, v.ingame, secretCard) : '') +
+        section(u.codes.extras, v.extras, secretCard)
       : empty();
   }
   return tabs + body;

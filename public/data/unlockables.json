@@ -1,32 +1,67 @@
 {
   "updatedAt": "2026-10-20",
+  "sources": ["https://evercade.info/vs-secrets-and-easter-eggs/"],
   "codes": {
     "text": {
       "title": "Códigos de texto",
-      "help": "Se escriben en la pantalla «Secret Code», en mayúsculas o minúsculas. Los juegos aparecen después en el menú «Secret Games».",
+      "help": "Se escriben en Ajustes → Secret («Secret Code»), en mayúsculas o minúsculas. Los juegos aparecen después en el menú «Secret Games». Funcionan en VS, VS-R, EXP, EXP-R y Alpha.",
       "items": [
         { "title": "Gribbly’s Day Out", "platform": "C64", "code": "GRIBBLYGROBBLY" },
-        { "title": "Kubo 1&2", "platform": "NES", "code": "SEIJIWASHERE" },
+        { "title": "Kubo 1&2", "platform": "NES", "code": "SEIJIWASHERE", "note": "Hay que volver a introducir el código cada vez que quieras jugar." },
         { "title": "Rogue64", "platform": "C64", "code": "STONE" },
         { "title": "The Lost Mines", "platform": "Evercade", "code": "BLOP" },
-        { "title": "Juggling Balls", "platform": "Evercade", "code": "JUGGLE" }
+        { "title": "Juggling Balls", "platform": "Evercade", "code": "JUGGLE" },
+        { "title": "Showdown", "platform": "C64", "code": "PEWPEW" },
+        {
+          "title": "The Sword of Stone",
+          "platform": "Evercade",
+          "how": "Ve a Ajustes → «Get free unlocks!» y pulsa A para escanear el código QR (o Y si ya estás suscrito a la newsletter de Evercade). Introduce el código único que recibas en Ajustes → Secret.",
+          "note": "Código único por usuario, válido en hasta 5 consolas. Necesita Wi-Fi. Añadido en la actualización del 5.º aniversario (2025)."
+        }
       ]
     },
     "buttons": {
       "title": "Combinaciones de botones",
-      "help": "Se introducen en el menú principal sin ningún cartucho insertado.",
+      "help": "Se introducen en la pantalla principal. En EXP/EXP-R, algunas necesitan que no haya ningún cartucho insertado (se indica en cada una).",
       "items": [
         { "title": "Fairy Fire – Defender of the Fairies", "platform": null, "combo": "Pulsa Menu diez veces" },
-        { "title": "Gotris", "platform": "Master System", "combo": "Mantén L2 + R2 + Select" },
+        { "title": "Gotris", "platform": "Master System", "combo": "Mantén L2 + R2 + Select", "note": "En EXP/EXP-R, sin cartucho insertado. En Alpha (su mando no tiene L2/R2): L1 + L2 + Select." },
         { "title": "Hummingz", "platform": "Evercade", "combo": "L2, L2, R2, R2, L1, L1, R1, R1", "note": "Hay usuarios que dicen que en la EXP no funciona." },
-        { "title": "NNNNNN", "platform": "NES", "combo": "Mantén L1 + R1 + Arriba" },
-        { "title": "Spacey McRacey", "platform": "NES", "combo": "Mantén L1 + R1 + Abajo" },
+        { "title": "NNNNNN", "platform": "NES", "combo": "Mantén L1 + R1 + Arriba", "note": "En EXP/EXP-R, sin cartucho insertado." },
+        { "title": "Spacey McRacey", "platform": "NES", "combo": "Mantén L1 + R1 + Abajo", "note": "En EXP/EXP-R, sin cartucho insertado." },
         {
           "title": "Maniac Square",
           "platform": "Arcade (prototipo)",
           "combo": "Con el cartucho Gaelco Arcade 2, selecciona Maniac Square y mantén L1 + L2 + R1 + R2",
-          "note": "Solo en Evercade VS.",
+          "note": "Confirmado solo en Evercade VS.",
           "requires": ["gaelco-arcade-2"]
+        }
+      ]
+    },
+    "ingame": {
+      "title": "Secretos dentro de juegos",
+      "help": "Juegos ocultos dentro de otros juegos. Funcionan en todas las consolas Evercade.",
+      "items": [
+        {
+          "title": "Roids",
+          "platform": "Clon de Asteroids",
+          "code": "DUTCHMAN",
+          "how": "Elige Hardcore 4X4. En el menú principal ve a «Race Type» → «Time Trial», luego «Start Game» → «Edit Names» y escribe DUTCHMAN como nombre. Pulsa Atrás (Y) hasta la pantalla de «Start» y «Options», entra en «Options» → «Credits».",
+          "note": "Los asteroides se sustituyen por caras de los programadores.",
+          "requires": ["gremlin-collection-1"]
+        },
+        {
+          "title": "Clon de Sinistar",
+          "platform": "Sin nombre",
+          "code": "JOOLS",
+          "how": "Elige Mega-Lo-Mania, entra en el menú «Options» del juego (después de elegir jugador), pulsa «Load / Save» y escribe JOOLS.",
+          "requires": ["codemasters-collection-1-cartridge"]
+        },
+        {
+          "title": "Rushing Beat",
+          "platform": "SNES (versión japonesa de Brawl Brothers)",
+          "how": "Elige Brawl Brothers. En el logo de Jaleco, pulsa A, B, Y, X en el sentido de las agujas del reloj sin parar. Cuando la pantalla haga un fallo gráfico, pulsa Start y Abajo tres veces.",
+          "requires": ["jaleco-collection-1-cartridge"]
         }
       ]
     },
@@ -35,24 +70,31 @@
       "items": [
         { "code": "CIRCUIT", "description": "Muestra una foto de la VS." },
         { "code": "DEADLOCK", "description": "Muestra una foto de una patata." },
-        { "code": "GUEST", "description": "Muestra una pantalla de broma." },
-        { "combo": "X + Y + L1 + R1", "description": "Sin cartucho, abre la pantalla de diagnóstico." }
+        { "code": "guest", "description": "Muestra un mensaje especial de Ben.", "note": "Escríbelo en minúsculas." },
+        { "code": "UPDATE", "description": "Reinstala la última actualización de la consola.", "note": "Confirmado solo en VS (código facilitado por el soporte de Blaze)." },
+        { "combo": "X + Y + L1 + R1", "description": "Abre la pantalla de diagnóstico.", "note": "En la pantalla de cartuchos." },
+        { "how": "Inserta dos cartuchos iguales en la VS / VS-R o Alpha.", "description": "Muestra un mensaje gracioso." },
+        { "how": "En los créditos, sigue bajando aunque solo veas la pantalla en negro (ten paciencia), y continúa después de ver los primeros.", "description": "Easter eggs en los créditos." },
+        { "how": "Durante la partida, pulsa L o R.", "description": "Xeno Crisis: aumenta la velocidad del juego.", "requires": ["xeno-crisis-and-tanglewood"] }
       ]
     }
   },
   "twoCarts": {
-    "help": "Inserta los dos cartuchos a la vez en la Evercade VS / VS-R.",
+    "help": "Inserta los dos cartuchos a la vez. Solo en consolas con dos ranuras: Evercade VS / VS-R y Alpha.",
     "items": [
       { "title": "Arkade Rush", "platform": "NES", "carts": ["gaelco-arcade-1", "indie-heroes-collection-1-cartridge"] },
       { "title": "Bang!", "platform": "Arcade", "carts": ["gaelco-arcade-1", "gaelco-arcade-2"] },
       { "title": "Dark Chambers", "platform": "Atari 7800", "carts": ["atari-collection-1", "atari-collection-2-cartridge"] },
       { "title": "Gyroscope", "platform": "C64", "carts": ["thec64-collection-1", "thec64-collection-2"] },
-      { "title": "Pyramids of Ra", "platform": "NES", "carts": ["piko-interactive-collection-1-cartridge", "piko-interactive-collection-2-cartridge"] },
+      { "title": "Pyramids of Ra", "platform": "Game Boy", "carts": ["piko-interactive-collection-1-cartridge", "piko-interactive-collection-2-cartridge"] },
       { "title": "Raid on Tricity: Second Wave", "platform": "Atari Lynx", "carts": ["atari-lynx-collection-1-cartridge", "atari-lynx-collection-2-cartridge"] },
+      { "title": "Snow Bros", "platform": "NES", "carts": ["toaplan-arcade-3", "toaplan-arcade-4"] },
+      { "title": "Tiger-Heli", "platform": "NES", "carts": ["toaplan-arcade-2", "toaplan-arcade-3"] },
       { "title": "Twin Brats", "platform": "Arcade", "carts": ["piko-interactive-collection-1-cartridge", "gaelco-arcade-1"] },
       { "title": "Twin Hawk", "platform": "Mega Drive", "carts": ["toaplan-arcade-1", "toaplan-arcade-2"] },
       { "title": "Worms: The Director’s Cut", "platform": "Amiga", "carts": ["worms-collection-1", "team17-collection-1-amiga"] },
-      { "title": "Zombie Madness", "platform": "Intellivision", "carts": ["intellivision-collection-1", "intellivision-collection-2"] }
+      { "title": "Zombie Madness", "platform": "Intellivision", "carts": ["intellivision-collection-1", "intellivision-collection-2"] },
+      { "title": "Zynaps", "platform": "C64", "carts": ["thec64-collection-2", "thec64-collection-3"] }
     ]
   }
 }
