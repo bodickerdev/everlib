@@ -11,6 +11,7 @@ const state = {
   gameIndex: new Map(),
   owned: new Set(),
   ratings: new Map(), // id de cartucho en posesión -> estrellas (1-5)
+  gameRatings: new Map(), // título normalizado del juego -> estrellas (1-5)
   completed: new Set(), // claves "<cartucho>::<título normalizado>" de los juegos pasados
   expanded: new Set(),
   view: 'carts',
@@ -148,6 +149,7 @@ async function loadOwned() {
   // Ignora juegos pasados que ya no existen en el catálogo (p. ej. si se corrige un cartucho)
   const valid = new Set(state.carts.flatMap((c) => c.games.map((g) => gameKey(c.id, g.title))));
   state.completed = new Set((await db.getCompleted()).map((o) => o.id).filter((id) => valid.has(id)));
+  state.gameRatings = new Map((await db.getGameRatings()).filter((o) => state.gameIndex.has(o.id)).map((o) => [o.id, o.rating]));
 }
 
 const gameKey = (cartId, title) => `${cartId}::${norm(title)}`;
@@ -236,11 +238,7 @@ function visibleGames() {
     const ns = g.carts.map((id) => cartNumber(state.byId.get(id))).filter((n) => n != null);
     return ns.length ? Math.min(...ns) : null;
   };
-  // Un juego en varios cartuchos toma la mejor valoración de ellos
-  const stars = (g) => {
-    const rs = g.carts.map((id) => state.ratings.get(id)).filter(Boolean);
-    return rs.length ? Math.max(...rs) : null;
-  };
+  const stars = (g) => state.gameRatings.get(g.key) ?? null;
   const by = {
     new: (a, b) => newest(b) - newest(a) || a.title.localeCompare(b.title),
     old: (a, b) => newest(a) - newest(b) || a.title.localeCompare(b.title),
@@ -315,6 +313,7 @@ function gameCard(g, q, cartId) {
       ${meta ? `<p class="meta">${meta}</p>` : ''}
       ${g.description ? `<p class="desc">${esc(g.description)}</p>` : ''}
       ${otherCarts(g, cartId)}
+      ${gameRatingBar(g.title)}
       ${doneButton(key, g.title)}
     </div>
   </li>`;
@@ -346,21 +345,30 @@ function cartBody(c, q) {
     <ul class="games-grid">${c.games.map((g) => gameCard(g, q, c.id)).join('')}</ul>`;
 }
 
-// Estrellas de calidad: solo para cartuchos en posesión
-function ratingBar(c) {
-  if (!state.owned.has(c.id)) return `<div class="cart-rating" data-rating-for="${esc(c.id)}" hidden></div>`;
-  const r = state.ratings.get(c.id) ?? 0;
-  const stars = [1, 2, 3, 4, 5]
+const starButtons = (r) =>
+  [1, 2, 3, 4, 5]
     .map(
       (n) =>
         `<button type="button" class="star${n <= r ? ' on' : ''}" data-rate="${n}" aria-pressed="${n === r}" aria-label="${t('rating.star', n)}">★</button>`,
     )
     .join('');
+
+// Estrellas de calidad: solo para cartuchos en posesión
+function ratingBar(c) {
+  if (!state.owned.has(c.id)) return `<div class="cart-rating" data-rating-for="${esc(c.id)}" hidden></div>`;
+  const r = state.ratings.get(c.id) ?? 0;
   return `<div class="cart-rating" data-rating-for="${esc(c.id)}" role="group" aria-label="${esc(t('rating.group', c.title))}">
     <span class="rating-label">${t('rating.label')}</span>
-    <span class="stars">${stars}</span>
+    <span class="stars">${starButtons(r)}</span>
     <span class="rating-text">${r ? `${r}/5` : t('rating.none')}</span>
   </div>`;
+}
+
+// Estrellas del juego: una valoración por título, compartida por todos los cartuchos que lo incluyen
+function gameRatingBar(title) {
+  const key = norm(title);
+  const r = state.gameRatings.get(key) ?? 0;
+  return `<span class="stars game-stars" data-game-rating-for="${esc(key)}" role="group" aria-label="${esc(t('gameRating.group', title))}">${starButtons(r)}</span>`;
 }
 
 function cartRow({ c, matches }, q) {
@@ -395,7 +403,10 @@ function gameRow(g, q) {
   const doneAny = carts.some((c) => state.completed.has(gameKey(c.id, g.title)));
   const meta = gameMeta(g);
   return `<article class="grow${ownedAny ? ' owned' : ''}">
-    ${shot(g)}
+    <div class="grow-media">
+      ${shot(g)}
+      ${gameRatingBar(g.title)}
+    </div>
     <div class="grow-text">
       <h3>${highlight(g.title, q)}${ownedAny ? ` <span class="badge have">${t('have')}</span>` : ''}${doneAny ? ` <span class="badge done">${t('done.yes')}</span>` : ''}</h3>
       ${meta ? `<p class="meta">${meta}</p>` : ''}
@@ -571,6 +582,14 @@ async function setRating(id, n) {
   if (bar) bar.outerHTML = ratingBar(state.byId.get(id));
 }
 
+async function setGameRating(key, n) {
+  const r = state.gameRatings.get(key) === n ? 0 : n;
+  r ? state.gameRatings.set(key, r) : state.gameRatings.delete(key);
+  await db.setGameRating(key, r);
+  const title = state.gameIndex.get(key).title;
+  main.querySelectorAll(`[data-game-rating-for="${CSS.escape(key)}"]`).forEach((el) => (el.outerHTML = gameRatingBar(title)));
+}
+
 async function toggleDone(key) {
   const done = !state.completed.has(key);
   done ? state.completed.add(key) : state.completed.delete(key);
@@ -626,6 +645,7 @@ function exportOwned() {
     exportedAt: new Date().toISOString(),
     owned: [...state.owned].map((id) => ({ id, title: state.byId.get(id)?.title, rating: state.ratings.get(id) ?? 0 })),
     completed: [...state.completed],
+    gameRatings: Object.fromEntries(state.gameRatings),
   };
   const url = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }));
   const a = Object.assign(document.createElement('a'), { href: url, download: `${t('export.filename')}-${data.exportedAt.slice(0, 10)}.json` });
@@ -648,6 +668,11 @@ async function importOwned(file) {
     if (Array.isArray(data.completed)) {
       await db.replaceCompleted(data.completed.map((id) => ({ id, completedAt: now })));
       state.completed = new Set(data.completed);
+    }
+    if (data.gameRatings && typeof data.gameRatings === 'object') {
+      const games = Object.entries(data.gameRatings).filter(([k, n]) => state.gameIndex.has(k) && rating({ rating: n }));
+      await db.replaceGameRatings(games.map(([id, n]) => ({ id, rating: n })));
+      state.gameRatings = new Map(games);
     }
     render();
     toast(t('toast.imported'));
@@ -705,7 +730,11 @@ function bind() {
     const own = e.target.closest('[data-own]');
     if (own) return toggleOwned(own.dataset.own);
     const star = e.target.closest('[data-rate]');
-    if (star) return setRating(star.closest('[data-rating-for]').dataset.ratingFor, +star.dataset.rate);
+    if (star) {
+      const game = star.closest('[data-game-rating-for]');
+      if (game) return setGameRating(game.dataset.gameRatingFor, +star.dataset.rate);
+      return setRating(star.closest('[data-rating-for]').dataset.ratingFor, +star.dataset.rate);
+    }
     const done = e.target.closest('[data-done]');
     if (done) return toggleDone(done.dataset.done);
     const desc = e.target.closest('.desc');

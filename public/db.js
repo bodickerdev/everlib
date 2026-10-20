@@ -1,6 +1,6 @@
 // Base de datos local (IndexedDB): catálogo de cartuchos + colección del usuario
 const DB_NAME = 'evercade-library';
-const DB_VERSION = 2;
+const DB_VERSION = 3;
 
 let dbPromise;
 
@@ -15,6 +15,8 @@ function open() {
       if (!has('meta')) db.createObjectStore('meta');
       // Juegos pasados: id = "<cartucho>::<título normalizado>"
       if (!has('completed')) db.createObjectStore('completed', { keyPath: 'id' });
+      // Valoración de juegos: id = título normalizado (compartida entre cartuchos)
+      if (!has('gameRatings')) db.createObjectStore('gameRatings', { keyPath: 'id' });
     };
     req.onsuccess = () => resolve(req.result);
     req.onerror = () => reject(req.error);
@@ -98,6 +100,24 @@ export async function setCompleted(id, completed) {
 export async function replaceCompleted(entries) {
   const tx = (await open()).transaction('completed', 'readwrite');
   const s = tx.objectStore('completed');
+  s.clear();
+  entries.forEach((e) => s.put(e));
+  return txDone(tx);
+}
+
+export async function getGameRatings() {
+  return done((await store('gameRatings')).getAll());
+}
+
+// 1-5; 0 borra la valoración
+export async function setGameRating(id, rating) {
+  const s = await store('gameRatings', 'readwrite');
+  return done(rating ? s.put({ id, rating }) : s.delete(id));
+}
+
+export async function replaceGameRatings(entries) {
+  const tx = (await open()).transaction('gameRatings', 'readwrite');
+  const s = tx.objectStore('gameRatings');
   s.clear();
   entries.forEach((e) => s.put(e));
   return txDone(tx);

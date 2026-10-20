@@ -416,6 +416,11 @@ main { padding-top: 16px; padding-bottom: 24px; min-height: 60vh; }
   color: var(--muted);
 }
 .game-text > :nth-last-child(2) { margin-bottom: 6px; }
+/* Estrellas del juego: centradas justo encima de "Por pasar", ambos pegados al fondo de la tarjeta */
+.game-stars { justify-content: center; }
+.game-text > .game-stars { margin-top: auto; }
+.game-stars + .done-btn { margin-top: 0; }
+.game-stars .star { width: 28px; height: 28px; font-size: 1.2rem; }
 .done-btn:hover { border-color: var(--ok); }
 .done-check {
   width: 18px;
@@ -485,7 +490,9 @@ main { padding-top: 16px; padding-bottom: 24px; min-height: 60vh; }
   padding: 10px;
   align-items: flex-start;
 }
-.grow .shot { width: 120px; flex: none; border-radius: 8px; overflow: hidden; }
+.grow-media { width: 120px; flex: none; display: flex; flex-direction: column; gap: 4px; }
+.grow .shot { border-radius: 8px; overflow: hidden; }
+.grow .game-stars .star { width: 24px; height: 26px; font-size: 1.1rem; }
 .grow-text { display: grid; gap: 4px; min-width: 0; }
 .grow-text h3 { margin: 0; font-size: 1rem; line-height: 1.25; }
 .in-carts { margin: 2px 0 0; display: flex; flex-wrap: wrap; gap: 5px; align-items: center; font-size: 0.78rem; color: var(--muted); }
@@ -498,7 +505,8 @@ main { padding-top: 16px; padding-bottom: 24px; min-height: 60vh; }
   .cart-rating { gap: 10px; }
   .rating-label { width: 54px; }
   .star { width: 32px; height: 32px; }
-  .grow .shot { width: 96px; }
+  .grow-media { width: 100px; }
+  .grow .game-stars .star { width: 20px; font-size: 1rem; }
 }
 @media (max-width: 360px) {
   .cart-rating { gap: 6px; }
