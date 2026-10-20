@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#121216">
+  <title>Evercade Library</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-inner">
+      <h1 class="brand"><span class="brand-mark" aria-hidden="true"></span>Evercade Library</h1>
+      <div class="stats" id="stats" aria-live="polite"></div>
+      <div class="progress" aria-hidden="true"><div class="progress-bar" id="progress-bar"></div></div>
+    </div>
+  </header>
+
+  <div class="toolbar">
+    <div class="wrap toolbar-inner">
+      <div class="search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+        <input id="q" type="search" placeholder="Buscar cartucho o juego…" autocomplete="off" aria-label="Buscar cartucho o juego">
+        <button id="q-clear" class="icon-btn" type="button" aria-label="Borrar búsqueda" hidden>×</button>
+      </div>
+      <div class="tabs" role="tablist">
+        <button role="tab" data-view="carts" aria-selected="true">Cartuchos <span id="count-carts"></span></button>
+        <button role="tab" data-view="games" aria-selected="false">Juegos <span id="count-games"></span></button>
+      </div>
+      <div class="filters">
+        <div class="seg" id="f-owned" role="group" aria-label="Posesión">
+          <button data-v="all" aria-pressed="true">Todos</button>
+          <button data-v="owned" aria-pressed="false">Tengo</button>
+          <button data-v="missing" aria-pressed="false">Me faltan</button>
+        </div>
+        <div class="seg" id="f-legacy" role="group" aria-label="Legacy">
+          <button data-v="all" aria-pressed="true">Todos</button>
+          <button data-v="legacy" aria-pressed="false">Legacy</button>
+          <button data-v="current" aria-pressed="false">En producción</button>
+        </div>
+        <select id="f-cat" aria-label="Categoría">
+          <option value="">Todas las categorías</option>
+          <option>Arcade</option>
+          <option>Console</option>
+          <option>Home Computer</option>
+        </select>
+        <select id="f-sort" aria-label="Ordenar">
+          <option value="new">Más recientes</option>
+          <option value="old">Más antiguos</option>
+          <option value="az">Título A–Z</option>
+          <option value="games">Nº de juegos</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <main class="wrap" id="main">
+    <p class="loading">Cargando catálogo…</p>
+  </main>
+
+  <footer class="wrap foot">
+    <div class="foot-actions">
+      <button id="export" type="button">Exportar colección</button>
+      <label class="file-btn">Importar colección<input id="import" type="file" accept="application/json" hidden></label>
+    </div>
+    <p id="catalog-info"></p>
+  </footer>
+
+  <dialog id="lightbox" aria-label="Captura">
+    <form method="dialog"><button class="lb-close" aria-label="Cerrar">×</button></form>
+    <img id="lb-img" alt="">
+    <div class="lb-caption" id="lb-caption"></div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" hidden></div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

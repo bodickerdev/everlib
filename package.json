@@ -1,0 +1,15 @@
+{
+  "name": "evercade-library",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Gestor de colección de cartuchos Evercade",
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "scrape": "node scripts/scrape.mjs",
+    "scrape:images": "node scripts/scrape.mjs --images"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
