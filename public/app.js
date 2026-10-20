@@ -521,6 +521,7 @@ function bind() {
   dlg.addEventListener('click', (e) => e.target === dlg || e.target.id === 'lb-img' ? dlg.close() : null);
 
   $('#export').addEventListener('click', exportOwned);
+  $('#import-btn').addEventListener('click', () => $('#import').click());
   $('#import').addEventListener('change', (e) => {
     const f = e.target.files[0];
     if (f) importOwned(f);

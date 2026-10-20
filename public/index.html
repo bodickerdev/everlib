@@ -14,6 +14,15 @@
     <div class="wrap top-inner">
       <h1 class="brand"><span class="brand-mark" aria-hidden="true"></span>Evercade Library</h1>
       <div class="stats" id="stats" aria-live="polite"></div>
+      <div class="top-actions">
+        <button id="export" class="top-btn" type="button" aria-label="Exportar colección" title="Descargar tu colección en un archivo JSON">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 19h14"/></svg><span class="top-btn-label">Exportar</span>
+        </button>
+        <button id="import-btn" class="top-btn" type="button" aria-label="Importar colección" title="Cargar una colección desde un archivo JSON">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4m0 0L8 8m4-4 4 4M5 19h14"/></svg><span class="top-btn-label">Importar</span>
+        </button>
+        <input id="import" type="file" accept="application/json" hidden>
+      </div>
       <div class="progress" aria-hidden="true"><div class="progress-bar" id="progress-bar"></div></div>
     </div>
   </header>
@@ -61,10 +70,6 @@
   </main>
 
   <footer class="wrap foot">
-    <div class="foot-actions">
-      <button id="export" type="button">Exportar colección</button>
-      <label class="file-btn">Importar colección<input id="import" type="file" accept="application/json" hidden></label>
-    </div>
     <p id="catalog-info"></p>
   </footer>
 
