@@ -42,6 +42,10 @@ export async function getMeta(key) {
   return done((await store('meta')).get(key));
 }
 
+export async function setMeta(key, value) {
+  return done((await store('meta', 'readwrite')).put(value, key));
+}
+
 export async function getCartridges() {
   return done((await store('cartridges')).getAll());
 }

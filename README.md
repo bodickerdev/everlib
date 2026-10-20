@@ -19,6 +19,11 @@ Desde el móvil, conectado a la misma red Wi-Fi, abre la dirección "En tu red l
   - En la pestaña **Cartuchos** aparecen los cartuchos cuyo nombre coincide o que contienen un juego que coincide.
   - En la pestaña **Juegos** se muestra cada juego y en qué cartucho o cartuchos está. Los que ya tienes salen en verde.
 - Etiqueta **Legacy** y filtros: Tengo / Me faltan, Legacy / En producción, categoría (Arcade, Console, Home Computer) y orden.
+- Sección **Desbloqueables**, con dos apartados:
+  - **Por código**: códigos de texto, combinaciones de botones y extras que no son juegos.
+  - **Con 2 cartuchos** (Evercade VS / VS-R): indica qué cartuchos tienes y cuáles te faltan para cada juego.
+
+  Los datos están en `public/data/unlockables.json` y se editan a mano.
 - Exportar e importar la colección en JSON, como copia de seguridad o para pasarla a otro dispositivo.
 
 ## Datos

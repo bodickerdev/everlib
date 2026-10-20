@@ -1,0 +1,58 @@
+{
+  "updatedAt": "2026-10-20",
+  "codes": {
+    "text": {
+      "title": "Códigos de texto",
+      "help": "Se escriben en la pantalla «Secret Code», en mayúsculas o minúsculas. Los juegos aparecen después en el menú «Secret Games».",
+      "items": [
+        { "title": "Gribbly’s Day Out", "platform": "C64", "code": "GRIBBLYGROBBLY" },
+        { "title": "Kubo 1&2", "platform": "NES", "code": "SEIJIWASHERE" },
+        { "title": "Rogue64", "platform": "C64", "code": "STONE" },
+        { "title": "The Lost Mines", "platform": "Evercade", "code": "BLOP" },
+        { "title": "Juggling Balls", "platform": "Evercade", "code": "JUGGLE" }
+      ]
+    },
+    "buttons": {
+      "title": "Combinaciones de botones",
+      "help": "Se introducen en el menú principal sin ningún cartucho insertado.",
+      "items": [
+        { "title": "Fairy Fire – Defender of the Fairies", "platform": null, "combo": "Pulsa Menu diez veces" },
+        { "title": "Gotris", "platform": "Master System", "combo": "Mantén L2 + R2 + Select" },
+        { "title": "Hummingz", "platform": "Evercade", "combo": "L2, L2, R2, R2, L1, L1, R1, R1", "note": "Hay usuarios que dicen que en la EXP no funciona." },
+        { "title": "NNNNNN", "platform": "NES", "combo": "Mantén L1 + R1 + Arriba" },
+        { "title": "Spacey McRacey", "platform": "NES", "combo": "Mantén L1 + R1 + Abajo" },
+        {
+          "title": "Maniac Square",
+          "platform": "Arcade (prototipo)",
+          "combo": "Con el cartucho Gaelco Arcade 2, selecciona Maniac Square y mantén L1 + L2 + R1 + R2",
+          "note": "Solo en Evercade VS.",
+          "requires": ["gaelco-arcade-2"]
+        }
+      ]
+    },
+    "extras": {
+      "title": "Extras que no son juegos",
+      "items": [
+        { "code": "CIRCUIT", "description": "Muestra una foto de la VS." },
+        { "code": "DEADLOCK", "description": "Muestra una foto de una patata." },
+        { "code": "GUEST", "description": "Muestra una pantalla de broma." },
+        { "combo": "X + Y + L1 + R1", "description": "Sin cartucho, abre la pantalla de diagnóstico." }
+      ]
+    }
+  },
+  "twoCarts": {
+    "help": "Inserta los dos cartuchos a la vez en la Evercade VS / VS-R.",
+    "items": [
+      { "title": "Arkade Rush", "platform": "NES", "carts": ["gaelco-arcade-1", "indie-heroes-collection-1-cartridge"] },
+      { "title": "Bang!", "platform": "Arcade", "carts": ["gaelco-arcade-1", "gaelco-arcade-2"] },
+      { "title": "Dark Chambers", "platform": "Atari 7800", "carts": ["atari-collection-1", "atari-collection-2-cartridge"] },
+      { "title": "Gyroscope", "platform": "C64", "carts": ["thec64-collection-1", "thec64-collection-2"] },
+      { "title": "Pyramids of Ra", "platform": "NES", "carts": ["piko-interactive-collection-1-cartridge", "piko-interactive-collection-2-cartridge"] },
+      { "title": "Raid on Tricity: Second Wave", "platform": "Atari Lynx", "carts": ["atari-lynx-collection-1-cartridge", "atari-lynx-collection-2-cartridge"] },
+      { "title": "Twin Brats", "platform": "Arcade", "carts": ["piko-interactive-collection-1-cartridge", "gaelco-arcade-1"] },
+      { "title": "Twin Hawk", "platform": "Mega Drive", "carts": ["toaplan-arcade-1", "toaplan-arcade-2"] },
+      { "title": "Worms: The Director’s Cut", "platform": "Amiga", "carts": ["worms-collection-1", "team17-collection-1-amiga"] },
+      { "title": "Zombie Madness", "platform": "Intellivision", "carts": ["intellivision-collection-1", "intellivision-collection-2"] }
+    ]
+  }
+}

@@ -17,9 +17,11 @@ const state = {
   fLegacy: 'all',
   fCat: '',
   sort: 'new',
+  unlockables: null,
+  unlockTab: 'code', // 'code' | 'two'
 };
 
-const PREFS = ['view', 'fOwned', 'fLegacy', 'fCat', 'sort'];
+const PREFS = ['view', 'fOwned', 'fLegacy', 'fCat', 'sort', 'unlockTab'];
 
 // ---------- utilidades ----------
 
@@ -110,6 +112,19 @@ async function loadCatalog() {
   }
   state.gameIndex = games;
   state.games = [...games.values()];
+}
+
+// Juegos desbloqueables: datos mantenidos a mano en data/unlockables.json (copia en IndexedDB para uso sin conexión)
+async function loadUnlockables() {
+  try {
+    const res = await fetch('data/unlockables.json', { cache: 'no-cache' });
+    if (res.ok) {
+      state.unlockables = await res.json();
+      await db.setMeta('unlockables', state.unlockables);
+      return;
+    }
+  } catch {}
+  state.unlockables = (await db.getMeta('unlockables')) ?? null;
 }
 
 async function loadOwned() {
@@ -324,8 +339,11 @@ function render() {
   const q = norm(state.q);
   const carts = visibleCarts();
   const games = visibleGames();
+  const unlock = visibleUnlockables();
   $('#count-carts').textContent = carts.length;
   $('#count-games').textContent = games.length;
+  $('#count-unlock').textContent = unlock.text.length + unlock.buttons.length + unlock.two.length;
+  $('.filters').hidden = state.view === 'unlock';
   document.querySelectorAll('.tabs [role=tab]').forEach((b) => b.setAttribute('aria-selected', b.dataset.view === state.view));
   for (const [id, key] of [['#f-owned', 'fOwned'], ['#f-legacy', 'fLegacy']]) {
     document.querySelectorAll(`${id} button`).forEach((b) => b.setAttribute('aria-pressed', b.dataset.v === state[key]));
@@ -338,10 +356,102 @@ function render() {
     main.innerHTML = carts.length
       ? `<div class="cart-list">${carts.map((o) => cartRow(o, q)).join('')}</div>`
       : empty();
-  } else {
+  } else if (state.view === 'games') {
     main.innerHTML = games.length ? `<div class="game-list">${games.map((g) => gameRow(g, q)).join('')}</div>` : empty();
+  } else {
+    main.innerHTML = unlockView(unlock, q);
   }
   renderStats();
+}
+
+// ---------- desbloqueables ----------
+
+const hits = (q, ...fields) => !q || fields.some((f) => norm(f).includes(q));
+
+function visibleUnlockables() {
+  const u = state.unlockables;
+  if (!u) return { text: [], buttons: [], extras: [], two: [] };
+  const q = norm(state.q);
+  const cartTitles = (ids = []) => ids.map((id) => state.byId.get(id)?.title ?? '');
+  return {
+    text: u.codes.text.items.filter((i) => hits(q, i.title, i.platform, i.code)),
+    buttons: u.codes.buttons.items.filter((i) => hits(q, i.title, i.platform, ...cartTitles(i.requires))),
+    extras: u.codes.extras.items.filter((i) => hits(q, i.code, i.combo, i.description)),
+    two: u.twoCarts.items.filter((i) => hits(q, i.title, i.platform, ...cartTitles(i.carts))),
+  };
+}
+
+// Resalta los botones de la consola dentro de una combinación
+const keys = (s) => esc(s).replace(/\b(L1|L2|R1|R2|Select|Menu|X|Y|Arriba|Abajo)\b/g, '<kbd>$1</kbd>');
+
+function secretCard(i, q) {
+  const reqs = (i.requires ?? []).map((id) => state.byId.get(id)).filter(Boolean);
+  return `<article class="ucard">
+    <div class="ucard-head">
+      <h3>${highlight(i.title ?? i.description, q)}</h3>
+      ${i.platform ? `<span class="badge">${esc(i.platform)}</span>` : ''}
+    </div>
+    ${i.code ? `<p class="secret"><span class="secret-label">Código</span><code>${highlight(i.code, q)}</code></p>` : ''}
+    ${i.combo ? `<p class="secret"><span class="secret-label">Botones</span><span class="combo">${keys(i.combo)}</span></p>` : ''}
+    ${i.title && i.description ? `<p class="unote">${esc(i.description)}</p>` : ''}
+    ${i.note ? `<p class="unote">${esc(i.note)}</p>` : ''}
+    ${reqs.length ? `<p class="also">Necesitas: ${reqs.map(cartChip).join(' ')}</p>` : ''}
+  </article>`;
+}
+
+function cartMini(c) {
+  const own = state.owned.has(c.id);
+  return `<button type="button" class="cart-mini${own ? ' owned' : ''}" data-goto="${esc(c.id)}">
+    <img src="${esc(c.cover)}" alt="" loading="lazy" decoding="async">
+    <span class="cart-mini-title">${esc(c.title)}</span>
+    <span class="cart-mini-own">${own ? '✓ Lo tengo' : 'No lo tengo'}</span>
+  </button>`;
+}
+
+function twoCartCard(i, q) {
+  const carts = i.carts.map((id) => state.byId.get(id)).filter(Boolean);
+  const missing = carts.filter((c) => !state.owned.has(c.id));
+  const status = !missing.length
+    ? '<p class="ustatus ok">✓ Tienes los 2 cartuchos: lo puedes desbloquear</p>'
+    : `<p class="ustatus">${missing.length === carts.length ? 'Te faltan los 2 cartuchos' : `Te falta: ${esc(missing[0].title)}`}</p>`;
+  return `<article class="ucard${missing.length ? '' : ' ready'}">
+    <div class="ucard-head">
+      <h3>${highlight(i.title, q)}</h3>
+      <span class="badge">${esc(i.platform)}</span>
+    </div>
+    <div class="pair">${carts.map(cartMini).join('<span class="plus" aria-hidden="true">+</span>')}</div>
+    ${status}
+  </article>`;
+}
+
+function unlockView(v, q) {
+  const u = state.unlockables;
+  if (!u) return '<p class="loading">No se pudieron cargar los juegos desbloqueables.</p>';
+  const nCode = v.text.length + v.buttons.length; // los extras no son juegos y no cuentan
+  const tabs = `<div class="subtabs" role="tablist" aria-label="Tipo de desbloqueo">
+    <button role="tab" data-unlock-tab="code" aria-selected="${state.unlockTab === 'code'}">Por código <span>${nCode}</span></button>
+    <button role="tab" data-unlock-tab="two" aria-selected="${state.unlockTab === 'two'}">Con 2 cartuchos <span>${v.two.length}</span></button>
+  </div>`;
+  const section = (group, items, card) =>
+    items.length
+      ? `<section class="usection"><h2>${esc(group.title)}</h2>${group.help ? `<p class="uhelp">${esc(group.help)}</p>` : ''}
+        <div class="ugrid">${items.map((i) => card(i, q)).join('')}</div></section>`
+      : '';
+
+  let body;
+  if (state.unlockTab === 'two') {
+    const ready = u.twoCarts.items.filter((i) => i.carts.every((id) => state.owned.has(id))).length;
+    body = v.two.length
+      ? `<section class="usection"><p class="uhelp">${esc(u.twoCarts.help)}</p>
+        <p class="usummary">Con tu colección puedes desbloquear <b>${ready}</b> de ${u.twoCarts.items.length}.</p>
+        <div class="ugrid">${v.two.map((i) => twoCartCard(i, q)).join('')}</div></section>`
+      : empty();
+  } else {
+    body = nCode + v.extras.length
+      ? section(u.codes.text, v.text, secretCard) + section(u.codes.buttons, v.buttons, secretCard) + section(u.codes.extras, v.extras, secretCard)
+      : empty();
+  }
+  return tabs + body;
 }
 
 function empty() {
@@ -505,6 +615,12 @@ function bind() {
     if (desc) return desc.classList.toggle('open');
     const shot = e.target.closest('[data-img]');
     if (shot) return openLightbox(shot.dataset.img, shot.dataset.caption);
+    const sub = e.target.closest('[data-unlock-tab]');
+    if (sub) {
+      state.unlockTab = sub.dataset.unlockTab;
+      savePrefs();
+      return render();
+    }
     const go = e.target.closest('[data-goto]');
     if (go) return gotoCart(go.dataset.goto);
     const toggle = e.target.closest('.cart-toggle');
@@ -537,6 +653,7 @@ async function init() {
   try {
     await loadCatalog();
     await loadOwned();
+    await loadUnlockables();
   } catch (err) {
     console.error(err);
     main.innerHTML = `<p class="loading">${esc(err.message)}</p>`;
