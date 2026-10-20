@@ -245,6 +245,16 @@ main { padding-top: 16px; padding-bottom: 24px; min-height: 60vh; }
 
 .cart-info { display: grid; gap: 6px; min-width: 0; flex: 1; }
 .cart-title { font-weight: 650; font-size: 1.02rem; line-height: 1.25; }
+.cart-num {
+  display: inline-block;
+  margin-right: 8px;
+  padding: 1px 6px;
+  border-radius: 5px;
+  background: var(--text);
+  color: var(--bg);
+  font: 700 0.78rem/1.4 ui-monospace, "Cascadia Mono", Consolas, monospace;
+  vertical-align: 2px;
+}
 .badges { display: flex; flex-wrap: wrap; gap: 5px; }
 .badge {
   display: inline-block;

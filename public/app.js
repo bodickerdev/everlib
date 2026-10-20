@@ -153,10 +153,22 @@ function cartPassesFilters(c) {
   return true;
 }
 
+// Número oficial como valor ordenable: consola (01…), después arcade (A01…) y ordenador (C01…)
+const NUMBER_RANK = { console: 0, arcade: 1, computer: 2 };
+const cartNumber = (c) => (c?.number ? NUMBER_RANK[c.number.type] * 1000 + c.number.n : null);
+
+// Compara números en el sentido indicado; los cartuchos sin número siempre al final
+function byNumber(na, nb, dir) {
+  if (na == null || nb == null) return (na == null) - (nb == null);
+  return (na - nb) * dir;
+}
+
 function cartComparator() {
   return {
     new: (a, b) => b.order - a.order,
     old: (a, b) => a.order - b.order,
+    'num-asc': (a, b) => byNumber(cartNumber(a), cartNumber(b), 1),
+    'num-desc': (a, b) => byNumber(cartNumber(a), cartNumber(b), -1),
     az: (a, b) => a.title.localeCompare(b.title),
     games: (a, b) => b.games.length - a.games.length || a.title.localeCompare(b.title),
   }[state.sort];
@@ -197,9 +209,16 @@ function visibleGames() {
     list.push(g);
   }
   const newest = (g) => Math.max(...g.carts.map((id) => state.byId.get(id).order));
+  // Un juego en varios cartuchos se ordena por el de número más bajo
+  const lowest = (g) => {
+    const ns = g.carts.map((id) => cartNumber(state.byId.get(id))).filter((n) => n != null);
+    return ns.length ? Math.min(...ns) : null;
+  };
   const by = {
     new: (a, b) => newest(b) - newest(a) || a.title.localeCompare(b.title),
     old: (a, b) => newest(a) - newest(b) || a.title.localeCompare(b.title),
+    'num-asc': (a, b) => byNumber(lowest(a), lowest(b), 1) || a.title.localeCompare(b.title),
+    'num-desc': (a, b) => byNumber(lowest(a), lowest(b), -1) || a.title.localeCompare(b.title),
     az: (a, b) => a.title.localeCompare(b.title),
     games: (a, b) => b.carts.length - a.carts.length || a.title.localeCompare(b.title),
   }[state.sort];
@@ -303,7 +322,7 @@ function cartRow({ c, matches }, q) {
       <button class="cart-toggle" type="button" aria-expanded="${open}" aria-controls="body-${esc(c.id)}">
         <img class="cover" src="${esc(c.cover)}" alt="" loading="lazy" decoding="async">
         <span class="cart-info">
-          <span class="cart-title">${highlight(c.title, q)}</span>
+          <span class="cart-title">${c.number ? `<span class="cart-num" title="Nº de cartucho">${esc(c.number.label)}</span>` : ''}${highlight(c.title, q)}</span>
           <span class="badges">${badges(c)}</span>
           ${progressBlock(c)}
           ${matchText}

@@ -11,6 +11,16 @@ const IMG_DIR = join(ROOT, 'public', 'img');
 const DOWNLOAD_IMAGES = process.argv.includes('--images');
 const UA = { 'User-Agent': 'Mozilla/5.0 (EvercadeLibrary scraper)' };
 const CATEGORIES = { 294: 'Arcade', 292: 'Console', 293: 'Home Computer' };
+// La numeración oficial no está en evercade.co.uk; se toma de la Wikipedia
+const WIKI_URL = 'https://en.wikipedia.org/w/index.php?title=List_of_Evercade_games&action=raw';
+const WIKI_SECTIONS = [
+  ['console', '===Console===', '===Arcade==='],
+  ['arcade', '===Arcade===', '===Home computer==='],
+  ['computer', '===Home computer===', '=== Other ==='],
+];
+const NUMBER_PREFIX = { console: '', arcade: 'A', computer: 'C' };
+// Títulos que no coinciden ni normalizados: slug -> título en la Wikipedia
+const WIKI_ALIASES = { 'alwas-awakening-8-bit-edition-cathedral': "Alwa's Awakening & Cathedral" };
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -94,6 +104,47 @@ async function fetchCategories() {
   return bySlug;
 }
 
+// Clave para emparejar títulos: sin acentos, signos, "the" inicial, "and"/"&" ni espacios
+const titleKey = (s) =>
+  s
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .replace(/[’'`´]/g, '')
+    .replace(/&|\band\b/g, ' ')
+    .replace(/^\s*the\s+/, '')
+    .replace(/[^a-z0-9]/g, '');
+
+const wikiText = (s) =>
+  s
+    .replace(/<ref[\s\S]*?(<\/ref>|\/>)/g, '')
+    .replace(/\{\{[^}]*\}\}/g, '')
+    .replace(/\[\[(?:[^\]|]*\|)?([^\]]*)\]\]/g, '$1')
+    .replace(/''+/g, '')
+    .trim();
+
+// Devuelve slug -> { type, n, label } con el número oficial de cada cartucho
+async function fetchNumbers(grid) {
+  const txt = await (await get(WIKI_URL)).text();
+  const keys = new Map(grid.map((c) => [titleKey(WIKI_ALIASES[c.slug] ?? c.title), c.slug]));
+  const numbers = {};
+  for (const [type, start, end] of WIKI_SECTIONS) {
+    const body = txt.split(start)[1]?.split(end)[0] ?? '';
+    for (const row of body.split(/\n\|-\s*\n/)) {
+      const m = row.match(/^\|\s*\{\{center\|(\d+)\}\}\s*(?:\|\|([^\n]*)|\s*\n\|([^\n]*))/);
+      if (!m) continue;
+      const title = wikiText(m[2] ?? m[3]);
+      const slug = keys.get(titleKey(title));
+      if (!slug) {
+        console.warn(`  Sin emparejar en la Wikipedia: ${type} ${m[1]} "${title}"`);
+        continue;
+      }
+      numbers[slug] = { type, n: +m[1], label: NUMBER_PREFIX[type] + m[1].padStart(2, '0') };
+    }
+  }
+  return numbers;
+}
+
 async function localImage(url) {
   if (!DOWNLOAD_IMAGES || !url) return url;
   const path = new URL(url).pathname.replace(/^\/wp-content\/uploads\//, '');
@@ -127,6 +178,12 @@ async function main() {
   const grid = parseGrid(await (await get(`${BASE}/cartridges/`)).text());
   console.log(`${grid.length} cartuchos encontrados`);
   const categories = await fetchCategories();
+  let numbers = {};
+  try {
+    numbers = await fetchNumbers(grid);
+  } catch (err) {
+    console.warn(`No se pudo obtener la numeración de la Wikipedia: ${err.message}`);
+  }
 
   const cartridges = await mapLimit(grid, 4, async (item, i) => {
     const page = parseCartridgePage(await (await get(`${BASE}/cartridges/${item.slug}/`)).text());
@@ -137,6 +194,7 @@ async function main() {
     return {
       id: item.slug,
       title: item.title,
+      number: numbers[item.slug] ?? null,
       url: `${BASE}/cartridges/${item.slug}/`,
       cover: await localImage(item.cover),
       banner: page.banner,
@@ -156,6 +214,8 @@ async function main() {
   await writeFile(OUT, JSON.stringify(catalog, null, 1));
   const totalGames = cartridges.reduce((n, c) => n + c.games.length, 0);
   console.log(`\nGuardado ${OUT}\n${cartridges.length} cartuchos, ${totalGames} juegos, ${cartridges.filter((c) => c.legacy).length} legacy`);
+  const unnumbered = cartridges.filter((c) => !c.number);
+  if (unnumbered.length) console.warn(`Sin número de cartucho: ${unnumbered.map((c) => c.title).join(', ')}`);
 }
 
 main().catch((err) => {

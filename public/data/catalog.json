@@ -1,10 +1,15 @@
 {
  "source": "https://evercade.co.uk/cartridges/",
- "updatedAt": "2026-10-20T09:24:27.503Z",
+ "updatedAt": "2026-10-20T11:24:22.421Z",
  "cartridges": [
   {
    "id": "james-pond-collection",
    "title": "James Pond Collection",
+   "number": {
+    "type": "console",
+    "n": 54,
+    "label": "54"
+   },
    "url": "https://evercade.co.uk/cartridges/james-pond-collection/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2026/08/EVE-JP-WEB-SQUR.webp",
    "banner": "https://evercade.co.uk/wp-content/uploads/2026/08/EVE-JP-WEB-CART-BAN.webp",
@@ -51,6 +56,11 @@
   {
    "id": "the-last-ninja-and-ik-collection",
    "title": "The Last Ninja and IK Collection",
+   "number": {
+    "type": "computer",
+    "n": 12,
+    "label": "C12"
+   },
    "url": "https://evercade.co.uk/cartridges/the-last-ninja-and-ik-collection/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2026/08/EVE-NINJ-WEB-SQUR.webp",
    "banner": "https://evercade.co.uk/wp-content/uploads/2026/08/EVE-NINJ-WEB-CART-BAN.webp",
@@ -167,6 +177,11 @@
   {
    "id": "banjo-kazooie-double-pack",
    "title": "BANJO-KAZOOIE Double Pack",
+   "number": {
+    "type": "console",
+    "n": 53,
+    "label": "53"
+   },
    "url": "https://evercade.co.uk/cartridges/banjo-kazooie-double-pack/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2026/08/EVE-RAR2-WEB-SQUR-2.webp",
    "banner": "https://evercade.co.uk/wp-content/uploads/2026/08/EVE-RAR2-WEB-CART-BAN-1.webp",
@@ -199,6 +214,11 @@
   {
    "id": "the-doom-collection",
    "title": "The DOOM Collection",
+   "number": {
+    "type": "computer",
+    "n": 11,
+    "label": "C11"
+   },
    "url": "https://evercade.co.uk/cartridges/the-doom-collection/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2026/08/EVE-DOOM-WEB-SQUR-1.webp",
    "banner": "https://evercade.co.uk/wp-content/uploads/2026/08/EVE-DOOM-WEB-CART-BAN.webp",
@@ -280,6 +300,11 @@
   {
    "id": "visco-arcade-2",
    "title": "Visco Arcade 2",
+   "number": {
+    "type": "arcade",
+    "n": 24,
+    "label": "A24"
+   },
    "url": "https://evercade.co.uk/cartridges/visco-arcade-2/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2026/06/EVE-VIS2-WEB-SQUR.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2026/06/EVE-VIS2-WEB-CART-BAN.png",
@@ -354,6 +379,11 @@
   {
    "id": "visco-arcade-1",
    "title": "Visco Arcade 1",
+   "number": {
+    "type": "arcade",
+    "n": 23,
+    "label": "A23"
+   },
    "url": "https://evercade.co.uk/cartridges/visco-arcade-1/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2026/06/EVE-VIS1-WEB-SQUR.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2026/06/EVE-VIS1-WEB-CART-BAN.png",
@@ -428,6 +458,11 @@
   {
    "id": "neogeo-arcade-4",
    "title": "NEOGEO Arcade 4",
+   "number": {
+    "type": "arcade",
+    "n": 22,
+    "label": "A22"
+   },
    "url": "https://evercade.co.uk/cartridges/neogeo-arcade-4/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2026/05/EVE-NEO4-WEB-SQUR-FATALFURYSPECIAL_2.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2026/04/EVE-NEO4-WEB-CART-BAN-1.png",
@@ -502,6 +537,11 @@
   {
    "id": "activision-collection-3",
    "title": "Activision Collection 3",
+   "number": {
+    "type": "console",
+    "n": 52,
+    "label": "52"
+   },
    "url": "https://evercade.co.uk/cartridges/activision-collection-3/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2026/05/EVE-ACT3-WEB-SQUR.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2026/05/EVE-ACT3-WEB-CART-BAN.png",
@@ -611,6 +651,11 @@
   {
    "id": "mega-cat-studios-collection-3",
    "title": "Mega Cat Studios Collection 3",
+   "number": {
+    "type": "console",
+    "n": 51,
+    "label": "51"
+   },
    "url": "https://evercade.co.uk/cartridges/mega-cat-studios-collection-3/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2026/02/EVE-MEG3-WEB-SQUR.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2026/02/EVE-MEG3-WEB-CART-BAN.png",
@@ -699,6 +744,11 @@
   {
    "id": "activision-collection-2",
    "title": "Activision Collection 2",
+   "number": {
+    "type": "console",
+    "n": 50,
+    "label": "50"
+   },
    "url": "https://evercade.co.uk/cartridges/activision-collection-2/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2026/02/EVE-ACT2-WEB-SQUR.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2026/02/EVE-ACT2-WEB-CART-BAN.png",
@@ -822,6 +872,11 @@
   {
    "id": "taito-arcade-3",
    "title": "TAITO Arcade 3",
+   "number": {
+    "type": "arcade",
+    "n": 21,
+    "label": "A21"
+   },
    "url": "https://evercade.co.uk/cartridges/taito-arcade-3/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2025/11/EVE-TAI3-WEB-SQUR.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2025/11/EVE-TAI3-WEB-CART-BAN.png",
@@ -903,6 +958,11 @@
   {
    "id": "turrican-collection",
    "title": "The Turrican Collection",
+   "number": {
+    "type": "console",
+    "n": 49,
+    "label": "49"
+   },
    "url": "https://evercade.co.uk/cartridges/turrican-collection/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2025/11/EVE-TUR1-WEB-SQUR.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2025/11/EVE-TUR1-WEB-CART-BAN.png",
@@ -991,6 +1051,11 @@
   {
    "id": "llamasoft-collection",
    "title": "The Llamasoft Collection",
+   "number": {
+    "type": "computer",
+    "n": 10,
+    "label": "C10"
+   },
    "url": "https://evercade.co.uk/cartridges/llamasoft-collection/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2025/08/EVE-JEFF-WEB-SQUR.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2025/08/EVE-JEFF-WEB-CART-BAN.png",
@@ -1198,6 +1263,11 @@
   {
    "id": "rare-collection-1",
    "title": "Rare Collection 1",
+   "number": {
+    "type": "console",
+    "n": 48,
+    "label": "48"
+   },
    "url": "https://evercade.co.uk/cartridges/rare-collection-1/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2025/07/EVE-RARE-WEB-SQUR.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2025/07/EVE-RARE-WEB-CART-BAN.png",
@@ -1300,6 +1370,11 @@
   {
    "id": "activision-collection-1",
    "title": "Activision Collection 1",
+   "number": {
+    "type": "console",
+    "n": 47,
+    "label": "47"
+   },
    "url": "https://evercade.co.uk/cartridges/activision-collection-1/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2025/08/EVE-ACT1-WEB-SQUR.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2025/08/EVE-ACT1-WEB-CART-BAN.png",
@@ -1423,6 +1498,11 @@
   {
    "id": "neogeo-arcade-3",
    "title": "NEOGEO Arcade 3",
+   "number": {
+    "type": "arcade",
+    "n": 20,
+    "label": "A20"
+   },
    "url": "https://evercade.co.uk/cartridges/neogeo-arcade-3/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2025/05/EVE-NEO3-WEB-SQUR-1.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2025/05/EVE-NEO3-WEB-CART-BAN-1.png",
@@ -1483,6 +1563,11 @@
   {
    "id": "neogeo-arcade-2",
    "title": "NEOGEO Arcade 2",
+   "number": {
+    "type": "arcade",
+    "n": 19,
+    "label": "A19"
+   },
    "url": "https://evercade.co.uk/cartridges/neogeo-arcade-2/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2025/05/EVE-NEO2-WEB-SQUR-1.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2025/05/EVE-NEO2-WEB-CART-BAN-1.png",
@@ -1543,6 +1628,11 @@
   {
    "id": "taito-arcade-2",
    "title": "Taito Arcade 2",
+   "number": {
+    "type": "arcade",
+    "n": 18,
+    "label": "A18"
+   },
    "url": "https://evercade.co.uk/cartridges/taito-arcade-2/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2025/05/EVE-TAI2-WEB-SQUR-1.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2025/05/EVE-TAI2-WEB-CART-BAN-1.png",
@@ -1624,6 +1714,11 @@
   {
    "id": "taito-arcade-1",
    "title": "Taito Arcade 1",
+   "number": {
+    "type": "arcade",
+    "n": 17,
+    "label": "A17"
+   },
    "url": "https://evercade.co.uk/cartridges/taito-arcade-1/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2025/05/EVE-TAI1-WEB-SQUR-1.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2025/05/EVE-TAI1-WEB-CART-BAN-1.png",
@@ -1705,6 +1800,11 @@
   {
    "id": "neogeo-arcade-1",
    "title": "NEOGEO Arcade 1",
+   "number": {
+    "type": "arcade",
+    "n": 16,
+    "label": "A16"
+   },
    "url": "https://evercade.co.uk/cartridges/neogeo-arcade-1/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2025/03/EVE-NG1-WEB-SQUR-1.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2025/03/EVE-NG1-WEB-CART-BAN-1.png",
@@ -1765,6 +1865,11 @@
   {
    "id": "roguecraft-dx",
    "title": "Roguecraft DX",
+   "number": {
+    "type": "computer",
+    "n": 9,
+    "label": "C09"
+   },
    "url": "https://evercade.co.uk/cartridges/roguecraft-dx/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2025/05/EVE-ROGU-WebSquare.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2025/05/EVE-ROGU-CartWebBanner.png",
@@ -1790,6 +1895,11 @@
   {
    "id": "windjammers-karnov-friends",
    "title": "Windjammers, Karnov & Friends",
+   "number": {
+    "type": "arcade",
+    "n": 15,
+    "label": "A15"
+   },
    "url": "https://evercade.co.uk/cartridges/windjammers-karnov-friends/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2025/03/EVE-PAO1-WEB-SQUR.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2025/03/EVE-PAO1-WEB-CART-BAN.png",
@@ -1843,6 +1953,11 @@
   {
    "id": "gremlin-collection-2",
    "title": "Gremlin Collection 2",
+   "number": {
+    "type": "console",
+    "n": 46,
+    "label": "46"
+   },
    "url": "https://evercade.co.uk/cartridges/gremlin-collection-2/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2025/03/0046-WebSquare.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2025/03/0046-CartWebBanner.png",
@@ -1889,6 +2004,11 @@
   {
    "id": "tomb-raider-collection-2",
    "title": "Tomb Raider Collection 2",
+   "number": {
+    "type": "console",
+    "n": 45,
+    "label": "45"
+   },
    "url": "https://evercade.co.uk/cartridges/tomb-raider-collection-2/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2025/02/EVE-TOM2-BAN2.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2025/02/EVE-TOM2-BAN1.png",
@@ -1921,6 +2041,11 @@
   {
    "id": "atari-arcade-2",
    "title": "Atari Arcade 2",
+   "number": {
+    "type": "arcade",
+    "n": 14,
+    "label": "A14"
+   },
    "url": "https://evercade.co.uk/cartridges/atari-arcade-2/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2025/02/A0014-AA2-SCREEN-WEB.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2025/02/A0014-AA2-CartWebBanner.png?ver=1739545109",
@@ -2009,6 +2134,11 @@
   {
    "id": "broken-sword-collection",
    "title": "Broken Sword Collection",
+   "number": {
+    "type": "console",
+    "n": 44,
+    "label": "44"
+   },
    "url": "https://evercade.co.uk/cartridges/broken-sword-collection/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2025/01/0044-BS1-CART-SCREEN-WEB-1.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2025/01/0044-BS1-CART-BANNER.png",
@@ -2041,6 +2171,11 @@
   {
    "id": "indie-heroes-collection-4",
    "title": "Indie Heroes Collection 4",
+   "number": {
+    "type": "console",
+    "n": 43,
+    "label": "43"
+   },
    "url": "https://evercade.co.uk/cartridges/indie-heroes-collection-4/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2025/01/EVE-IH4-WEB-SQUR.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2025/01/0043-IND4-CartWebBanner.png",
@@ -2136,6 +2271,11 @@
   {
    "id": "toaplan-arcade-4",
    "title": "Toaplan Arcade 4",
+   "number": {
+    "type": "arcade",
+    "n": 13,
+    "label": "A13"
+   },
    "url": "https://evercade.co.uk/cartridges/toaplan-arcade-4/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/10/A0013-TOAPLAN-4-WEBSITE-DISPLAY.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/10/A0013-TOAPLAN-ARCADE-4-WEBSITE-BANNER.png",
@@ -2196,6 +2336,11 @@
   {
    "id": "metal-dragon-life-on-mars",
    "title": "Metal Dragon/Life on Mars",
+   "number": {
+    "type": "console",
+    "n": 42,
+    "label": "42"
+   },
    "url": "https://evercade.co.uk/cartridges/metal-dragon-life-on-mars/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/10/EVE-META-WEB-SQUR.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/10/0042-METAL-DRAGON-LOM-WEB-BANNER-1.png",
@@ -2228,6 +2373,11 @@
   {
    "id": "data-east-arcade-2",
    "title": "Data East Arcade 2",
+   "number": {
+    "type": "arcade",
+    "n": 12,
+    "label": "A12"
+   },
    "url": "https://evercade.co.uk/cartridges/data-east-arcade-2/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/06/A0012-DATA-EAST-ARCADE-2-WEBSITE-DISPLAY-1.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/06/A0012-DATA-EAST-ARCADE-2-WEBSITE-BANNER.png",
@@ -2330,6 +2480,11 @@
   {
    "id": "toaplan-arcade-3",
    "title": "Toaplan Arcade 3",
+   "number": {
+    "type": "arcade",
+    "n": 11,
+    "label": "A11"
+   },
    "url": "https://evercade.co.uk/cartridges/toaplan-arcade-3/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/06/EVE-TOA3-WEB-SQRE.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/06/A0011-TOAPLAN-ARCADE-3-WEBSITE-BANNER-1.png",
@@ -2397,6 +2552,11 @@
   {
    "id": "legacy-of-kain-collection",
    "title": "Legacy of Kain Collection",
+   "number": {
+    "type": "console",
+    "n": 41,
+    "label": "41"
+   },
    "url": "https://evercade.co.uk/cartridges/legacy-of-kain-collection/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/07/WEB-0041-LOK-COLLECTION.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/07/WEB-BANNER-0041-LEGACY-OF-KAIN-COLLECTION.png",
@@ -2429,6 +2589,11 @@
   {
    "id": "the-bitmap-brothers-collection-2",
    "title": "The Bitmap Brothers Collection 2",
+   "number": {
+    "type": "computer",
+    "n": 8,
+    "label": "C08"
+   },
    "url": "https://evercade.co.uk/cartridges/the-bitmap-brothers-collection-2/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/07/C008-BITMAP-BROTHERS-COLLECTION-2-RENDER-EFIGS-1-1.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/07/C008-BITMAP-BROTHERS-COLLECTION-2-WEB-BANNER-1.png",
@@ -2489,6 +2654,11 @@
   {
    "id": "thalamus-collection-1",
    "title": "Thalamus Collection 1",
+   "number": {
+    "type": "computer",
+    "n": 7,
+    "label": "C07"
+   },
    "url": "https://evercade.co.uk/cartridges/thalamus-collection-1/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/05/WEB-DISPLAY-C0007-THALAMUS-COLLECTION-1-700x721-1.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/05/WEB-BANNER-C0007-THALAMUS-COLLECTION-1.png",
@@ -2584,6 +2754,11 @@
   {
    "id": "tomb-raider-collection-1",
    "title": "Tomb Raider Collection 1",
+   "number": {
+    "type": "console",
+    "n": 40,
+    "label": "40"
+   },
    "url": "https://evercade.co.uk/cartridges/tomb-raider-collection-1/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/05/WEB-0040-TOMB-RAIDER-COLLECTION-1-700x721-1.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/05/WEB-BANNER-0040-TOMB-RAIDER-COLLECTION-1.png",
@@ -2623,6 +2798,11 @@
   {
    "id": "piko-interactive-collection-4",
    "title": "Piko Interactive Collection 4",
+   "number": {
+    "type": "console",
+    "n": 39,
+    "label": "39"
+   },
    "url": "https://evercade.co.uk/cartridges/piko-interactive-collection-4/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/05/WEB-DISPLAY-0039-PIKO-INTERACTIVE-COLLECTION-4.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/05/WEB-BANNER-0039-PIKO-INTERACTIVE-COLLECTION-4.png",
@@ -2711,6 +2891,11 @@
   {
    "id": "sunsoft-collection-2",
    "title": "Sunsoft Collection 2",
+   "number": {
+    "type": "console",
+    "n": 38,
+    "label": "38"
+   },
    "url": "https://evercade.co.uk/cartridges/sunsoft-collection-2/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/02/WEB-DISPLAY-0038-SUNSOFT-COLLECTION-2.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/02/WEB-BANNER-0038-SUNSOFT-COLLECTION-2.png",
@@ -2778,6 +2963,11 @@
   {
    "id": "thec64-collection-3",
    "title": "THEC64 Collection 3",
+   "number": {
+    "type": "computer",
+    "n": 6,
+    "label": "C06"
+   },
    "url": "https://evercade.co.uk/cartridges/thec64-collection-3/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/C643cartPreview-1.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Website_CartBanner_C643-2.png",
@@ -2887,6 +3077,11 @@
   {
    "id": "indie-heroes-collection-3",
    "title": "Indie Heroes Collection 3",
+   "number": {
+    "type": "console",
+    "n": 37,
+    "label": "37"
+   },
    "url": "https://evercade.co.uk/cartridges/indie-heroes-collection-3/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/IH3cartPreview.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Website_CartBanner_IH3-1.png",
@@ -2996,6 +3191,11 @@
   {
    "id": "demons-of-asteborg-astebros",
    "title": "Demons of Asteborg/Astebros",
+   "number": {
+    "type": "console",
+    "n": 36,
+    "label": "36"
+   },
    "url": "https://evercade.co.uk/cartridges/demons-of-asteborg-astebros/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/DemonscartPreview.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Website_CartBanner_Demons.png",
@@ -3028,6 +3228,11 @@
   {
    "id": "goodboy-galaxy-witch-n-wiz",
    "title": "Goodboy Galaxy/Witch n' Wiz",
+   "number": {
+    "type": "console",
+    "n": 35,
+    "label": "35"
+   },
    "url": "https://evercade.co.uk/cartridges/goodboy-galaxy-witch-n-wiz/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/GoodboycartPreview.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Website_CartBanner_Goodboy.png",
@@ -3060,6 +3265,11 @@
   {
    "id": "duke-nukem-collection-2",
    "title": "Duke Nukem Collection 2",
+   "number": {
+    "type": "console",
+    "n": 34,
+    "label": "34"
+   },
    "url": "https://evercade.co.uk/cartridges/duke-nukem-collection-2/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/Duke2cartPreview.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Website_CartBanner_DukeNukem2-1.png",
@@ -3099,6 +3309,11 @@
   {
    "id": "duke-nukem-collection-1",
    "title": "Duke Nukem Collection 1",
+   "number": {
+    "type": "console",
+    "n": 33,
+    "label": "33"
+   },
    "url": "https://evercade.co.uk/cartridges/duke-nukem-collection-1/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2023/07/EVE-DUK1-WEB-SQUR.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Website_CartBanner_DukeNukem1.png",
@@ -3138,6 +3353,11 @@
   {
    "id": "home-computer-heroes-collection-1",
    "title": "Home Computer Heroes Collection 1",
+   "number": {
+    "type": "computer",
+    "n": 5,
+    "label": "C05"
+   },
    "url": "https://evercade.co.uk/cartridges/home-computer-heroes-collection-1/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/HCHcartPreview.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Website_CartBanner_HCH.png",
@@ -3205,6 +3425,11 @@
   {
    "id": "full-void",
    "title": "Full Void",
+   "number": {
+    "type": "console",
+    "n": 32,
+    "label": "32"
+   },
    "url": "https://evercade.co.uk/cartridges/full-void/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/FullVoidcartPreview.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Website_CartBanner_Full-Void.png",
@@ -3237,6 +3462,11 @@
   {
    "id": "delphine-software-collection-1",
    "title": "Delphine Software Collection 1",
+   "number": {
+    "type": "computer",
+    "n": 4,
+    "label": "C04"
+   },
    "url": "https://evercade.co.uk/cartridges/delphine-software-collection-1/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2023/05/EVE-DEL1-WEB-SQUR.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Website_CartBanner_Delphine.png",
@@ -3283,6 +3513,11 @@
   {
    "id": "sunsoft-collection-1",
    "title": "Sunsoft Collection 1",
+   "number": {
+    "type": "console",
+    "n": 31,
+    "label": "31"
+   },
    "url": "https://evercade.co.uk/cartridges/sunsoft-collection-1/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2023/05/EVE-SUN1-WEB-SQUR.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Website_CartBanner_Sunsoft.png",
@@ -3343,6 +3578,11 @@
   {
    "id": "piko-interactive-arcade-1",
    "title": "PIKO Interactive Arcade 1",
+   "number": {
+    "type": "arcade",
+    "n": 10,
+    "label": "A10"
+   },
    "url": "https://evercade.co.uk/cartridges/piko-interactive-arcade-1/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2023/05/EVE-PIA1-WEB-SQUR.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Website_CartBanner_PikoArcade1.png",
@@ -3424,6 +3664,11 @@
   {
    "id": "sydney-hunter-collection",
    "title": "Sydney Hunter Collection",
+   "number": {
+    "type": "console",
+    "n": 30,
+    "label": "30"
+   },
    "url": "https://evercade.co.uk/cartridges/sydney-hunter-collection/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/SydneyHuntercartPreview.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Website_CartBanner_Sydney-Hunter.png",
@@ -3470,6 +3715,11 @@
   {
    "id": "team17-collection-1-amiga",
    "title": "Team17 Collection 1",
+   "number": {
+    "type": "computer",
+    "n": 3,
+    "label": "C03"
+   },
    "url": "https://evercade.co.uk/cartridges/team17-collection-1-amiga/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/T17cartPreview.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Website_CartBanner_T17.png",
@@ -3558,6 +3808,11 @@
   {
    "id": "piko-interactive-collection-3",
    "title": "PIKO Interactive Collection 3",
+   "number": {
+    "type": "console",
+    "n": 29,
+    "label": "29"
+   },
    "url": "https://evercade.co.uk/cartridges/piko-interactive-collection-3/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/Piko3cartPreview.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Website_CartBanner_Piko3.png",
@@ -3646,6 +3901,11 @@
   {
    "id": "thec64-collection-2",
    "title": "THEC64 Collection 2",
+   "number": {
+    "type": "computer",
+    "n": 2,
+    "label": "C02"
+   },
    "url": "https://evercade.co.uk/cartridges/thec64-collection-2/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2023/02/EVE-C642-WEB-SQUR.webp",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/cartHeaderC642.png",
@@ -3762,6 +4022,11 @@
   {
    "id": "toaplan-arcade-2",
    "title": "Toaplan Arcade 2",
+   "number": {
+    "type": "arcade",
+    "n": 9,
+    "label": "A09"
+   },
    "url": "https://evercade.co.uk/cartridges/toaplan-arcade-2/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/06/EVE-TOA2-WEB-SQRE.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/cartHeader_TOAPLAN2.jpg",
@@ -3829,6 +4094,11 @@
   {
    "id": "indie-heroes-collection-2",
    "title": "Indie Heroes Collection 2",
+   "number": {
+    "type": "console",
+    "n": 28,
+    "label": "28"
+   },
    "url": "https://evercade.co.uk/cartridges/indie-heroes-collection-2/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2022/11/EVE-IH2-WEB-SQUR.webp",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Evercade-Cartridge-Header_IndieHeroes2.jpg",
@@ -3931,6 +4201,11 @@
   {
    "id": "toaplan-arcade-1",
    "title": "Toaplan Arcade 1",
+   "number": {
+    "type": "arcade",
+    "n": 8,
+    "label": "A08"
+   },
    "url": "https://evercade.co.uk/cartridges/toaplan-arcade-1/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/cartPreview-TOAPLAN.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/cartHeader-TOAPLAN.jpg",
@@ -4005,6 +4280,11 @@
   {
    "id": "irem-arcade-1",
    "title": "IREM Arcade 1",
+   "number": {
+    "type": "arcade",
+    "n": 7,
+    "label": "A07"
+   },
    "url": "https://evercade.co.uk/cartridges/irem-arcade-1/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2022/05/EVE-IREM-WEB-SQUR.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/cartHeader_IREM.png",
@@ -4065,6 +4345,11 @@
   {
    "id": "alwas-awakening-8-bit-edition-cathedral",
    "title": "Alwa's Awakening 8-Bit Edition/Cathedral",
+   "number": {
+    "type": "console",
+    "n": 27,
+    "label": "27"
+   },
    "url": "https://evercade.co.uk/cartridges/alwas-awakening-8-bit-edition-cathedral/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/Cathedral_collection1.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Alwa_Cathe_Cartridge_Header.jpg",
@@ -4097,6 +4382,11 @@
   {
    "id": "thec64-collection-1",
    "title": "THEC64 Collection 1",
+   "number": {
+    "type": "computer",
+    "n": 1,
+    "label": "C01"
+   },
    "url": "https://evercade.co.uk/cartridges/thec64-collection-1/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/C64_collection1.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/C64_Collection1_Cartridge_Headers.jpg",
@@ -4213,6 +4503,11 @@
   {
    "id": "gaelco-arcade-2",
    "title": "Gaelco Arcade 2",
+   "number": {
+    "type": "arcade",
+    "n": 6,
+    "label": "A06"
+   },
    "url": "https://evercade.co.uk/cartridges/gaelco-arcade-2/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/Evercarde_A06_Gaelco_ARCADE2_cartPreview.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Evercade_A06_Gaelco_ARCADE2_cartHeader.jpg",
@@ -4273,6 +4568,11 @@
   {
    "id": "jaleco-arcade-1",
    "title": "Jaleco Arcade 1",
+   "number": {
+    "type": "arcade",
+    "n": 5,
+    "label": "A05"
+   },
    "url": "https://evercade.co.uk/cartridges/jaleco-arcade-1/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/Evercarde_A05_Jaleco_ARCADE1_cartPreview.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Evercarde_A05_Jaleco_ARCADE1_cartHeader.jpg",
@@ -4347,6 +4647,11 @@
   {
    "id": "intellivision-collection-2",
    "title": "Intellivision Collection 2",
+   "number": {
+    "type": "console",
+    "n": 26,
+    "label": "26"
+   },
    "url": "https://evercade.co.uk/cartridges/intellivision-collection-2/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/Intellivision-2-web-cart-featured-image.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/intellivision-2-web-cartridge-header.jpg",
@@ -4449,6 +4754,11 @@
   {
    "id": "morphcat-games-collection-1",
    "title": "Morphcat Games Collection 1",
+   "number": {
+    "type": "console",
+    "n": 25,
+    "label": "25"
+   },
    "url": "https://evercade.co.uk/cartridges/morphcat-games-collection-1/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/Morphcat-Web-Cart-Featured-Image.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Morphcat-Games-Web-Cartridge-Header.png",
@@ -4502,6 +4812,11 @@
   {
    "id": "gremlin-collection-1",
    "title": "Gremlin Collection 1",
+   "number": {
+    "type": "console",
+    "n": 24,
+    "label": "24"
+   },
    "url": "https://evercade.co.uk/cartridges/gremlin-collection-1/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/gremlin_collection1.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Evercade-Cartridge-Headers_gremlin.jpg",
@@ -4562,6 +4877,11 @@
   {
    "id": "renovation-collection-1",
    "title": "Renovation Collection 1",
+   "number": {
+    "type": "console",
+    "n": 23,
+    "label": "23"
+   },
    "url": "https://evercade.co.uk/cartridges/renovation-collection-1/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/renovation_collection1.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Evercade-Cartridge-Headers_renovation.jpg",
@@ -4664,6 +4984,11 @@
   {
    "id": "intellivision-collection-1",
    "title": "Intellivision Collection 1",
+   "number": {
+    "type": "console",
+    "n": 21,
+    "label": "21"
+   },
    "url": "https://evercade.co.uk/cartridges/intellivision-collection-1/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/MicrosoftTeams-image-7-700x721-1.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/MicrosoftTeams-image-10.png",
@@ -4766,6 +5091,11 @@
   {
    "id": "atari-arcade-1",
    "title": "Atari Arcade 1",
+   "number": {
+    "type": "arcade",
+    "n": 4,
+    "label": "A04"
+   },
    "url": "https://evercade.co.uk/cartridges/atari-arcade-1/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/03/AtariArcade1Feature-700x721-1.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2021/05/Atari-Arcade-1-Header.jpg",
@@ -4875,6 +5205,11 @@
   {
    "id": "bitmap-brothers-collection-1",
    "title": "The Bitmap Brothers Collection 1",
+   "number": {
+    "type": "console",
+    "n": 22,
+    "label": "22"
+   },
    "url": "https://evercade.co.uk/cartridges/bitmap-brothers-collection-1/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/MicrosoftTeams-image-8.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/MicrosoftTeams-image-9.png",
@@ -4928,6 +5263,11 @@
   {
    "id": "gaelco-arcade-1",
    "title": "Gaelco Arcade 1",
+   "number": {
+    "type": "arcade",
+    "n": 3,
+    "label": "A03"
+   },
    "url": "https://evercade.co.uk/cartridges/gaelco-arcade-1/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/GaelcoAracde1Feature.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Gaelco-Aracde-1-Header.jpg",
@@ -4988,6 +5328,11 @@
   {
    "id": "data-east-arcade-1",
    "title": "Data East Arcade 1",
+   "number": {
+    "type": "arcade",
+    "n": 2,
+    "label": "A02"
+   },
    "url": "https://evercade.co.uk/cartridges/data-east-arcade-1/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/DataEastArcade1Feature.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Data-East-Arcade-1-Header.jpg",
@@ -5076,6 +5421,11 @@
   {
    "id": "technos-arcade-1",
    "title": "Technos Arcade 1",
+   "number": {
+    "type": "arcade",
+    "n": 1,
+    "label": "A01"
+   },
    "url": "https://evercade.co.uk/cartridges/technos-arcade-1/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/TechnosArcade1Feature.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Technos-Arcade-1-Header.jpg",
@@ -5150,6 +5500,11 @@
   {
    "id": "mega-cat-studios-collection-2",
    "title": "Mega Cat Studios Collection 2",
+   "number": {
+    "type": "console",
+    "n": 20,
+    "label": "20"
+   },
    "url": "https://evercade.co.uk/cartridges/mega-cat-studios-collection-2/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/megacat_collection2.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Mega-Cat-Studios-Collection-2.jpg",
@@ -5224,6 +5579,11 @@
   {
    "id": "codemasters-collection-1-cartridge",
    "title": "Codemasters Collection 1",
+   "number": {
+    "type": "console",
+    "n": 19,
+    "label": "19"
+   },
    "url": "https://evercade.co.uk/cartridges/codemasters-collection-1-cartridge/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/codemasters_collection1-copy.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Codemasters-Collection-1.jpg",
@@ -5361,6 +5721,11 @@
   {
    "id": "worms-collection-1",
    "title": "Worms Collection 1",
+   "number": {
+    "type": "console",
+    "n": 18,
+    "label": "18"
+   },
    "url": "https://evercade.co.uk/cartridges/worms-collection-1/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/worms_collection1-copy.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Worms.jpg",
@@ -5400,6 +5765,11 @@
   {
    "id": "indie-heroes-collection-1-cartridge",
    "title": "Indie Heroes Collection 1",
+   "number": {
+    "type": "console",
+    "n": 17,
+    "label": "17"
+   },
    "url": "https://evercade.co.uk/cartridges/indie-heroes-collection-1-cartridge/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2023/12/indie_heroes_1-copy.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Evercade-Cartridge-Headers.jpg",
@@ -5516,6 +5886,11 @@
   {
    "id": "piko-interactive-collection-2-cartridge",
    "title": "Piko Interactive Collection 2",
+   "number": {
+    "type": "console",
+    "n": 16,
+    "label": "16"
+   },
    "url": "https://evercade.co.uk/cartridges/piko-interactive-collection-2-cartridge/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/piko_collection2.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Piko-Collection-2.jpg",
@@ -5625,6 +6000,11 @@
   {
    "id": "jaleco-collection-1-cartridge",
    "title": "Jaleco Collection 1",
+   "number": {
+    "type": "console",
+    "n": 15,
+    "label": "15"
+   },
    "url": "https://evercade.co.uk/cartridges/jaleco-collection-1-cartridge/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2021/04/jaleco_collection1-copy.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2021/04/Jaleco-Collection-1.jpg",
@@ -5713,6 +6093,11 @@
   {
    "id": "atari-lynx-collection-2-cartridge",
    "title": "Atari Lynx Collection 2",
+   "number": {
+    "type": "console",
+    "n": 14,
+    "label": "14"
+   },
    "url": "https://evercade.co.uk/cartridges/atari-lynx-collection-2-cartridge/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/atari_linx2-copy.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2021/04/Atari-Lynx-Collection-2.jpg",
@@ -5787,6 +6172,11 @@
   {
    "id": "atari-lynx-collection-1-cartridge",
    "title": "Atari Lynx Collection 1",
+   "number": {
+    "type": "console",
+    "n": 13,
+    "label": "13"
+   },
    "url": "https://evercade.co.uk/cartridges/atari-lynx-collection-1-cartridge/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/atari_linx1.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Atari-Lynx-Collection-1.jpg",
@@ -5924,6 +6314,11 @@
   {
    "id": "the-oliver-twins-collection",
    "title": "The Oliver Twins Collection",
+   "number": {
+    "type": "console",
+    "n": 12,
+    "label": "12"
+   },
    "url": "https://evercade.co.uk/cartridges/the-oliver-twins-collection/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/olivertwins_collection1.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/The-Oliver-Twins-Collection.jpg",
@@ -6019,6 +6414,11 @@
   {
    "id": "xeno-crisis-and-tanglewood",
    "title": "Xeno Crisis and Tanglewood",
+   "number": {
+    "type": "console",
+    "n": 11,
+    "label": "11"
+   },
    "url": "https://evercade.co.uk/cartridges/xeno-crisis-and-tanglewood/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/xenocrisis-copy.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Xenocrisis-Tanglewood.jpg",
@@ -6051,6 +6451,11 @@
   {
    "id": "technos-collection-1",
    "title": "Technos Collection 1",
+   "number": {
+    "type": "console",
+    "n": 10,
+    "label": "10"
+   },
    "url": "https://evercade.co.uk/cartridges/technos-collection-1/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/technos_collection1.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Technos-Collection-1.jpg",
@@ -6125,6 +6530,11 @@
   {
    "id": "piko-interactive-collection-1-cartridge",
    "title": "Piko Interactive Collection 1",
+   "number": {
+    "type": "console",
+    "n": 9,
+    "label": "09"
+   },
    "url": "https://evercade.co.uk/cartridges/piko-interactive-collection-1-cartridge/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2021/04/EVE-PIKO-1-WEB-SQUR.webp",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Piko-Collection-1-1.webp?ver=1787922748",
@@ -6283,6 +6693,11 @@
   {
    "id": "mega-cat-studios-collection-1-cartridge",
    "title": "Mega Cat Studios Collection 1",
+   "number": {
+    "type": "console",
+    "n": 8,
+    "label": "08"
+   },
    "url": "https://evercade.co.uk/cartridges/mega-cat-studios-collection-1-cartridge/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/megacat_collection1.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Mega-Cat-Studios-Collection-1.jpg",
@@ -6371,6 +6786,11 @@
   {
    "id": "interplay-collection-2-cartridge",
    "title": "Interplay Collection 2",
+   "number": {
+    "type": "console",
+    "n": 7,
+    "label": "07"
+   },
    "url": "https://evercade.co.uk/cartridges/interplay-collection-2-cartridge/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/interplay_collection2.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Interplay-Collection-2.jpg",
@@ -6431,6 +6851,11 @@
   {
    "id": "namco-collection-2-cartridge",
    "title": "Namco Museum Collection 2",
+   "number": {
+    "type": "console",
+    "n": 6,
+    "label": "06"
+   },
    "url": "https://evercade.co.uk/cartridges/namco-collection-2-cartridge/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2021/04/EVE-NAM2-WEB-SQUR.webp",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Namco-Museum-Collection-2.jpg",
@@ -6526,6 +6951,11 @@
   {
    "id": "atari-collection-2-cartridge",
    "title": "Atari Collection 2",
+   "number": {
+    "type": "console",
+    "n": 5,
+    "label": "05"
+   },
    "url": "https://evercade.co.uk/cartridges/atari-collection-2-cartridge/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2021/04/EVE-ATA2-WEB-SQUR.webp",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Atari-Collection-2.jpg",
@@ -6684,6 +7114,11 @@
   {
    "id": "interplay-collection-1-cartridge",
    "title": "Interplay Collection 1",
+   "number": {
+    "type": "console",
+    "n": 4,
+    "label": "04"
+   },
    "url": "https://evercade.co.uk/cartridges/interplay-collection-1-cartridge/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2024/04/INTERPLAY-1-REV.png",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Interplay-Collection-1.jpg",
@@ -6744,6 +7179,11 @@
   {
    "id": "data-east-collection-1",
    "title": "Data East Collection 1",
+   "number": {
+    "type": "console",
+    "n": 3,
+    "label": "03"
+   },
    "url": "https://evercade.co.uk/cartridges/data-east-collection-1/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2021/04/EVE-DAT1-WEB-SQUR.webp",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Data-East-Collection-1.jpg",
@@ -6832,6 +7272,11 @@
   {
    "id": "namco-collection-1-cartridge",
    "title": "Namco Museum Collection 1",
+   "number": {
+    "type": "console",
+    "n": 2,
+    "label": "02"
+   },
    "url": "https://evercade.co.uk/cartridges/namco-collection-1-cartridge/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2021/04/EVE-NAM1-WEB-SQUR.webp",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Namco-Museum-Collection-1.jpg",
@@ -6927,6 +7372,11 @@
   {
    "id": "atari-collection-1",
    "title": "Atari Collection 1",
+   "number": {
+    "type": "console",
+    "n": 1,
+    "label": "01"
+   },
    "url": "https://evercade.co.uk/cartridges/atari-collection-1/",
    "cover": "https://evercade.co.uk/wp-content/uploads/2021/04/EVE-ATA1-WEB-SQUR.webp",
    "banner": "https://evercade.co.uk/wp-content/uploads/2024/04/Atari-Collection-1.jpg",
