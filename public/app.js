@@ -162,7 +162,9 @@ function cartPassesFilters(c) {
 const NUMBER_RANK = { console: 0, arcade: 1, computer: 2 };
 const cartNumber = (c) => (c?.number ? NUMBER_RANK[c.number.type] * 1000 + c.number.n : null);
 
-// Compara números en el sentido indicado; los cartuchos sin número siempre al final
+const cartStars = (c) => state.ratings.get(c.id) ?? null;
+
+// Compara números en el sentido indicado; los valores nulos (sin número, sin valorar) siempre al final
 function byNumber(na, nb, dir) {
   if (na == null || nb == null) return (na == null) - (nb == null);
   return (na - nb) * dir;
@@ -174,6 +176,8 @@ function cartComparator() {
     old: (a, b) => a.order - b.order,
     'num-asc': (a, b) => byNumber(cartNumber(a), cartNumber(b), 1),
     'num-desc': (a, b) => byNumber(cartNumber(a), cartNumber(b), -1),
+    'stars-desc': (a, b) => byNumber(cartStars(a), cartStars(b), -1) || byNumber(cartNumber(a), cartNumber(b), 1),
+    'stars-asc': (a, b) => byNumber(cartStars(a), cartStars(b), 1) || byNumber(cartNumber(a), cartNumber(b), 1),
     az: (a, b) => a.title.localeCompare(b.title),
     games: (a, b) => b.games.length - a.games.length || a.title.localeCompare(b.title),
   }[state.sort];
@@ -219,11 +223,18 @@ function visibleGames() {
     const ns = g.carts.map((id) => cartNumber(state.byId.get(id))).filter((n) => n != null);
     return ns.length ? Math.min(...ns) : null;
   };
+  // Un juego en varios cartuchos toma la mejor valoración de ellos
+  const stars = (g) => {
+    const rs = g.carts.map((id) => state.ratings.get(id)).filter(Boolean);
+    return rs.length ? Math.max(...rs) : null;
+  };
   const by = {
     new: (a, b) => newest(b) - newest(a) || a.title.localeCompare(b.title),
     old: (a, b) => newest(a) - newest(b) || a.title.localeCompare(b.title),
     'num-asc': (a, b) => byNumber(lowest(a), lowest(b), 1) || a.title.localeCompare(b.title),
     'num-desc': (a, b) => byNumber(lowest(a), lowest(b), -1) || a.title.localeCompare(b.title),
+    'stars-desc': (a, b) => byNumber(stars(a), stars(b), -1) || a.title.localeCompare(b.title),
+    'stars-asc': (a, b) => byNumber(stars(a), stars(b), 1) || a.title.localeCompare(b.title),
     az: (a, b) => a.title.localeCompare(b.title),
     games: (a, b) => b.carts.length - a.carts.length || a.title.localeCompare(b.title),
   }[state.sort];
