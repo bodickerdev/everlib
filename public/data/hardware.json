@@ -1,0 +1,1182 @@
+{
+  "updatedAt": "2026-10-21",
+  "sources": [
+    "https://evercade.co.uk/alpha/",
+    "https://evercade.co.uk/evercade-nexus/",
+    "https://evercade.co.uk/exp-r/",
+    "https://evercade.co.uk/vs-r/",
+    "https://www.hypermegatech.com/capcom-edition/",
+    "https://www.hypermegatech.com/limited-editions/",
+    "https://evercade.info/evercade-hardware-comparison/",
+    "https://evercade.info/evercade-built-in-games/",
+    "https://evercade.info/thec64-handheld/",
+    "https://evercade.info/the-spectrum-handheld/",
+    "https://evercade.co.uk/exp/",
+    "https://evercade.co.uk/vs/",
+    "https://evercade.co.uk/support-vs/",
+    "https://evercade.co.uk/support-handheld/",
+    "https://en.wikipedia.org/wiki/Evercade",
+    "https://www.hobbyconsolas.com/noticias/evercade-anuncia-duke-nukem-12-remastered-evercade-vs-edicion-especial-vs-1253544",
+    "https://retrododo.com/evercade-vs-atomic-edition/",
+    "https://funstock.eu/products/evercade-nexus-doom-edition-eu",
+    "https://kith.com/products/fgkit2hmtusa-ph"
+  ],
+  "items": [
+    {
+      "id": "nexus",
+      "name": "Evercade Nexus",
+      "maker": "Evercade",
+      "kind": "handheld",
+      "type": {
+        "es": "Portátil",
+        "en": "Handheld"
+      },
+      "url": "https://evercade.co.uk/evercade-nexus/",
+      "price": "£169.99 · €199.99 · $199.99",
+      "status": {
+        "es": "A la venta en octubre de 2026",
+        "en": "Coming October 2026"
+      },
+      "description": {
+        "es": "La portátil más grande de Evercade, pensada para los juegos de 32 y 64 bits: doble stick analógico, pantalla IPS de 5,89\" ultrabrillante, auriculares inalámbricos, logo RGB, modo TATE y EverSync para multijugador local inalámbrico entre dos Nexus.",
+        "en": "Evercade's biggest handheld yet, built for 32 and 64-bit games: dual analogue sticks, an ultra-bright 5.89\" IPS screen, wireless headphone support, an RGB logo, TATE mode and EverSync for wireless local multiplayer between two Nexus consoles."
+      },
+      "specs": [
+        {
+          "es": "Pantalla IPS de 5,89\" (840×512), más de 500 nits",
+          "en": "5.89\" IPS screen (840×512), 500+ nits"
+        },
+        {
+          "es": "Doble stick analógico, cruceta, botones frontales, bumpers y gatillos",
+          "en": "Dual analogue sticks, D-pad, face buttons, bumpers and triggers"
+        },
+        {
+          "es": "Procesador de 4 núcleos a 1,5 GHz · 512 MB de RAM DDR",
+          "en": "Quad-core 1.5 GHz processor · 512 MB DDR RAM"
+        },
+        {
+          "es": "WiFi 6 (5 / 2,4 GHz) para actualizaciones",
+          "en": "WiFi 6 (5 / 2.4 GHz) for updates"
+        },
+        {
+          "es": "Auriculares inalámbricos, jack de 3,5 mm y altavoces estéreo frontales",
+          "en": "Wireless headphones, 3.5 mm jack and front-facing stereo speakers"
+        },
+        {
+          "es": "Batería de 5000 mAh (más de 5 horas)",
+          "en": "5000 mAh battery (5+ hours)"
+        },
+        {
+          "es": "Carga por USB-C (cable incluido, 5 V 2 A; sin cargador)",
+          "en": "USB-C charging (cable included, 5 V 2 A; no mains adaptor)"
+        },
+        {
+          "es": "EverSync: multijugador local inalámbrico con otra Nexus",
+          "en": "EverSync: wireless local multiplayer with another Nexus"
+        },
+        {
+          "es": "Logo RGB personalizable y modo TATE",
+          "en": "Customisable RGB logo and TATE mode"
+        },
+        {
+          "es": "Sin salida de TV ni HDMI",
+          "en": "No TV or HDMI output"
+        },
+        {
+          "es": "215 × 111 × 34 mm · 410 g",
+          "en": "215 × 111 × 34 mm · 410 g"
+        }
+      ],
+      "variants": [
+        {
+          "name": "Evercade Nexus",
+          "image": "https://evercade.co.uk/wp-content/uploads/2026/03/Evercade-Nexus-Mobile-Size.png",
+          "note": {
+            "es": "Color negro. Incluye cartucho, cable USB-C y guía rápida.",
+            "en": "Black. Includes a cartridge, USB-C cable and quick start guide."
+          },
+          "includes": [
+            "banjo-kazooie-double-pack"
+          ]
+        },
+        {
+          "name": "Evercade Nexus 64 Edition",
+          "limited": true,
+          "image": "https://evercade.co.uk/wp-content/uploads/2024/05/EVE-NEXUS-BANJO-F64-RTAIL17-M.jpg",
+          "price": "£189.99 · €229.99 · $229.99",
+          "note": {
+            "es": "Exclusiva de Funstock, 2000 unidades (agotada). Colores inspirados en las consolas 3D de los 90, con funda rígida, protector de pantalla, póster y certificado numerado.",
+            "en": "Funstock exclusive, 2000 units (sold out). Colour scheme inspired by 1990s 3D consoles, with a hard case, screen protector, poster and numbered certificate."
+          },
+          "includes": [
+            "banjo-kazooie-double-pack"
+          ]
+        },
+        {
+          "name": "Evercade Nexus DOOM Edition",
+          "limited": true,
+          "image": "https://cdn.shopify.com/s/files/1/0094/5812/2803/files/NEX-DOOM-BEAUTY-SHOT-2000.png?v=1786111860&width=900",
+          "url": "https://funstock.eu/products/evercade-nexus-doom-edition-eu",
+          "price": "€239.99",
+          "note": {
+            "es": "Exclusiva de Funstock, 3000 unidades. Diseño inspirado en DOOM, con funda rígida, llavero, cómic de DOOM, póster A3 a doble cara y certificado de autenticidad.",
+            "en": "Funstock exclusive, 3000 units. DOOM-inspired design, with a hard shell case, keyring, DOOM comic, double-sided A3 poster and certificate of authenticity."
+          },
+          "includes": [
+            "the-doom-collection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "alpha",
+      "name": "Evercade Alpha",
+      "maker": "Evercade",
+      "kind": "arcade",
+      "type": {
+        "es": "Recreativa bartop",
+        "en": "Bartop arcade"
+      },
+      "url": "https://evercade.co.uk/alpha/",
+      "price": "£229.99 · €249.99 · $279.99",
+      "description": {
+        "es": "La primera recreativa compatible con Evercade: un bartop montado con diseño oficial, juegos arcade integrados y doble ranura para cartuchos Evercade. Marquesina iluminada e intercambiable y hasta 2 jugadores con mandos USB.",
+        "en": "The first Evercade-compatible arcade machine: a pre-assembled bartop with an officially licensed design, built-in arcade games and a dual Evercade cartridge slot. Light-up swappable marquee and up to 2 players with USB controllers."
+      },
+      "specs": [
+        {
+          "es": "Doble ranura para cartuchos Evercade",
+          "en": "Dual Evercade cartridge slot"
+        },
+        {
+          "es": "Controles arcade de calidad de competición",
+          "en": "Competition-grade arcade controls"
+        },
+        {
+          "es": "Pantalla IPS 4:3 de 8\" de alta resolución",
+          "en": "8\" high-resolution 4:3 IPS screen"
+        },
+        {
+          "es": "2 puertos USB para mandos (multijugador local a 2; mandos aparte)",
+          "en": "2 USB controller ports (2P local multiplayer; controllers sold separately)"
+        },
+        {
+          "es": "Marquesina iluminada intercambiable (3 incluidas)",
+          "en": "Light-up swappable marquee (3 included)"
+        },
+        {
+          "es": "WiFi integrado para actualizaciones",
+          "en": "Built-in WiFi for updates"
+        },
+        {
+          "es": "Altavoces estéreo y jack para auriculares",
+          "en": "Stereo speakers and earphone jack"
+        },
+        {
+          "es": "Cable y cargador USB-C incluidos (adaptadores UK, US y EU)",
+          "en": "USB-C cable and plug included (UK, US and EU adaptors)"
+        },
+        {
+          "es": "410 × 244 × 316 mm (alto × ancho × fondo)",
+          "en": "410 × 244 × 316 mm (H × W × D)"
+        }
+      ],
+      "variants": [
+        {
+          "name": "Evercade Alpha Street Fighter",
+          "image": "https://evercade.co.uk/wp-content/uploads/2024/05/Street-Fighter-Alpha.png",
+          "games": [
+            "Street Fighter II' Champion Edition",
+            "Super Street Fighter II Turbo",
+            "Super Puzzle Fighter II Turbo",
+            "Street Fighter Alpha: Warriors' Dreams",
+            "Street Fighter Alpha 2",
+            "Street Fighter Alpha 3"
+          ]
+        },
+        {
+          "name": "Evercade Alpha Mega Man",
+          "image": "https://evercade.co.uk/wp-content/uploads/2024/05/Mega-Man-Alpha.png",
+          "games": [
+            "Mega Man: The Power Battle",
+            "Mega Man 2: The Power Fighters",
+            "Carrier Air Wing",
+            "Final Fight",
+            "Knights of the Round",
+            "Strider"
+          ]
+        },
+        {
+          "name": "Evercade Alpha Taito",
+          "image": "https://evercade.co.uk/wp-content/uploads/2025/05/Alpha-new-3.png",
+          "games": [
+            "Bubble Bobble",
+            "Cadash",
+            "Elevator Action",
+            "The Fairyland Story",
+            "Growl",
+            "The Legend of Kage",
+            "The NewZealand Story",
+            "Puzzle Bobble",
+            "Rastan",
+            "Space Invaders"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exp-r",
+      "name": "Evercade EXP-R",
+      "maker": "Evercade",
+      "kind": "handheld",
+      "type": {
+        "es": "Portátil",
+        "en": "Handheld"
+      },
+      "url": "https://evercade.co.uk/exp-r/",
+      "image": "https://evercade.co.uk/wp-content/uploads/2025/06/EXP-R-Two-Designs-Classic-Retro-and-Neon-Retro.jpg",
+      "description": {
+        "es": "Consola portátil para jugar a los cartuchos Evercade en cualquier parte, con modo TATE para los juegos verticales. Disponible en dos diseños retro.",
+        "en": "Handheld console to play Evercade cartridges on the go, with TATE mode for vertical games. Available in two retro designs."
+      },
+      "specs": [
+        {
+          "es": "Pantalla IPS de 4,3\" (800×480)",
+          "en": "4.3\" IPS screen (800×480)"
+        },
+        {
+          "es": "Modo TATE para pantalla vertical",
+          "en": "TATE mode for vertical screen orientation"
+        },
+        {
+          "es": "Empuñadura trasera texturizada",
+          "en": "Textured rear grip"
+        },
+        {
+          "es": "Procesador a 1,5 GHz · 4 GB de memoria interna",
+          "en": "1.5 GHz processor · 4 GB built-in memory"
+        },
+        {
+          "es": "Altavoces estéreo y jack de 3,5 mm",
+          "en": "Stereo speakers and 3.5 mm headphone jack"
+        },
+        {
+          "es": "WiFi integrado para actualizaciones",
+          "en": "Built-in WiFi for updates"
+        },
+        {
+          "es": "Batería de 3000 mAh (4-5 horas) · carga USB-C (cable incluido)",
+          "en": "3000 mAh battery (4-5 hours) · USB-C charging (cable included)"
+        },
+        {
+          "es": "Sin salida de TV: no se puede conectar a una tele o monitor",
+          "en": "No TV out: cannot be connected to a TV or monitor"
+        },
+        {
+          "es": "192,7 × 78,5 × 20,7 mm",
+          "en": "192.7 × 78.5 × 20.7 mm"
+        }
+      ],
+      "variants": [
+        {
+          "name": "Neon Retro",
+          "note": {
+            "es": "Gris carbón y turquesa. Viene con Tomb Raider Collection 1.",
+            "en": "Charcoal grey and turquoise. Bundled with Tomb Raider Collection 1."
+          },
+          "includes": [
+            "tomb-raider-collection-1"
+          ]
+        },
+        {
+          "name": "Classic Retro",
+          "note": {
+            "es": "Gris claro y rojo. Packs con cartucho en algunas tiendas.",
+            "en": "Light grey and red. Cartridge bundles at participating retailers."
+          }
+        }
+      ]
+    },
+    {
+      "id": "vs-r",
+      "name": "Evercade VS-R",
+      "maker": "Evercade",
+      "kind": "home",
+      "type": {
+        "es": "Consola de sobremesa",
+        "en": "Home console"
+      },
+      "url": "https://evercade.co.uk/vs-r/",
+      "image": "https://evercade.co.uk/wp-content/uploads/2025/07/VS-R-Two-Designs-Neon-Retro-Classic-Retro-V2.jpg",
+      "description": {
+        "es": "La forma de jugar a los cartuchos Evercade en la tele a 1080p, con hasta 4 jugadores en local. Incluye un mando a juego y doble ranura para cartuchos.",
+        "en": "The way to play Evercade cartridges on your TV in 1080p, with up to four local players. Comes with a matching controller and a dual cartridge slot."
+      },
+      "specs": [
+        {
+          "es": "Doble ranura para cartuchos con tapa de estilo retro",
+          "en": "Dual cartridge slot with retro-inspired lid"
+        },
+        {
+          "es": "Un mando VS-R con cable de 3 m",
+          "en": "One VS-R controller with 3 m cable"
+        },
+        {
+          "es": "4 puertos USB para multijugador",
+          "en": "4 USB ports for multiplayer"
+        },
+        {
+          "es": "Salida HDMI a 1080p (cable no incluido)",
+          "en": "HDMI 1080p output (cable not included)"
+        },
+        {
+          "es": "Procesador a 1,5 GHz · 4 GB de memoria interna",
+          "en": "1.5 GHz processor · 4 GB built-in memory"
+        },
+        {
+          "es": "Nueva interfaz y WiFi integrado",
+          "en": "New user interface and built-in WiFi"
+        },
+        {
+          "es": "Alimentación MicroUSB (cable incluido, 5 V 2 A; sin cargador)",
+          "en": "MicroUSB power (cable included, 5 V 2 A; no power supply)"
+        },
+        {
+          "es": "197 × 126 × 48 mm",
+          "en": "197 × 126 × 48 mm"
+        }
+      ],
+      "variants": [
+        {
+          "name": "Neon Retro",
+          "note": {
+            "es": "Negra con luz turquesa. Viene con Tomb Raider Collection 1.",
+            "en": "Black with turquoise light. Bundled with Tomb Raider Collection 1."
+          },
+          "includes": [
+            "tomb-raider-collection-1"
+          ]
+        },
+        {
+          "name": "Classic Retro",
+          "note": {
+            "es": "Gris claro con luz roja. Packs con cartucho en algunas tiendas.",
+            "en": "Light grey with red light. Cartridge bundles at participating retailers."
+          }
+        }
+      ]
+    },
+    {
+      "id": "super-pocket",
+      "name": "Super Pocket",
+      "maker": "HyperMegaTech!",
+      "kind": "handheld",
+      "type": {
+        "es": "Portátil",
+        "en": "Handheld"
+      },
+      "url": "https://www.hypermegatech.com/capcom-edition/",
+      "description": {
+        "es": "Portátil de bolsillo de HyperMegaTech! con juegos oficiales integrados según la edición y ranura compatible con los cartuchos Evercade.",
+        "en": "Pocket-sized HyperMegaTech! handheld with officially licensed built-in games for each edition and a slot compatible with Evercade cartridges."
+      },
+      "specs": [
+        {
+          "es": "Pantalla IPS de 2,8\" (320×240)",
+          "en": "2.8\" IPS screen (320×240)"
+        },
+        {
+          "es": "Procesador de 4 núcleos a 1,2 GHz",
+          "en": "Quad-core 1.2 GHz processor"
+        },
+        {
+          "es": "Compatible con los cartuchos Evercade",
+          "en": "Evercade cartridge compatible"
+        },
+        {
+          "es": "Unas 4 horas de batería",
+          "en": "Around 4 hours of battery life"
+        },
+        {
+          "es": "Carga rápida por USB-C (cable incluido)",
+          "en": "Fast USB-C charging (cable included)"
+        },
+        {
+          "es": "Jack de auriculares de 3,5 mm",
+          "en": "3.5 mm headphone jack"
+        },
+        {
+          "es": "Colores inspirados en cada editora",
+          "en": "Publisher-inspired colour scheme"
+        },
+        {
+          "es": "165 g",
+          "en": "165 g"
+        }
+      ],
+      "variants": [
+        {
+          "name": "Capcom Edition",
+          "image": "https://www.hypermegatech.com/wp-content/uploads/2023/11/capcom-console.png",
+          "url": "https://www.hypermegatech.com/capcom-edition/",
+          "note": {
+            "es": "Mega Man es la versión de consola doméstica.",
+            "en": "Mega Man is the home console version."
+          },
+          "games": [
+            "1942",
+            "1943",
+            "1944: The Loop Master",
+            "Bionic Commando",
+            "Captain Commando",
+            "Street Fighter II': Hyper Fighting",
+            "Strider",
+            "Wolf of the Battlefield: MERCS",
+            "Mega Man",
+            "Final Fight",
+            "Ghouls 'n Ghosts",
+            "Forgotten Worlds"
+          ]
+        },
+        {
+          "name": "Taito Edition",
+          "image": "https://www.hypermegatech.com/wp-content/uploads/2023/11/taito-console.png",
+          "url": "https://www.hypermegatech.com/taito-edition/",
+          "note": {
+            "es": "Space Invaders '91 es la versión de consola doméstica.",
+            "en": "Space Invaders '91 is the home console version."
+          },
+          "games": [
+            "Space Invaders",
+            "Bubble Bobble",
+            "Operation Wolf",
+            "The NewZealand Story",
+            "Rastan",
+            "Cadash",
+            "Chack'n Pop",
+            "Don Doko Don",
+            "Elevator Action",
+            "Football Champ",
+            "Growl",
+            "Kiki Kaikai",
+            "Legend of Kage",
+            "Liquid Kids",
+            "Space Invaders '91",
+            "The Fairyland Story",
+            "Volfied",
+            "Puzzle Bobble"
+          ]
+        },
+        {
+          "name": "Atari Edition",
+          "image": "https://www.hypermegatech.com/wp-content/uploads/2024/06/atari-console.png",
+          "url": "https://www.hypermegatech.com/atari-edition/",
+          "note": {
+            "es": "Juegos de recreativa, 2600, 5200, 7800 y Lynx.",
+            "en": "Arcade, 2600, 5200, 7800 and Lynx games."
+          },
+          "games": [
+            "Asteroids (Arcade)",
+            "Berzerk (Arcade)",
+            "Canyon Bomber (Arcade)",
+            "Crystal Castles (Arcade)",
+            "Frenzy (Arcade)",
+            "Liberator (Arcade)",
+            "Lost Tomb (Arcade)",
+            "Millipede (Arcade)",
+            "Missile Command (Arcade)",
+            "Night Driver (Arcade)",
+            "Pong (Arcade)",
+            "Skydiver (Arcade)",
+            "Super Breakout (Arcade)",
+            "Adventure (2600)",
+            "Aquaventure (2600)",
+            "Dark Cavern (2600)",
+            "Gravitar (2600)",
+            "Haunted House (2600)",
+            "Radar Lock (2600)",
+            "Save Mary! (2600)",
+            "Solaris (2600)",
+            "Street Racer (2600)",
+            "Submarine Commander (2600)",
+            "Tempest (2600)",
+            "Video Pinball (2600)",
+            "Wizard (2600)",
+            "Yars' Revenge (2600)",
+            "Bounty Bob Strikes Back! (5200)",
+            "Countermeasure (5200)",
+            "Final Legacy (5200)",
+            "Miner 2049'er (5200)",
+            "Xari Arena (5200)",
+            "Alien Brigade (7800)",
+            "Asteroids (7800)",
+            "Centipede (7800)",
+            "Dark Chambers (7800)",
+            "Desert Falcon (7800)",
+            "Fatal Run (7800)",
+            "Food Fight (7800)",
+            "Ninja Golf (7800)",
+            "Motor Psycho (7800)",
+            "Basketbrawl (Lynx)",
+            "Checkered Flag (Lynx)",
+            "Dirty Larry: Renegade Cop (Lynx)",
+            "Kung Food (Lynx)",
+            "Robo-Squash (Lynx)",
+            "Scrapyard Dog (Lynx)",
+            "Super Asteroids & Missile Command (Lynx)",
+            "Turbo Sub (Lynx)",
+            "Warbirds (Lynx)"
+          ]
+        },
+        {
+          "name": "Data East Edition",
+          "image": "https://www.hypermegatech.com/wp-content/uploads/2025/03/HMT-DEPK-CGI-002-LABL-USA-768x752.png",
+          "url": "https://www.hypermegatech.com/data-east-edition/",
+          "games": [
+            "B-Wings",
+            "Bad Dudes vs. Dragon Ninja",
+            "BreakThru",
+            "BurgerTime",
+            "Burnin' Rubber",
+            "Chain Reaction",
+            "Crude Buster",
+            "Gate of Doom (Dark Seal)",
+            "Joe & Mac Returns",
+            "Joe & Mac: Caveman Ninja",
+            "Karate Champ",
+            "Lock 'n' Chase",
+            "Peter Pepper's Ice Cream Factory",
+            "Spinmaster",
+            "Super BurgerTime",
+            "Edward Randy",
+            "Tumblepop",
+            "Wizard Fire (Dark Seal II)"
+          ]
+        },
+        {
+          "name": "NEOGEO Edition",
+          "image": "https://funstock.eu/cdn/shop/files/Image2-DualEFIGS_80d800c1-dc2c-4585-b2a6-549eb5452e1f.png?v=1769602582&width=800",
+          "url": "https://www.hypermegatech.com/neogeo-edition/",
+          "games": [
+            "Alpha Mission II",
+            "Blazing Star",
+            "Fatal Fury Special",
+            "King of the Monsters 2: The Next Thing",
+            "Last Resort",
+            "Metal Slug X",
+            "Mutation Nation",
+            "Over Top",
+            "Samurai Shodown II",
+            "Sengoku 3",
+            "Shock Troopers: 2nd Squad",
+            "Soccer Brawl",
+            "The Last Blade",
+            "Top Hunter: Roddy & Cathy"
+          ]
+        },
+        {
+          "name": "Technos Edition",
+          "image": "https://www.hypermegatech.com/wp-content/uploads/2024/08/0022_HMT_SUPER-POCKET_Technos_Shot_1_8K_V02a-768x752.png",
+          "url": "https://www.hypermegatech.com/technos-edition/",
+          "games": [
+            "Double Dragon",
+            "River City Ransom (8 bit)",
+            "Double Dragon (8 bit)",
+            "Double Dragon II: The Revenge",
+            "Double Dragon 3: The Rosetta Stone",
+            "Double Dragon (8 bit handheld)",
+            "The Combatribes",
+            "Minky Monkey",
+            "Mysterious Stones: Dr John's Adventure",
+            "Renegade",
+            "Crash 'N' The Boys: Street Challenge (8 bit)",
+            "Super Dodge Ball",
+            "Super Double Dragon (16 bit)",
+            "Super Spike V'ball",
+            "Block Out"
+          ]
+        },
+        {
+          "name": "Activision Edition",
+          "image": "https://www.hypermegatech.com/wp-content/uploads/2026/07/activision-console-cropped.png",
+          "url": "https://www.hypermegatech.com/activision-edition/",
+          "games": [
+            "Barnstorming",
+            "Beamrider",
+            "Boxing",
+            "Checkers",
+            "Chopper Command",
+            "Cosmic Commuter",
+            "Demon Attack",
+            "Dolphin",
+            "Dragonfire",
+            "Enduro",
+            "Grand Prix",
+            "H.E.R.O.",
+            "Kabobber",
+            "Kaboom!",
+            "Keystone Kapers",
+            "Laser Blast",
+            "MegaMania",
+            "Moonsweeper",
+            "Oink!",
+            "Pitfall!",
+            "Pitfall II: Lost Caverns",
+            "Plaque Attack",
+            "Pressure Cooker",
+            "Private Eye",
+            "River Raid",
+            "River Raid II",
+            "Robot Tank",
+            "Seaquest",
+            "Skiing",
+            "Sky Jinks",
+            "Spider Fighter",
+            "Stampede",
+            "Starmaster",
+            "Thwocker"
+          ]
+        },
+        {
+          "name": "Rare Edition",
+          "image": "https://funstock.eu/cdn/shop/files/Image2-DualShotEFIGS_2e69c62f-4b11-4eb9-b2a6-a93f224c5cc0.png?v=1770831009&width=800",
+          "url": "https://www.hypermegatech.com/rare-edition/",
+          "games": [
+            "Atic Atac",
+            "Banjo-Kazooie",
+            "Battletoads in Battlemaniacs",
+            "Battletoads",
+            "Cobra Triangle",
+            "Conker's Pocket Tales",
+            "Gunfright",
+            "Jetpac",
+            "Knight Lore",
+            "Lunar Jetman",
+            "R.C. Pro-Am II",
+            "Slalom",
+            "Snake Rattle 'n' Roll",
+            "Solar Jetman"
+          ]
+        },
+        {
+          "name": "Capcom Limited Edition",
+          "limited": true,
+          "image": "https://www.hypermegatech.com/wp-content/uploads/2025/11/Capcom-Limited-Edition.png",
+          "url": "https://www.hypermegatech.com/limited-editions/",
+          "note": {
+            "es": "2023, 2000 unidades. Carcasa azul translúcida con botones amarillos, en pack doble con la Taito Limited Edition. Mismos juegos que la Capcom Edition.",
+            "en": "2023, 2000 units. Translucent blue shell with yellow buttons, sold as a double pack with the Taito Limited Edition. Same games as the Capcom Edition."
+          },
+          "gamesFrom": "Capcom Edition"
+        },
+        {
+          "name": "Taito Limited Edition",
+          "limited": true,
+          "image": "https://www.hypermegatech.com/wp-content/uploads/2025/11/TAITO-Limited-Edition.png",
+          "url": "https://www.hypermegatech.com/limited-editions/",
+          "note": {
+            "es": "2023, 2000 unidades. Carcasa verde translúcida, en pack doble con la Capcom Limited Edition. Mismos juegos que la Taito Edition.",
+            "en": "2023, 2000 units. Translucent green shell, sold as a double pack with the Capcom Limited Edition. Same games as the Taito Edition."
+          },
+          "gamesFrom": "Taito Edition"
+        },
+        {
+          "name": "Atari Special Edition",
+          "limited": true,
+          "image": "https://www.hypermegatech.com/wp-content/uploads/2025/11/Atari-Limited-Edition.png",
+          "url": "https://www.hypermegatech.com/limited-editions/",
+          "note": {
+            "es": "2024, 2600 unidades numeradas. Diseño con imitación de madera inspirado en la Atari 2600 (Funstock y Atari). Mismos juegos que la Atari Edition.",
+            "en": "2024, 2600 numbered units. Woodgrain design inspired by the Atari 2600 (Funstock and Atari). Same games as the Atari Edition."
+          },
+          "gamesFrom": "Atari Edition"
+        },
+        {
+          "name": "NEOGEO MVS Limited Edition",
+          "limited": true,
+          "image": "https://www.hypermegatech.com/wp-content/uploads/2025/11/NEOGEO-Limited-Edition.png",
+          "url": "https://www.hypermegatech.com/limited-editions/",
+          "note": {
+            "es": "2025, 3000 unidades, exclusiva de Funstock. Diseño rojo inspirado en las MVS. Mismos juegos que la NEOGEO Edition.",
+            "en": "2025, 3000 units, Funstock exclusive. Red MVS-styled design. Same games as the NEOGEO Edition."
+          },
+          "gamesFrom": "NEOGEO Edition"
+        },
+        {
+          "name": "Capcom | Kith Edition",
+          "limited": true,
+          "image": "https://cdn.shopify.com/s/files/1/0094/2252/files/FGKIT2HMTUSA_P_07161724_Front_0cd62227-5799-4422-b572-eb0d1a793e42.jpg?v=1762551756&width=900",
+          "url": "https://kith.com/products/fgkit2hmtusa-ph",
+          "price": "$70.00",
+          "note": {
+            "es": "Colaboración con la marca de ropa Kith, fabricada bajo pedido. Carcasa transparente con el monograma de Kith, logos de Capcom y Kith sobre la pantalla, pantalla de inicio propia y caja especial. Mismos juegos que la Capcom Edition.",
+            "en": "Collaboration with the Kith clothing brand, made to order. Clear shell with all-over Kith monogram, Capcom and Kith logos above the screen, custom start screen and special packaging. Same games as the Capcom Edition."
+          },
+          "gamesFrom": "Capcom Edition"
+        }
+      ],
+      "price": {
+        "es": "Desde £49.99",
+        "en": "From £49.99"
+      }
+    },
+    {
+      "id": "thec64-handheld",
+      "name": "THEC64 Handheld",
+      "maker": "HyperMegaTech!",
+      "kind": "handheld",
+      "type": {
+        "es": "Portátil de ordenador clásico",
+        "en": "Home computer handheld"
+      },
+      "url": "https://www.hypermegatech.com/home-computer-handhelds/",
+      "price": "£109.99 · €129.99 · $129.99",
+      "status": {
+        "es": "A la venta el 22 de abril de 2027",
+        "en": "Coming 22 April 2027"
+      },
+      "noCarts": true,
+      "description": {
+        "es": "Portátil de tipo concha que recrea el Commodore 64, hecha por HyperMegaTech! con Retro Games Ltd y Blaze. Trae 25 juegos integrados y ranura MicroSD para cargar más. No usa cartuchos Evercade. Se retrasó de octubre de 2026 a abril de 2027.",
+        "en": "Clamshell handheld recreating the Commodore 64, made by HyperMegaTech! with Retro Games Ltd and Blaze. 25 built-in games and a MicroSD slot to load more. It does not take Evercade cartridges. Delayed from October 2026 to April 2027."
+      },
+      "specs": [
+        {
+          "es": "Pantalla IPS de 4,3\" (840×480)",
+          "en": "4.3\" IPS screen (840×480)"
+        },
+        {
+          "es": "Procesador de 4 núcleos a 1,2 GHz · 256 MB de RAM DDR",
+          "en": "Quad-core 1.2 GHz processor · 256 MB DDR RAM"
+        },
+        {
+          "es": "Ranura MicroSD para más juegos (no usa cartuchos Evercade)",
+          "en": "MicroSD slot for more games (no Evercade cartridges)"
+        },
+        {
+          "es": "Puerto USB-A para teclado o joystick externo",
+          "en": "USB-A port for an external keyboard or joystick"
+        },
+        {
+          "es": "Modos de sistema: C64, C64C, C64SX y PET64 (PAL y NTSC) y C64 GS",
+          "en": "System modes: C64, C64C, C64SX and PET64 (PAL and NTSC) and C64 GS"
+        },
+        {
+          "es": "Altavoces estéreo y jack de 3,5 mm",
+          "en": "Stereo speakers and 3.5 mm headphone jack"
+        },
+        {
+          "es": "Batería de 2000 mAh (más de 3 horas) · carga USB-C (cable incluido)",
+          "en": "2000 mAh battery (3+ hours) · USB-C charging (cable included)"
+        },
+        {
+          "es": "Color beige retro con teclas de función de plástico",
+          "en": "Retro Beige with plastic function keys"
+        },
+        {
+          "es": "136 × 86 × 26 mm · 235 g",
+          "en": "136 × 86 × 26 mm · 235 g"
+        }
+      ],
+      "variants": [
+        {
+          "name": "Standard Edition",
+          "image": "https://www.hypermegatech.com/wp-content/uploads/2026/04/C64-Handheld-Console-Open-1024x576.png",
+          "games": [
+            "A Pig Quest",
+            "Aztec Challenge",
+            "Super Boulder Dash",
+            "Druid",
+            "Encounter!",
+            "Galencia",
+            "Hunter's Moon Remastered",
+            "Ice Guys",
+            "It's Magic 2",
+            "Knight 'n' Grail",
+            "Krakout",
+            "Lee",
+            "Metal Warrior Ultra",
+            "Millie & Molly",
+            "Nebulus",
+            "Paradroid",
+            "Planet Golf",
+            "Sam's Journey",
+            "Shadow Switcher",
+            "Speedball 2: Brutal Deluxe",
+            "Spherical",
+            "Squish 'Em",
+            "Steel Ranger",
+            "X-Out",
+            "Yeti Mountain"
+          ]
+        },
+        {
+          "name": "Collector's Edition",
+          "limited": true,
+          "image": "https://www.hypermegatech.com/wp-content/uploads/2026/05/CE-DUAL-WEB-1-768x586.png",
+          "price": "£129.99 · €149.99 · $149.99",
+          "note": {
+            "es": "Exclusiva de Funstock, 2000 unidades. Incluye funda rígida y la revista exclusiva Zzap!64.",
+            "en": "Funstock exclusive, 2000 units. Includes a hard case and an exclusive Zzap!64 magazine."
+          },
+          "gamesFrom": "Standard Edition"
+        }
+      ]
+    },
+    {
+      "id": "the-spectrum-handheld",
+      "name": "The Spectrum Handheld",
+      "maker": "HyperMegaTech!",
+      "kind": "handheld",
+      "type": {
+        "es": "Portátil de ordenador clásico",
+        "en": "Home computer handheld"
+      },
+      "url": "https://www.hypermegatech.com/home-computer-handhelds/",
+      "price": "£109.99 · €129.99 · $129.99",
+      "status": {
+        "es": "A la venta el 22 de abril de 2027",
+        "en": "Coming 22 April 2027"
+      },
+      "noCarts": true,
+      "description": {
+        "es": "Portátil de tipo concha que recrea el ZX Spectrum, hecha por HyperMegaTech! con Retro Games Ltd y Blaze. Trae 25 juegos integrados y ranura MicroSD para cargar más. No usa cartuchos Evercade. Se retrasó de octubre de 2026 a abril de 2027.",
+        "en": "Clamshell handheld recreating the ZX Spectrum, made by HyperMegaTech! with Retro Games Ltd and Blaze. 25 built-in games and a MicroSD slot to load more. It does not take Evercade cartridges. Delayed from October 2026 to April 2027."
+      },
+      "specs": [
+        {
+          "es": "Pantalla IPS de 4,3\" (840×480)",
+          "en": "4.3\" IPS screen (840×480)"
+        },
+        {
+          "es": "Procesador de 4 núcleos a 1,2 GHz · 256 MB de RAM DDR",
+          "en": "Quad-core 1.2 GHz processor · 256 MB DDR RAM"
+        },
+        {
+          "es": "Ranura MicroSD para más juegos (no usa cartuchos Evercade)",
+          "en": "MicroSD slot for more games (no Evercade cartridges)"
+        },
+        {
+          "es": "Puerto USB-A para teclado o joystick externo",
+          "en": "USB-A port for an external keyboard or joystick"
+        },
+        {
+          "es": "Modos de sistema: 16K, 48K, 48K NTSC, 128K, +2, +2A, +3 y +3e",
+          "en": "System modes: 16K, 48K, 48K NTSC, 128K, +2, +2A, +3 and +3e"
+        },
+        {
+          "es": "Altavoces estéreo y jack de 3,5 mm",
+          "en": "Stereo speakers and 3.5 mm headphone jack"
+        },
+        {
+          "es": "Batería de 2000 mAh (más de 3 horas) · carga USB-C (cable incluido)",
+          "en": "2000 mAh battery (3+ hours) · USB-C charging (cable included)"
+        },
+        {
+          "es": "Color negro clásico con franja arcoíris y teclas de función de goma",
+          "en": "Classic Black with rainbow stripe and rubber function keys"
+        },
+        {
+          "es": "136 × 86 × 26 mm · 235 g",
+          "en": "136 × 86 × 26 mm · 235 g"
+        }
+      ],
+      "variants": [
+        {
+          "name": "Standard Edition",
+          "image": "https://www.hypermegatech.com/wp-content/uploads/2026/04/Spectrum-Handheld-Console-Open-1024x576.png",
+          "games": [
+            "Archon: The Light and the Dark",
+            "Avenger: The Way of the Tiger II",
+            "Bounder",
+            "Bugaboo the Flea",
+            "Devwill Too ZX",
+            "Hammerfist",
+            "Hammer Knight",
+            "Head Over Heels",
+            "Manic Miner",
+            "M.O.V.I.E.",
+            "Nightmare Rally",
+            "Penguin Attack",
+            "S1NCLA1R C1TY",
+            "Shovel Adventure",
+            "Skool Daze",
+            "Snake Escape",
+            "Sorcerer Kid Adventure",
+            "Splat!",
+            "Starquake",
+            "Switchblade",
+            "The Great Escape",
+            "Tiny Dungeons",
+            "Tourmaline",
+            "Where Time Stood Still",
+            "Zynaps"
+          ]
+        },
+        {
+          "name": "Collector's Edition",
+          "limited": true,
+          "image": "https://www.hypermegatech.com/wp-content/uploads/2026/05/CE-DUAL-WEB-1-768x586.png",
+          "price": "£129.99 · €149.99 · $149.99",
+          "note": {
+            "es": "Exclusiva de Funstock, 2000 unidades. Incluye funda rígida y la revista exclusiva Crash.",
+            "en": "Funstock exclusive, 2000 units. Includes a hard case and an exclusive Crash magazine."
+          },
+          "gamesFrom": "Standard Edition"
+        }
+      ]
+    },
+    {
+      "id": "exp",
+      "name": "Evercade EXP",
+      "maker": "Evercade",
+      "kind": "handheld",
+      "legacy": true,
+      "type": {
+        "es": "Portátil",
+        "en": "Handheld"
+      },
+      "url": "https://evercade.co.uk/exp/",
+      "price": "£129.99 · €149.99 · $149.99",
+      "description": {
+        "es": "La portátil de 2022 que estrenó el modo TATE, con 18 juegos de Capcom integrados y salida HDMI para la tele. Descatalogada en 2024 y sustituida por la EXP-R (que no trae juegos integrados); ahora solo de segunda mano.",
+        "en": "The 2022 handheld that introduced TATE mode, with 18 built-in Capcom games and HDMI TV output. Discontinued in 2024 and replaced by the EXP-R (which has no built-in games); now second-hand only."
+      },
+      "specs": [
+        {
+          "es": "Pantalla IPS de 4,3\" (800×480) con cristal templado",
+          "en": "4.3\" IPS screen (800×480) with tempered glass"
+        },
+        {
+          "es": "18 juegos de Capcom integrados (14 arcade y 4 de consola)",
+          "en": "18 built-in Capcom games (14 arcade and 4 console)"
+        },
+        {
+          "es": "Modo TATE para pantalla vertical",
+          "en": "TATE mode for vertical screen orientation"
+        },
+        {
+          "es": "Procesador a 1,5 GHz · 4 GB de memoria interna",
+          "en": "1.5 GHz processor · 4 GB built-in memory"
+        },
+        {
+          "es": "Salida mini HDMI a 720p para la tele (cable no incluido)",
+          "en": "720p mini HDMI TV output (cable not included)"
+        },
+        {
+          "es": "WiFi integrado (solo redes de 2,4 GHz) para actualizaciones",
+          "en": "Built-in WiFi (2.4 GHz only) for updates"
+        },
+        {
+          "es": "Altavoces estéreo y jack de 3,5 mm",
+          "en": "Stereo speakers and 3.5 mm headphone jack"
+        },
+        {
+          "es": "Batería de 3000 mAh (4-5 horas) · carga USB-C (cable incluido)",
+          "en": "3000 mAh battery (4-5 hours) · USB-C charging (cable included)"
+        },
+        {
+          "es": "192,7 × 78,5 × 20,7 mm",
+          "en": "192.7 × 78.5 × 20.7 mm"
+        }
+      ],
+      "variants": [
+        {
+          "name": "Evercade EXP",
+          "image": "https://evercade.co.uk/wp-content/uploads/2024/03/banner-main-exp-nobkgrd.png",
+          "note": {
+            "es": "Blanca. Incluye el cartucho IREM Arcade 1.",
+            "en": "White. Includes the IREM Arcade 1 cartridge."
+          },
+          "includes": [
+            "irem-arcade-1"
+          ],
+          "games": [
+            "1942",
+            "1943",
+            "1944: The Loop Master",
+            "Bionic Commando",
+            "Captain Commando",
+            "Commando",
+            "Final Fight",
+            "Forgotten Worlds",
+            "Ghouls 'n Ghosts",
+            "Legendary Wings",
+            "MERCS",
+            "Street Fighter II': Hyper Fighting",
+            "Strider",
+            "Vulgus",
+            "Mega Man",
+            "Mega Man 2",
+            "Mega Man X",
+            "Breath of Fire"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vs",
+      "name": "Evercade VS",
+      "maker": "Evercade",
+      "kind": "home",
+      "legacy": true,
+      "type": {
+        "es": "Consola de sobremesa",
+        "en": "Home console"
+      },
+      "url": "https://evercade.co.uk/vs/",
+      "price": {
+        "es": "Desde £89.99 · €99.99 · $99.99",
+        "en": "From £89.99 · €99.99 · $99.99"
+      },
+      "description": {
+        "es": "La primera consola de sobremesa de Evercade (2021): doble ranura para cartuchos, salida 1080p y hasta 4 jugadores. Se podía usar la Evercade Handheld original como mando con un cable especial. Descatalogada en 2024 y sustituida por la VS-R; ahora solo de segunda mano.",
+        "en": "Evercade's first home console (2021): dual cartridge slot, 1080p output and up to 4 players. The original Evercade Handheld could be used as a controller with a special link cable. Discontinued in 2024 and replaced by the VS-R; now second-hand only."
+      },
+      "specs": [
+        {
+          "es": "Doble ranura para cartuchos Evercade",
+          "en": "Dual Evercade cartridge slot"
+        },
+        {
+          "es": "4 puertos USB para mandos (hasta 4 jugadores)",
+          "en": "4 USB ports for controllers (up to 4 players)"
+        },
+        {
+          "es": "Salida HDMI a 1080p (cable no incluido)",
+          "en": "HDMI 1080p output (cable not included)"
+        },
+        {
+          "es": "Procesador de 4 núcleos a 1,5 GHz",
+          "en": "Quad-core 1.5 GHz processor"
+        },
+        {
+          "es": "WiFi integrado para actualizaciones",
+          "en": "Built-in WiFi for updates"
+        },
+        {
+          "es": "Alimentación MicroUSB (cable incluido, 5 V 2 A recomendado; sin cargador)",
+          "en": "MicroUSB power (cable included, 5 V 2 A recommended; no power adaptor)"
+        }
+      ],
+      "variants": [
+        {
+          "name": "Starter Pack",
+          "image": "https://evercade.co.uk/wp-content/uploads/2024/03/VS-Banner-5_Console.png",
+          "note": {
+            "es": "Consola, un mando VS y un cartucho.",
+            "en": "Console, one VS controller and one cartridge."
+          },
+          "includes": [
+            "technos-arcade-1"
+          ]
+        },
+        {
+          "name": "Premium Pack",
+          "note": {
+            "es": "Como el Starter Pack, más un segundo mando y otro cartucho.",
+            "en": "As the Starter Pack, plus a second controller and another cartridge."
+          },
+          "includes": [
+            "technos-arcade-1",
+            "data-east-arcade-1"
+          ]
+        },
+        {
+          "name": "Atomic Edition",
+          "limited": true,
+          "image": "https://imagenes.hobbyconsolas.com/files/image_990_556/uploads/imagenes/2023/05/31/6903944d4408e.jpeg",
+          "url": "https://www.hobbyconsolas.com/noticias/evercade-anuncia-duke-nukem-12-remastered-evercade-vs-edicion-especial-vs-1253544",
+          "price": "£119.99 · €139.99",
+          "note": {
+            "es": "Edición de Duke Nukem (noviembre de 2023), limitada a 2000 unidades y vendida por Funstock. Consola gris metalizado con bandas de advertencia amarillas, dos mandos a juego y certificado de autenticidad.",
+            "en": "Duke Nukem edition (November 2023), limited to 2000 units and sold by Funstock. Gunmetal grey console with yellow warning stripes, two matching controllers and a certificate of authenticity."
+          },
+          "includes": [
+            "duke-nukem-collection-1",
+            "duke-nukem-collection-2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "handheld",
+      "name": "Evercade Handheld",
+      "maker": "Evercade",
+      "kind": "handheld",
+      "legacy": true,
+      "type": {
+        "es": "Portátil",
+        "en": "Handheld"
+      },
+      "url": "https://evercade.co.uk/support-handheld/",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Evercade_Original_Handheld_Console_SwitchedOff.jpg/960px-Evercade_Original_Handheld_Console_SwitchedOff.jpg",
+      "imageCredit": {
+        "text": "M0d3M · CC BY-SA 4.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Evercade_Original_Handheld_Console_SwitchedOff.jpg"
+      },
+      "description": {
+        "es": "La consola original con la que nació Evercade en mayo de 2020. Portátil con salida mini HDMI para la tele; con el firmware 2.0 también sirve como mando de la Evercade VS. Descatalogada; ahora solo de segunda mano.",
+        "en": "The original console Evercade launched with in May 2020. A handheld with mini HDMI TV output; with firmware 2.0 it also works as an Evercade VS controller. Discontinued; now second-hand only."
+      },
+      "specs": [
+        {
+          "es": "Pantalla LCD de 4,3\" (480×272)",
+          "en": "4.3\" LCD screen (480×272)"
+        },
+        {
+          "es": "Procesador Cortex-A7 a 1,2 GHz · 256 MB de memoria",
+          "en": "1.2 GHz Cortex-A7 processor · 256 MB memory"
+        },
+        {
+          "es": "Salida mini HDMI para la tele (720p reescalado)",
+          "en": "Mini HDMI TV output (upscaled 720p)"
+        },
+        {
+          "es": "Batería de 2000 mAh",
+          "en": "2000 mAh battery"
+        },
+        {
+          "es": "Carga por MicroUSB (cable incluido)",
+          "en": "MicroUSB charging (cable included)"
+        },
+        {
+          "es": "Jack de auriculares de 3,5 mm",
+          "en": "3.5 mm headphone jack"
+        },
+        {
+          "es": "Modo mando para Evercade VS con el cable VS Link (firmware 2.0)",
+          "en": "Controller mode for Evercade VS with the VS Link cable (firmware 2.0)"
+        },
+        {
+          "es": "Sin WiFi: se actualiza conectándola al ordenador",
+          "en": "No WiFi: updated by connecting it to a computer"
+        }
+      ],
+      "variants": [
+        {
+          "name": "Starter Pack",
+          "note": {
+            "es": "Consola y un cartucho.",
+            "en": "Console and one cartridge."
+          },
+          "includes": [
+            "namco-collection-1-cartridge"
+          ]
+        },
+        {
+          "name": "Premium Pack",
+          "note": {
+            "es": "Consola y tres cartuchos.",
+            "en": "Console and three cartridges."
+          },
+          "includes": [
+            "namco-collection-1-cartridge",
+            "atari-collection-1",
+            "interplay-collection-1-cartridge"
+          ]
+        }
+      ]
+    }
+  ]
+}

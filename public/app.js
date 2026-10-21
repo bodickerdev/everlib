@@ -22,10 +22,12 @@ const state = {
   sort: 'new',
   unlockables: null,
   unlockTab: 'code', // 'code' | 'two'
+  hardware: null,
+  hwKind: 'all', // 'all' | 'handheld' | 'home' | 'arcade'
   lang: null,
 };
 
-const PREFS = ['view', 'fOwned', 'fLegacy', 'fCat', 'sort', 'unlockTab', 'lang'];
+const PREFS = ['view', 'fOwned', 'fLegacy', 'fCat', 'sort', 'unlockTab', 'hwKind', 'lang'];
 
 // ---------- utilidades ----------
 
@@ -140,6 +142,19 @@ async function loadUnlockables() {
     }
   } catch {}
   state.unlockables = (await db.getMeta('unlockables')) ?? null;
+}
+
+// Fichas de hardware: datos mantenidos a mano en data/hardware.json (copia en IndexedDB para uso sin conexión)
+async function loadHardware() {
+  try {
+    const res = await fetch('data/hardware.json', { cache: 'no-cache' });
+    if (res.ok) {
+      state.hardware = await res.json();
+      await db.setMeta('hardware', state.hardware);
+      return;
+    }
+  } catch {}
+  state.hardware = (await db.getMeta('hardware')) ?? null;
 }
 
 async function loadOwned() {
@@ -420,10 +435,12 @@ function render() {
   const carts = visibleCarts();
   const games = visibleGames();
   const unlock = visibleUnlockables();
+  const hw = visibleHardware();
   $('#count-carts').textContent = carts.length;
   $('#count-games').textContent = games.length;
   $('#count-unlock').textContent = unlock.text.length + unlock.buttons.length + unlock.ingame.length + unlock.two.length;
-  $('.filters').hidden = state.view === 'unlock';
+  $('#count-hardware').textContent = variantCount(ofKind(hw, state.hwKind));
+  $('.filters').hidden = state.view === 'unlock' || state.view === 'hardware';
   document.querySelectorAll('.tabs [role=tab]').forEach((b) => b.setAttribute('aria-selected', b.dataset.view === state.view));
   for (const [id, key] of [['#f-owned', 'fOwned'], ['#f-legacy', 'fLegacy']]) {
     document.querySelectorAll(`${id} button`).forEach((b) => b.setAttribute('aria-pressed', b.dataset.v === state[key]));
@@ -438,6 +455,8 @@ function render() {
       : empty();
   } else if (state.view === 'games') {
     main.innerHTML = games.length ? `<div class="game-list">${games.map((g) => gameRow(g, q)).join('')}</div>` : empty();
+  } else if (state.view === 'hardware') {
+    main.innerHTML = hardwareView(hw, q);
   } else {
     main.innerHTML = unlockView(unlock, q);
   }
@@ -547,6 +566,102 @@ function unlockView(v, q) {
   return tabs + body;
 }
 
+// ---------- hardware ----------
+
+// Juegos integrados de una versión (las ediciones limitadas reutilizan los de su edición normal)
+function variantGames(item, v) {
+  if (v.games) return v.games;
+  return item.variants.find((o) => o.name === v.gamesFrom)?.games ?? [];
+}
+
+// Busca en todo el hardware; el filtro por tipo se aplica después para poder contar cada tipo
+function visibleHardware() {
+  const h = state.hardware;
+  if (!h) return [];
+  const q = norm(state.q);
+  const cartTitles = (ids = []) => ids.map((id) => state.byId.get(id)?.title ?? '');
+  return h.items
+    .map((item) => ({
+      item,
+      // Si la búsqueda coincide con el producto se muestran todas sus versiones
+      variants: hits(q, item.name, item.maker, tr(item.type))
+        ? item.variants
+        : item.variants.filter((v) => hits(q, v.name, ...variantGames(item, v), ...cartTitles(v.includes))),
+    }))
+    .filter((o) => o.variants.length);
+}
+
+function hwImage(src, caption) {
+  return `<button class="hw-img" type="button" data-img="${esc(src)}" data-photo data-caption="${esc(caption)}" aria-label="${esc(t('shot.zoom', caption))}"><img src="${esc(src)}" alt="" loading="lazy" decoding="async"></button>`;
+}
+
+function variantCard(item, v, q) {
+  const games = variantGames(item, v);
+  const incl = (v.includes ?? []).map((id) => state.byId.get(id)).filter(Boolean);
+  const gameHit = q && games.some((g) => norm(g).includes(q));
+  return `<article class="ucard hw-card">
+    ${v.image ? hwImage(v.image, v.name) : ''}
+    <div class="ucard-head">
+      <h3>${highlight(v.name, q)}</h3>
+      ${v.limited ? `<span class="badge legacy">${t('hw.limited')}</span>` : ''}
+    </div>
+    ${v.price ? `<p class="hw-price">${esc(tr(v.price))}</p>` : ''}
+    ${v.note ? `<p class="hw-note">${esc(tr(v.note))}</p>` : ''}
+    ${incl.length ? `<p class="also">${t('hw.includes')} ${incl.map(cartChip).join(' ')}</p>` : ''}
+    ${
+      v.gamesFrom && !gameHit
+        ? ''
+        : games.length
+          ? `<details class="hw-games"${gameHit ? ' open' : ''}><summary>${t('hw.builtIn', games.length)}</summary>
+        <ol>${games.map((g) => `<li>${highlight(g, q)}</li>`).join('')}</ol></details>`
+          : ''
+    }
+    ${v.url && v.url !== item.url ? `<p class="cart-links"><a href="${esc(v.url)}" target="_blank" rel="noopener">${t('link.official')}</a></p>` : ''}
+  </article>`;
+}
+
+const HW_KINDS = ['all', 'handheld', 'home', 'arcade'];
+const variantCount = (list) => list.reduce((n, h) => n + h.variants.length, 0);
+const ofKind = (list, kind) => (kind === 'all' ? list : list.filter((h) => h.item.kind === kind));
+
+function hardwareView(all, q) {
+  if (!state.hardware) return `<p class="loading">${t('hw.error')}</p>`;
+  const tabs = `<div class="subtabs" role="tablist" aria-label="${t('hw.kind.aria')}">${HW_KINDS.map(
+    (k) => `<button role="tab" data-hw-kind="${k}" aria-selected="${state.hwKind === k}">${t(`hw.kind.${k}`)} <span>${variantCount(ofKind(all, k))}</span></button>`,
+  ).join('')}</div>`;
+  const list = ofKind(all, state.hwKind);
+  if (!list.length) return tabs + empty();
+  return tabs + list
+    .map(
+      ({ item, variants }) => `<section class="usection hw">
+      <div class="hw-head">
+        ${
+          item.image
+            ? `<figure class="hw-figure">${hwImage(item.image, item.name)}${
+                item.imageCredit
+                  ? `<figcaption><a href="${esc(item.imageCredit.url)}" target="_blank" rel="noopener">${t('hw.photo')}: ${esc(item.imageCredit.text)}</a></figcaption>`
+                  : ''
+              }</figure>`
+            : ''
+        }
+        <div class="hw-info">
+          <h2>${highlight(item.name, q)}</h2>
+          <p class="badges">${item.legacy ? `<span class="badge legacy">${t('hw.legacy')}</span>` : ''}<span class="badge cat">${esc(tr(item.type))}</span><span class="badge plain">${esc(item.maker)}</span><span class="badge plain">${t('hw.variants', item.variants.length)}</span>${
+            item.status ? `<span class="badge tag">${esc(tr(item.status))}</span>` : ''
+          }${item.noCarts ? `<span class="badge plain">${t('hw.noCarts')}</span>` : ''}</p>
+          ${item.price ? `<p class="hw-price">${esc(tr(item.price))}</p>` : ''}
+          <p class="uhelp">${esc(tr(item.description))}</p>
+          <details class="hw-specs"><summary>${t('hw.specs')}</summary>
+            <ul>${item.specs.map((s) => `<li>${esc(tr(s))}</li>`).join('')}</ul></details>
+          <p class="cart-links"><a href="${esc(item.url)}" target="_blank" rel="noopener">${t('link.official')}</a></p>
+        </div>
+      </div>
+      <div class="ugrid">${variants.map((v) => variantCard(item, v, q)).join('')}</div>
+    </section>`,
+    )
+    .join('');
+}
+
 function empty() {
   return `<div class="empty-state"><p>${t('empty.text', esc(state.q))}</p>
     <button type="button" data-reset>${t('empty.reset')}</button></div>`;
@@ -632,9 +747,11 @@ function gotoCart(id) {
   setTimeout(() => row.classList.remove('flash'), 1600);
 }
 
-function openLightbox(src, caption) {
+// Las fotos de producto no se escalan como pixel art
+function openLightbox(src, caption, photo = false) {
   const dlg = $('#lightbox');
   $('#lb-img').src = src;
+  $('#lb-img').classList.toggle('photo', photo);
   $('#lb-caption').textContent = caption;
   dlg.showModal();
 }
@@ -740,10 +857,16 @@ function bind() {
     const desc = e.target.closest('.desc');
     if (desc) return desc.classList.toggle('open');
     const shotBtn = e.target.closest('[data-img]');
-    if (shotBtn) return openLightbox(shotBtn.dataset.img, shotBtn.dataset.caption);
+    if (shotBtn) return openLightbox(shotBtn.dataset.img, shotBtn.dataset.caption, 'photo' in shotBtn.dataset);
     const sub = e.target.closest('[data-unlock-tab]');
     if (sub) {
       state.unlockTab = sub.dataset.unlockTab;
+      savePrefs();
+      return render();
+    }
+    const kind = e.target.closest('[data-hw-kind]');
+    if (kind) {
+      state.hwKind = kind.dataset.hwKind;
       savePrefs();
       return render();
     }
@@ -752,7 +875,7 @@ function bind() {
     const toggle = e.target.closest('.cart-toggle');
     if (toggle) return toggleExpand(toggle.closest('.cart').dataset.id);
     if (e.target.closest('[data-reset]')) {
-      Object.assign(state, { q: '', fOwned: 'all', fLegacy: 'all', fCat: '' });
+      Object.assign(state, { q: '', fOwned: 'all', fLegacy: 'all', fCat: '', hwKind: 'all' });
       $('#q').value = '';
       savePrefs();
       render();
@@ -805,6 +928,7 @@ async function init() {
     await loadCatalog();
     await loadOwned();
     await loadUnlockables();
+    await loadHardware();
   } catch (err) {
     console.error(err);
     main.innerHTML = `<p class="loading">${esc(err.message)}</p>`;
