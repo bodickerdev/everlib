@@ -8,6 +8,9 @@ const dict = {
   es: {
     locale: 'es-ES',
     'lang.aria': 'Idioma',
+    'settings.aria': 'Configuración',
+    'settings.title': 'Configuración',
+    'settings.video': 'Mostrar vídeo en portada',
     'export.label': 'Exportar',
     'export.aria': 'Exportar colección',
     'export.title': 'Descargar tu colección en un archivo JSON',
@@ -113,6 +116,9 @@ const dict = {
   en: {
     locale: 'en-GB',
     'lang.aria': 'Language',
+    'settings.aria': 'Settings',
+    'settings.title': 'Settings',
+    'settings.video': 'Show video on the home page',
     'export.label': 'Export',
     'export.aria': 'Export collection',
     'export.title': 'Download your collection as a JSON file',

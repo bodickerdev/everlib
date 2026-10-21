@@ -4,6 +4,7 @@ import { readFile, stat } from 'node:fs/promises';
 import { join, extname, normalize, dirname } from 'node:path';
 import { networkInterfaces } from 'node:os';
 import { fileURLToPath } from 'node:url';
+import { latestVideos } from './lib/youtube.mjs';
 
 const PUBLIC = join(dirname(fileURLToPath(import.meta.url)), 'public');
 const PORT = Number(process.env.PORT) || 5173;
@@ -22,6 +23,17 @@ const TYPES = {
 };
 
 createServer(async (req, res) => {
+  if (req.url.startsWith('/api/videos')) {
+    try {
+      const body = JSON.stringify({ videos: await latestVideos() });
+      res.writeHead(200, { 'Content-Type': TYPES['.json'], 'Cache-Control': 'no-cache' });
+      res.end(body);
+    } catch {
+      res.writeHead(502, { 'Content-Type': TYPES['.json'] });
+      res.end('{"videos":[]}');
+    }
+    return;
+  }
   try {
     let path = normalize(decodeURIComponent(new URL(req.url, 'http://x').pathname)).replace(/^([/\\])+/, '');
     let file = join(PUBLIC, path);

@@ -24,10 +24,11 @@ const state = {
   unlockTab: 'code', // 'code' | 'two'
   hardware: null,
   hwKind: 'all', // 'all' | 'handheld' | 'home' | 'arcade'
+  showVideo: true,
   lang: null,
 };
 
-const PREFS = ['view', 'fOwned', 'fLegacy', 'fCat', 'sort', 'unlockTab', 'hwKind', 'lang'];
+const PREFS = ['view', 'fOwned', 'fLegacy', 'fCat', 'sort', 'unlockTab', 'hwKind', 'showVideo', 'lang'];
 
 // ---------- utilidades ----------
 
@@ -902,6 +903,53 @@ function bind() {
   });
 }
 
+// ---------- vídeo destacado ----------
+
+// Uno de los últimos vídeos de la lista de YouTube, al azar en cada carga (si falla o no hay conexión, no se muestra)
+async function loadFeaturedVideo() {
+  if (!state.showVideo || !navigator.onLine) return;
+  try {
+    const res = await fetch('api/videos', { cache: 'no-cache' });
+    if (!res.ok) return;
+    const { videos } = await res.json();
+    if (!videos?.length) return;
+    const v = videos[Math.floor(Math.random() * videos.length)];
+    const box = $('#featured-video');
+    box.innerHTML = `<div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(v.id)}" title="${esc(v.title)}" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`;
+    box.hidden = !state.showVideo; // por si se desactivó mientras cargaba
+  } catch {}
+}
+
+// Al desactivarlo se quita el reproductor (para que deje de sonar); al activarlo se carga otro
+function setShowVideo(on) {
+  state.showVideo = on;
+  savePrefs();
+  const box = $('#featured-video');
+  if (on) return loadFeaturedVideo();
+  box.hidden = true;
+  box.innerHTML = '';
+}
+
+function bindSettings() {
+  const btn = $('#settings-btn');
+  const panel = $('#settings-panel');
+  const toggle = (open) => {
+    panel.hidden = !open;
+    btn.setAttribute('aria-expanded', open);
+  };
+  $('#opt-video').checked = state.showVideo;
+  btn.addEventListener('click', () => toggle(panel.hidden));
+  $('#opt-video').addEventListener('change', (e) => setShowVideo(e.target.checked));
+  // Se cierra al pulsar fuera o con Escape
+  document.addEventListener('click', (e) => !panel.hidden && !e.target.closest('.settings') && toggle(false));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !panel.hidden) {
+      toggle(false);
+      btn.focus();
+    }
+  });
+}
+
 // ---------- idioma ----------
 
 function applyLang(lang) {
@@ -924,6 +972,8 @@ async function init() {
   loadPrefs();
   applyLang(detectLang(state.lang));
   bind();
+  bindSettings();
+  loadFeaturedVideo();
   try {
     await loadCatalog();
     await loadOwned();
