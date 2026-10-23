@@ -24,6 +24,7 @@ const state = {
   unlockTab: 'code', // 'code' | 'two'
   hardware: null,
   hwKind: 'all', // 'all' | 'handheld' | 'home' | 'arcade'
+  hwOwned: new Set(), // claves "<producto>::<versión>" de las consolas en posesión
   showVideo: true,
   lang: null,
 };
@@ -166,6 +167,7 @@ async function loadOwned() {
   const valid = new Set(state.carts.flatMap((c) => c.games.map((g) => gameKey(c.id, g.title))));
   state.completed = new Set((await db.getCompleted()).map((o) => o.id).filter((id) => valid.has(id)));
   state.gameRatings = new Map((await db.getGameRatings()).filter((o) => state.gameIndex.has(o.id)).map((o) => [o.id, o.rating]));
+  state.hwOwned = new Set((await db.getHwOwned()).map((o) => o.id));
 }
 
 const gameKey = (cartId, title) => `${cartId}::${norm(title)}`;
@@ -596,16 +598,26 @@ function hwImage(src, caption) {
   return `<button class="hw-img" type="button" data-img="${esc(src)}" data-photo data-caption="${esc(caption)}" aria-label="${esc(t('shot.zoom', caption))}"><img src="${esc(src)}" alt="" loading="lazy" decoding="async"></button>`;
 }
 
+const hwKey = (item, v) => `${item.id}::${v.name}`;
+
+function hwOwnButton(key, name) {
+  const own = state.hwOwned.has(key);
+  return `<button class="own-btn hw-own" type="button" data-hw-own="${esc(key)}" aria-pressed="${own}" aria-label="${esc(t(own ? 'own.remove' : 'own.add', name))}">
+    <span class="own-check" aria-hidden="true"></span><span class="own-label">${t('hw.own')}</span></button>`;
+}
+
 function variantCard(item, v, q) {
   const games = variantGames(item, v);
   const incl = (v.includes ?? []).map((id) => state.byId.get(id)).filter(Boolean);
   const gameHit = q && games.some((g) => norm(g).includes(q));
-  return `<article class="ucard hw-card">
+  const key = hwKey(item, v);
+  return `<article class="ucard hw-card${state.hwOwned.has(key) ? ' owned' : ''}">
     ${v.image ? hwImage(v.image, v.name) : ''}
     <div class="ucard-head">
       <h3>${highlight(v.name, q)}</h3>
       ${v.limited ? `<span class="badge legacy">${t('hw.limited')}</span>` : ''}
     </div>
+    ${hwOwnButton(key, v.name)}
     ${v.price ? `<p class="hw-price">${esc(tr(v.price))}</p>` : ''}
     ${v.note ? `<p class="hw-note">${esc(tr(v.note))}</p>` : ''}
     ${incl.length ? `<p class="also">${t('hw.includes')} ${incl.map(cartChip).join(' ')}</p>` : ''}
@@ -690,6 +702,17 @@ async function toggleOwned(id) {
   toast(t(own ? 'toast.added' : 'toast.removed', c.title));
 }
 
+async function toggleHwOwned(btn) {
+  const key = btn.dataset.hwOwn;
+  const own = !state.hwOwned.has(key);
+  own ? state.hwOwned.add(key) : state.hwOwned.delete(key);
+  await db.setHwOwned(key, own);
+  const name = btn.closest('.hw-card').querySelector('h3').textContent;
+  btn.closest('.hw-card').classList.toggle('owned', own);
+  btn.outerHTML = hwOwnButton(key, name);
+  toast(t(own ? 'toast.added' : 'toast.removed', name));
+}
+
 async function setRating(id, n) {
   const r = state.ratings.get(id) === n ? 0 : n; // pulsar la estrella actual quita la valoración
   r ? state.ratings.set(id, r) : state.ratings.delete(id);
@@ -764,6 +787,7 @@ function exportOwned() {
     owned: [...state.owned].map((id) => ({ id, title: state.byId.get(id)?.title, rating: state.ratings.get(id) ?? 0 })),
     completed: [...state.completed],
     gameRatings: Object.fromEntries(state.gameRatings),
+    hardware: [...state.hwOwned],
   };
   const url = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }));
   const a = Object.assign(document.createElement('a'), { href: url, download: `${t('export.filename')}-${data.exportedAt.slice(0, 10)}.json` });
@@ -791,6 +815,10 @@ async function importOwned(file) {
       const games = Object.entries(data.gameRatings).filter(([k, n]) => state.gameIndex.has(k) && rating({ rating: n }));
       await db.replaceGameRatings(games.map(([id, n]) => ({ id, rating: n })));
       state.gameRatings = new Map(games);
+    }
+    if (Array.isArray(data.hardware)) {
+      await db.replaceHwOwned(data.hardware.map((id) => ({ id, addedAt: now })));
+      state.hwOwned = new Set(data.hardware);
     }
     render();
     toast(t('toast.imported'));
@@ -847,6 +875,8 @@ function bind() {
   main.addEventListener('click', (e) => {
     const own = e.target.closest('[data-own]');
     if (own) return toggleOwned(own.dataset.own);
+    const hwOwn = e.target.closest('[data-hw-own]');
+    if (hwOwn) return toggleHwOwned(hwOwn);
     const star = e.target.closest('[data-rate]');
     if (star) {
       const game = star.closest('[data-game-rating-for]');

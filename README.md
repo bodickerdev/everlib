@@ -24,7 +24,7 @@ Desde el móvil, conectado a la misma red Wi-Fi, abre la dirección "En tu red l
   - **Con 2 cartuchos** (Evercade VS / VS-R): indica qué cartuchos tienes y cuáles te faltan para cada juego.
 
   Los datos están en `public/data/unlockables.json` y se editan a mano.
-- Sección **Hardware**, con fichas de todas las consolas: Evercade Nexus, Alpha, EXP-R, VS-R, las ediciones de Super Pocket, THEC64 Handheld, The Spectrum Handheld y las descatalogadas (Handheld original, VS y EXP): especificaciones, versiones y juegos integrados. Los datos están en `public/data/hardware.json` y se editan a mano.
+- Sección **Hardware**, con fichas de todas las consolas: Evercade Nexus, Alpha, EXP-R, VS-R, las ediciones de Super Pocket, THEC64 Handheld, The Spectrum Handheld y las descatalogadas (Handheld original, VS y EXP): especificaciones, versiones y juegos integrados, con un botón «Lo tengo» en cada versión para catalogar las consolas de tu colección. Los datos están en `public/data/hardware.json` y se editan a mano.
 - **Vídeo destacado** arriba: uno al azar de los 4 más recientes de la lista de YouTube «Everlib». Lo sirve la ruta `/api/videos` (en `server.mjs` y como función de Vercel en `api/videos.mjs`), que lee el feed RSS de la lista; el ID de la lista está en `lib/youtube.mjs`.
 - Interfaz en **español e inglés**, con selector de idioma arriba del todo. Los títulos de juegos y cartuchos y los códigos de desbloqueo no se traducen. Las descripciones del catálogo salen en inglés en los dos idiomas, porque así las publica evercade.co.uk. Los textos de la interfaz están en `public/i18n.js`.
 - Exportar e importar la colección en JSON, como copia de seguridad o para pasarla a otro dispositivo.

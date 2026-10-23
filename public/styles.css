@@ -683,6 +683,19 @@ kbd {
 .hw-price { margin: 0; font-weight: 600; font-size: 0.9rem; font-variant-numeric: tabular-nums; }
 .hw-note { margin: 0; font-size: 0.85rem; color: var(--muted); }
 .hw-card .cart-links { margin: 0; }
+.hw-card.owned { border-color: var(--ok); }
+.own-btn.hw-own {
+  flex-direction: row;
+  align-self: flex-start;
+  gap: 8px;
+  width: auto;
+  padding: 6px 12px 6px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+.own-btn.hw-own .own-check { width: 22px; height: 22px; }
+.own-btn.hw-own[aria-pressed="true"] { border-color: var(--ok); }
 .hw-specs, .hw-games { font-size: 0.86rem; }
 .hw-specs summary, .hw-games summary { cursor: pointer; font-weight: 600; color: var(--accent); }
 .hw-specs ul, .hw-games ol { margin: 6px 0 0; padding-left: 1.3em; line-height: 1.5; }

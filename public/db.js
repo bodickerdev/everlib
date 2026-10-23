@@ -1,6 +1,6 @@
 // Base de datos local (IndexedDB): catálogo de cartuchos + colección del usuario
 const DB_NAME = 'evercade-library';
-const DB_VERSION = 3;
+const DB_VERSION = 4;
 
 let dbPromise;
 
@@ -17,6 +17,8 @@ function open() {
       if (!has('completed')) db.createObjectStore('completed', { keyPath: 'id' });
       // Valoración de juegos: id = título normalizado (compartida entre cartuchos)
       if (!has('gameRatings')) db.createObjectStore('gameRatings', { keyPath: 'id' });
+      // Consolas en posesión: id = "<producto>::<nombre de la versión>"
+      if (!has('hwOwned')) db.createObjectStore('hwOwned', { keyPath: 'id' });
     };
     req.onsuccess = () => resolve(req.result);
     req.onerror = () => reject(req.error);
@@ -118,6 +120,23 @@ export async function setGameRating(id, rating) {
 export async function replaceGameRatings(entries) {
   const tx = (await open()).transaction('gameRatings', 'readwrite');
   const s = tx.objectStore('gameRatings');
+  s.clear();
+  entries.forEach((e) => s.put(e));
+  return txDone(tx);
+}
+
+export async function getHwOwned() {
+  return done((await store('hwOwned')).getAll());
+}
+
+export async function setHwOwned(id, owned) {
+  const s = await store('hwOwned', 'readwrite');
+  return done(owned ? s.put({ id, addedAt: new Date().toISOString() }) : s.delete(id));
+}
+
+export async function replaceHwOwned(entries) {
+  const tx = (await open()).transaction('hwOwned', 'readwrite');
+  const s = tx.objectStore('hwOwned');
   s.clear();
   entries.forEach((e) => s.put(e));
   return txDone(tx);
