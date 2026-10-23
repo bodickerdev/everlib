@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.bodickerdev.everlib",
+      "sha256_cert_fingerprints": [
+        "BA:B5:0C:B5:B3:AF:37:D7:02:1D:78:4C:BD:9B:1F:6B:07:5F:F8:FE:05:77:AC:63:A7:C6:96:F5:9F:30:4D:D9"
+      ]
+    }
+  }
+]

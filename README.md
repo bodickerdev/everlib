@@ -39,3 +39,21 @@ Desde el móvil, conectado a la misma red Wi-Fi, abre la dirección "En tu red l
   ```
 - **Base de datos local**: IndexedDB del navegador (`evercade-library`), con el catálogo y tu colección.
   Cada navegador o dispositivo guarda su propia colección. Usa Exportar/Importar para pasarla de uno a otro.
+
+## App Android (Google Play)
+
+La carpeta `android/` contiene la app para Google Play: una *Trusted Web Activity* generada con [Bubblewrap](https://github.com/GoogleChromeLabs/bubblewrap) que abre https://everlib.vercel.app a pantalla completa. Los cambios en la web llegan a la app sin publicar una versión nueva.
+
+- Configuración: `android/twa-manifest.json` (id `com.bodickerdev.everlib`, nombre, colores, iconos, versión).
+- Verificación del dominio: `public/.well-known/assetlinks.json` lleva la huella SHA-256 de la clave de subida y, una vez creada la app en Play Console, la de la clave de firma de Google Play (*Configuración → Integridad de la app*). Si falta, la app se abre con una barra de navegador arriba.
+- La clave de subida (`android/everlib-upload.keystore`) y su contraseña (`android/keystore-password.txt`) no se suben a git. Guarda una copia segura: sin ellas no se pueden publicar actualizaciones.
+- Recursos para la ficha de Play: `android/store/` (icono 512×512 y gráfico de cabecera 1024×500).
+
+Para publicar una versión nueva de la app (solo hace falta si cambia `twa-manifest.json`), sube `appVersionCode` y `appVersionName` en `android/twa-manifest.json`, regenera el proyecto con Bubblewrap (`bubblewrap update`) y compila desde PowerShell, en `android/`:
+
+```powershell
+$env:JAVA_HOME = 'C:\Program Files\Java\jdk-17'; $env:ANDROID_HOME = "$env:LOCALAPPDATA\Android\Sdk"
+.\gradlew.bat bundleRelease "-Pandroid.injected.signing.store.file=$PWD\everlib-upload.keystore" "-Pandroid.injected.signing.store.password=<contraseña>" "-Pandroid.injected.signing.key.alias=upload" "-Pandroid.injected.signing.key.password=<contraseña>"
+```
+
+El `.aab` queda en `android/app/build/outputs/bundle/release/app-release.aab`.

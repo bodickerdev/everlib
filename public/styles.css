@@ -709,6 +709,7 @@ kbd {
 /* ---------- pie ---------- */
 
 .foot { padding-bottom: max(24px, env(safe-area-inset-bottom)); color: var(--muted); font-size: 0.8rem; text-align: center; }
+.foot a { color: inherit; }
 
 /* ---------- visor de capturas ---------- */
 

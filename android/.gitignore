@@ -1,0 +1,10 @@
+# Clave de firma y contraseña: NO subir nunca (guarda copia aparte)
+*.keystore
+keystore-password.txt
+# Compilados
+*.aab
+*.apk
+.gradle/
+build/
+app/build/
+local.properties

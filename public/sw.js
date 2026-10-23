@@ -1,6 +1,6 @@
 // Service worker: permite abrir la app sin conexión (red primero, caché como respaldo)
-const CACHE = 'evercade-library-v7';
-const SHELL = ['./', 'index.html', 'styles.css', 'app.js', 'db.js', 'i18n.js', 'icon.svg', 'manifest.webmanifest', 'data/catalog.json', 'data/unlockables.json', 'data/hardware.json'];
+const CACHE = 'evercade-library-v8';
+const SHELL = ['./', 'index.html', 'styles.css', 'app.js', 'db.js', 'i18n.js', 'icon.svg', 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png', 'privacy.html', 'manifest.webmanifest', 'data/catalog.json', 'data/unlockables.json', 'data/hardware.json'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));
