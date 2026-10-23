@@ -23,7 +23,7 @@ const state = {
   unlockables: null,
   unlockTab: 'code', // 'code' | 'two'
   hardware: null,
-  hwKind: 'all', // 'all' | 'handheld' | 'home' | 'arcade'
+  hwKind: 'all', // 'all' | 'handheld' | 'home' | 'arcade' | 'owned'
   hwOwned: new Set(), // claves "<producto>::<versión>" de las consolas en posesión
   showVideo: true,
   lang: null,
@@ -633,9 +633,16 @@ function variantCard(item, v, q) {
   </article>`;
 }
 
-const HW_KINDS = ['all', 'handheld', 'home', 'arcade'];
+const HW_KINDS = ['all', 'handheld', 'home', 'arcade', 'owned'];
 const variantCount = (list) => list.reduce((n, h) => n + h.variants.length, 0);
-const ofKind = (list, kind) => (kind === 'all' ? list : list.filter((h) => h.item.kind === kind));
+// 'owned' no es un tipo: deja solo las versiones marcadas como «Lo tengo»
+const ofKind = (list, kind) => {
+  if (kind === 'all') return list;
+  if (kind !== 'owned') return list.filter((h) => h.item.kind === kind);
+  return list
+    .map(({ item, variants }) => ({ item, variants: variants.filter((v) => state.hwOwned.has(hwKey(item, v))) }))
+    .filter((o) => o.variants.length);
+};
 
 function hardwareView(all, q) {
   if (!state.hardware) return `<p class="loading">${t('hw.error')}</p>`;
@@ -643,6 +650,7 @@ function hardwareView(all, q) {
     (k) => `<button role="tab" data-hw-kind="${k}" aria-selected="${state.hwKind === k}">${t(`hw.kind.${k}`)} <span>${variantCount(ofKind(all, k))}</span></button>`,
   ).join('')}</div>`;
   const list = ofKind(all, state.hwKind);
+  if (!list.length && state.hwKind === 'owned' && !state.hwOwned.size) return tabs + `<p class="empty-state">${t('hw.ownedEmpty')}</p>`;
   if (!list.length) return tabs + empty();
   return tabs + list
     .map(
@@ -708,8 +716,13 @@ async function toggleHwOwned(btn) {
   own ? state.hwOwned.add(key) : state.hwOwned.delete(key);
   await db.setHwOwned(key, own);
   const name = btn.closest('.hw-card').querySelector('h3').textContent;
-  btn.closest('.hw-card').classList.toggle('owned', own);
-  btn.outerHTML = hwOwnButton(key, name);
+  if (state.hwKind === 'owned') {
+    render(); // la consola desmarcada desaparece del filtro
+  } else {
+    btn.closest('.hw-card').classList.toggle('owned', own);
+    btn.outerHTML = hwOwnButton(key, name);
+    main.querySelector('[data-hw-kind="owned"] span').textContent = variantCount(ofKind(visibleHardware(), 'owned'));
+  }
   toast(t(own ? 'toast.added' : 'toast.removed', name));
 }
 
