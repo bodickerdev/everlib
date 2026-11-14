@@ -948,7 +948,9 @@ function bind() {
 
 // ---------- vídeo destacado ----------
 
-// Uno de los últimos vídeos de la lista de YouTube, al azar en cada carga (si falla o no hay conexión, no se muestra)
+// Carrusel con los vídeos de la lista de YouTube, del más nuevo al más antiguo (si falla o no hay conexión, no se muestra).
+// Cada diapositiva muestra la miniatura y el reproductor se carga al pulsarla: un iframe captura los gestos
+// táctiles y no dejaría deslizar el carrusel con el dedo.
 async function loadFeaturedVideo() {
   if (!state.showVideo || !navigator.onLine) return;
   try {
@@ -956,11 +958,74 @@ async function loadFeaturedVideo() {
     if (!res.ok) return;
     const { videos } = await res.json();
     if (!videos?.length) return;
-    const v = videos[Math.floor(Math.random() * videos.length)];
     const box = $('#featured-video');
-    box.innerHTML = `<div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(v.id)}" title="${esc(v.title)}" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`;
+    box.innerHTML = `
+      <div class="video-carousel">
+        <div class="video-track">${videos
+          .map(
+            (v, i) => `
+          <div class="video-slide" data-id="${esc(v.id)}" data-title="${esc(v.title)}" aria-label="${i + 1} / ${videos.length}">
+            <button type="button" class="video-thumb" title="${esc(v.title)}">
+              <img src="https://i.ytimg.com/vi/${encodeURIComponent(v.id)}/hqdefault.jpg" alt="" loading="${i ? 'lazy' : 'eager'}">
+              <span class="video-play" aria-hidden="true"></span>
+              <span class="video-title">${esc(v.title)}</span>
+            </button>
+          </div>`
+          )
+          .join('')}</div>
+        ${
+          videos.length > 1
+            ? `<button type="button" class="video-nav prev" aria-label="${t('video.prev')}" hidden>‹</button>
+               <button type="button" class="video-nav next" aria-label="${t('video.next')}">›</button>
+               <div class="video-dots">${videos.map((_, i) => `<span class="${i ? '' : 'on'}"></span>`).join('')}</div>`
+            : ''
+        }
+      </div>`;
+    bindVideoCarousel(box);
     box.hidden = !state.showVideo; // por si se desactivó mientras cargaba
   } catch {}
+}
+
+function bindVideoCarousel(box) {
+  const track = box.querySelector('.video-track');
+  const slides = [...track.children];
+  const dots = [...box.querySelectorAll('.video-dots span')];
+  const prev = box.querySelector('.prev');
+  const next = box.querySelector('.next');
+  let current = 0;
+
+  const play = (slide) => {
+    const { id, title } = slide.dataset;
+    slide.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=1" title="${esc(title)}" allow="autoplay; accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+  };
+  // Al salir de una diapositiva se vuelve a la miniatura, para que el vídeo deje de sonar
+  const stop = (slide) => {
+    if (!slide.querySelector('iframe')) return;
+    const { id, title } = slide.dataset;
+    slide.innerHTML = `<button type="button" class="video-thumb" title="${esc(title)}"><img src="https://i.ytimg.com/vi/${encodeURIComponent(id)}/hqdefault.jpg" alt=""><span class="video-play" aria-hidden="true"></span><span class="video-title">${esc(title)}</span></button>`;
+  };
+  const goTo = (i) => track.scrollTo({ left: i * track.clientWidth, behavior: 'smooth' });
+
+  track.addEventListener('click', (e) => {
+    const slide = e.target.closest('.video-thumb')?.parentElement;
+    if (slide) play(slide);
+  });
+  track.addEventListener(
+    'scroll',
+    () => {
+      const i = Math.round(track.scrollLeft / track.clientWidth);
+      if (i === current || !slides[i]) return;
+      stop(slides[current]);
+      dots[current]?.classList.remove('on');
+      dots[i]?.classList.add('on');
+      current = i;
+      if (prev) prev.hidden = i === 0;
+      if (next) next.hidden = i === slides.length - 1;
+    },
+    { passive: true }
+  );
+  prev?.addEventListener('click', () => goTo(current - 1));
+  next?.addEventListener('click', () => goTo(current + 1));
 }
 
 // Al desactivarlo se quita el reproductor (para que deje de sonar); al activarlo se carga otro
