@@ -53,10 +53,15 @@
 
   <div class="toolbar">
     <div class="wrap toolbar-inner">
+      <div class="search-row">
       <div class="search">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
         <input id="q" type="search" data-i18n-placeholder="search.placeholder" data-i18n-aria="search.aria" placeholder="Buscar cartucho o juego…" autocomplete="off" aria-label="Buscar cartucho o juego">
         <button id="q-clear" class="icon-btn" type="button" data-i18n-aria="search.clear" aria-label="Borrar búsqueda" hidden>×</button>
+      </div>
+      <button id="coupons-btn" class="coupons-btn" type="button" aria-haspopup="dialog" data-i18n-aria="coupons.aria" data-i18n-title="coupons.aria" aria-label="Cupones de descuento TODOCONSOLAS" title="Cupones de descuento TODOCONSOLAS">
+        <img src="cuponsito.jpeg" alt="" width="46" height="46">
+      </button>
       </div>
       <div class="tabs" role="tablist">
         <button role="tab" data-view="carts" aria-selected="true"><span data-i18n="tab.carts">Cartuchos</span> <span class="count" id="count-carts"></span></button>
@@ -108,6 +113,15 @@
     <form method="dialog"><button class="lb-close" data-i18n-aria="close" aria-label="Cerrar">×</button></form>
     <img id="lb-img" alt="">
     <div class="lb-caption" id="lb-caption"></div>
+  </dialog>
+
+  <dialog id="coupons" class="coupons" aria-labelledby="coupons-title">
+    <div class="coupons-head">
+      <img src="cuponsito.jpeg" alt="" width="56" height="56">
+      <h2 id="coupons-title" data-i18n="coupons.title">Cupones de descuento TODOCONSOLAS</h2>
+      <form method="dialog"><button class="coupons-close" data-i18n-aria="close" aria-label="Cerrar">×</button></form>
+    </div>
+    <div class="coupons-list" id="coupons-list"></div>
   </dialog>
 
   <div class="toast" id="toast" role="status" hidden></div>

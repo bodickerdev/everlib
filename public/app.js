@@ -27,6 +27,7 @@ const state = {
   hwOwned: new Set(), // claves "<producto>::<versión>" de las consolas en posesión
   showVideo: true,
   lang: null,
+  coupons: null,
 };
 
 const PREFS = ['view', 'fOwned', 'fLegacy', 'fCat', 'sort', 'unlockTab', 'hwKind', 'showVideo', 'lang'];
@@ -793,6 +794,47 @@ function openLightbox(src, caption, photo = false) {
   dlg.showModal();
 }
 
+// ---------- cupones de descuento ----------
+// Se editan en data/coupons.json: { code, discount, description, expires: 'AAAA-MM-DD', url }.
+// discount y description admiten texto o { es, en }. Los caducados no se muestran.
+
+async function openCoupons() {
+  const dlg = $('#coupons');
+  if (!state.coupons) {
+    try {
+      const res = await fetch('data/coupons.json', { cache: 'no-cache' });
+      state.coupons = res.ok ? (await res.json()).coupons ?? [] : [];
+    } catch {
+      state.coupons = [];
+    }
+  }
+  renderCoupons();
+  if (!dlg.open) dlg.showModal();
+}
+
+function renderCoupons() {
+  const today = new Date().toISOString().slice(0, 10);
+  const list = (state.coupons ?? []).filter((c) => c?.code && (!c.expires || c.expires >= today));
+  $('#coupons-list').innerHTML = list.length
+    ? list
+        .map((c) => {
+          const until = c.expires ? new Date(`${c.expires}T00:00:00`).toLocaleDateString(t('locale'), { dateStyle: 'long' }) : '';
+          return `<article class="coupon">
+            ${c.discount ? `<p class="coupon-discount">${esc(tr(c.discount))}</p>` : ''}
+            ${c.description ? `<p class="coupon-desc">${esc(tr(c.description))}</p>` : ''}
+            <div class="coupon-code">
+              <span class="coupon-label">${esc(t('coupons.code'))}</span>
+              <code>${esc(c.code)}</code>
+              <button type="button" class="coupon-copy" data-code="${esc(c.code)}">${esc(t('coupons.copy'))}</button>
+            </div>
+            ${until ? `<p class="coupon-until">${esc(t('coupons.until', until))}</p>` : ''}
+            ${c.url && /^https?:\/\//.test(c.url) ? `<a class="coupon-link" href="${esc(c.url)}" target="_blank" rel="noopener">${esc(t('coupons.go'))}</a>` : ''}
+          </article>`;
+        })
+        .join('')
+    : `<p class="coupons-empty">${esc(t('coupons.empty'))}</p>`;
+}
+
 function exportOwned() {
   const data = {
     app: 'evercade-library',
@@ -929,12 +971,26 @@ function bind() {
   const dlg = $('#lightbox');
   dlg.addEventListener('click', (e) => (e.target === dlg || e.target.id === 'lb-img' ? dlg.close() : null));
 
+  $('#coupons-btn').addEventListener('click', openCoupons);
+  const cdlg = $('#coupons');
+  cdlg.addEventListener('click', async (e) => {
+    if (e.target === cdlg) return cdlg.close();
+    const b = e.target.closest('.coupon-copy');
+    if (!b) return;
+    try {
+      await navigator.clipboard.writeText(b.dataset.code);
+      b.textContent = t('coupons.copied');
+      setTimeout(() => (b.textContent = t('coupons.copy')), 1500);
+    } catch {}
+  });
+
   $('#lang-switch').addEventListener('click', (e) => {
     const b = e.target.closest('[data-lang]');
     if (!b || b.dataset.lang === getLang()) return;
     applyLang(b.dataset.lang);
     savePrefs();
     if (state.carts.length) render();
+    if ($('#coupons').open) renderCoupons();
   });
 
   $('#export').addEventListener('click', exportOwned);
