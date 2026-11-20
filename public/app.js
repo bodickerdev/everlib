@@ -848,6 +848,42 @@ function exportOwned() {
   const a = Object.assign(document.createElement('a'), { href: url, download: `${t('export.filename')}-${data.exportedAt.slice(0, 10)}.json` });
   a.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
+  scheduleBackupReminder(BACKUP_EVERY_DAYS);
+}
+
+// ---------- copia de seguridad ----------
+
+// La colección vive solo en el navegador: pide almacenamiento persistente para que no se borre
+// por falta de espacio y recuerda de vez en cuando descargar una copia
+const BACKUP_KEY = 'evercade-backup-next';
+const BACKUP_EVERY_DAYS = 30;
+const BACKUP_SNOOZE_DAYS = 7;
+const DAY = 86400000;
+
+async function requestPersistentStorage() {
+  try {
+    if (navigator.storage?.persist && !(await navigator.storage.persisted())) await navigator.storage.persist();
+  } catch {}
+}
+
+function scheduleBackupReminder(days) {
+  try {
+    localStorage.setItem(BACKUP_KEY, new Date(Date.now() + days * DAY).toISOString());
+  } catch {}
+  $('#backup').hidden = true;
+}
+
+function checkBackupReminder() {
+  if (!state.owned.size) return;
+  let next;
+  try {
+    next = localStorage.getItem(BACKUP_KEY);
+  } catch {
+    return;
+  }
+  // Primera vez con colección: empieza a contar sin molestar
+  if (!next) return scheduleBackupReminder(BACKUP_SNOOZE_DAYS);
+  if (Date.now() >= Date.parse(next)) $('#backup').hidden = false;
 }
 
 async function importOwned(file) {
@@ -994,6 +1030,8 @@ function bind() {
   });
 
   $('#export').addEventListener('click', exportOwned);
+  $('#backup-now').addEventListener('click', exportOwned);
+  $('#backup-later').addEventListener('click', () => scheduleBackupReminder(BACKUP_SNOOZE_DAYS));
   $('#import-btn').addEventListener('click', () => $('#import').click());
   $('#import').addEventListener('change', (e) => {
     const f = e.target.files[0];
@@ -1150,6 +1188,8 @@ async function init() {
   }
   renderCatalogInfo();
   render();
+  requestPersistentStorage();
+  checkBackupReminder();
   if ('serviceWorker' in navigator && location.protocol !== 'file:') {
     navigator.serviceWorker.register('sw.js').catch(() => {});
   }

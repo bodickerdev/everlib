@@ -124,6 +124,14 @@
     <div class="coupons-list" id="coupons-list"></div>
   </dialog>
 
+  <div class="backup" id="backup" role="status" hidden>
+    <p data-i18n="backup.text">Tu colección solo se guarda en este dispositivo. Descarga una copia de seguridad por si se borran los datos del navegador.</p>
+    <div class="backup-actions">
+      <button type="button" id="backup-later" class="backup-later" data-i18n="backup.later">Más tarde</button>
+      <button type="button" id="backup-now" class="backup-now" data-i18n="backup.now">Descargar copia</button>
+    </div>
+  </div>
+
   <div class="toast" id="toast" role="status" hidden></div>
 
   <script defer src="/_vercel/insights/script.js"></script>

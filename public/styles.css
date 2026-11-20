@@ -836,6 +836,34 @@ kbd {
 .coupon-until { color: var(--muted); font-size: 0.85rem; }
 .coupon-link { color: var(--accent); font-weight: 600; }
 
+.backup {
+  position: fixed;
+  left: 50%;
+  bottom: max(16px, env(safe-area-inset-bottom));
+  translate: -50% 0;
+  width: min(480px, calc(100vw - 32px));
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 14px 16px;
+  z-index: 19;
+  font-size: 0.9rem;
+}
+.backup[hidden] { display: none; }
+.backup p { margin: 0 0 12px; }
+.backup-actions { display: flex; justify-content: flex-end; gap: 8px; flex-wrap: wrap; }
+.backup-actions button {
+  font: inherit;
+  border-radius: 999px;
+  padding: 7px 14px;
+  cursor: pointer;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--text);
+}
+.backup-actions .backup-now { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+
 .toast {
   position: fixed;
   left: 50%;
